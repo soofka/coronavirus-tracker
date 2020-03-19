@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Covid-19 Tracker">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#111" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="PWA Companion">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/satellite-emoji-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/satellite-emoji-16x16.png">
+  <link rel="apple-touch-icon" href="images/iss-icon-152x152.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://coronavirus-tracker-api.herokuapp.com/all">
+  <title>Covid-19 Tracker</title>
+</head>
+<body>
+  <div class="background">
+    <img src="images/virus.png" alt="Virus icon" />
+  </div>
+  <div class="content">
+    <div class="content--top">
+      <header>
+        <div class="wrapper">
+          <ul class="menu">
+            <li><span class="value">COVID-19</span> Tracker</span></li>
+            <li><select class="menu--language-select"></select></li>
+            <li><button class="menu--install-button hidden">💾 <span class="menu--install-button-label"></span></button></li>
+            <li><button class="menu--refresh-button hidden">🔮 <span class="menu--refresh-button-label"></span></button></li>
+          </ul>
+        </div>
+      </header>
+      <main>
+        <div class="wrapper">
+          <div class="toasts">
+            <p class="toast hidden">🤖 <span class="toast--message"></span></p>
+          </div>
+          <div class="sections">
+            <div class="section global">
+              <div class="loading global--loading"><p>💤💤💤</p></div>
+              <div class="error global--error">
+                <h2>🤖 <span class="global--error-header-label"></span>!</h2>
+                <h3 class="global--error-message-label"></h3>
+              </div>
+              <div class="data global--data">
+                <h3><span class="global--header-label"></span>:</h3>
+                <h2>
+                  <span class="global--confirmed-value value">?</span> <span class="global--confirmed-label"></span><br>
+                  <span class="global--deaths-value value">?</span> <span class="global--deaths-label"></span><br>
+                  <span class="global--recovered-value value">?</span> <span class="global--recovered-label"></span>
+                </h2>
+              </div>
+            </div>
+            <div class="section per_country">
+              <div class="loading per_country--loading"><p>💤💤💤</p></div>
+              <div class="error per_country--error">
+                <h2>🤖 <span class="per_country--error-header-label"></span>!</h2>
+                <h3 class="per_country--error-message-label"></h3>
+              </div>
+              <div class="data per_country--data">
+                <h3>
+                  <span class="per_country--header-label"></span>
+                  <select class="per_country--country-select">
+                    <option value="0"></option>
+                  </select>:
+                </h3>
+                <h2>
+                  <span class="per_country--confirmed-value value">?</span> <span class="per_country--confirmed-label"></span><br>
+                  <span class="per_country--deaths-value value">?</span> <span class="per_country--deaths-label"></span><br>
+                  <span class="per_country--recovered-value value">?</span> <span class="per_country--recovered-label"></span>
+                </h2>
+              </div>
+            </div>
+            <div class="section per_country_per_date hidden">
+              <div class="loading per_country_per_date--loading"><p>💤💤💤</p></div>
+              <div class="error per_country_per_date--error">
+                <h2>🤖 <span class="per_country_per_date--error-header-label"></span>!</h2>
+                <h3 class="per_country_per_date--error-message-label"></h3>
+              </div>
+              <div class="data per_country_per_date--data">
+                <h3>
+                  <span class="per_country_per_date--header-label"></span>
+                  <select class="per_country_per_date--date-select"></select>
+                  (<span class="per_country_per_date--country-label"></span>):
+                </h3>
+                <h2>
+                  <span class="per_country_per_date--confirmed-value value">?</span> <span class="per_country_per_date--confirmed-label"></span><br>
+                  <span class="per_country_per_date--deaths-value value">?</span> <span class="per_country_per_date--deaths-label"></span><br>
+                  <span class="per_country_per_date--recovered-value value">?</span> <span class="per_country_per_date--recovered-label"></span>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="content--bottom">
+      <footer>
+        <div class="wrapper">
+          <small>made with ❤️ by <a href="https://soofka.pl/" rel="noreferrer" target="_blank">soofka</a> | <a href="https://github.com/soofka/pwa-iss-tracker/" rel="noreferrer" target="_blank">repo</a></small>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

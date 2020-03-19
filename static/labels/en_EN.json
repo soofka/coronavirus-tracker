@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "installButton": "Install",
+    "refreshButton": "Refresh"
+  },
+  "main": {
+    "loading": "Loading"
+  },
+  "sections": {
+    "global": {
+      "header": "Current situation globally",
+      "confirmed": "confirmed",
+      "deaths": "deaths",
+      "recovered": "recovered",
+      "error": "No data"
+    },
+    "perCountry": {
+      "header": "Current situation in",
+      "selectCountry": "Select country",
+      "confirmed": "confirmed",
+      "deaths": "deaths",
+      "recovered": "recovered",
+      "error": "No data"
+    },
+    "perCountryPerDay": {
+      "header": "Situation on day",
+      "confirmed": "confirmed",
+      "deaths": "deaths",
+      "recovered": "recovered",
+      "error": "No data"
+    }
+  }
+}

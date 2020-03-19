@@ -1,0 +1,33 @@
+{
+  "menu": {
+    "installButton": "Zaintaluj",
+    "refreshButton": "Odśwież"
+  },
+  "main": {
+    "loading": "Ładowanie"
+  },
+  "sections": {
+    "global": {
+      "header": "Obecna sytuacja na świecie",
+      "confirmed": "potwierdzonych",
+      "deaths": "zgonów",
+      "recovered": "wyleczeń",
+      "error": "No data"
+    },
+    "perCountry": {
+      "header": "Obecna sytuacja w",
+      "selectCountry": "Wybierz kraj",
+      "confirmed": "potwierdzonych",
+      "deaths": "zgonów",
+      "recovered": "wyleczeń",
+      "error": "No data"
+    },
+    "perCountryPerDay": {
+      "header": "Sytuacja dnia",
+      "confirmed": "potwierdzonych",
+      "deaths": "zgonów",
+      "recovered": "wyleczeń",
+      "error": "No data"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+.lighthouseci
+coverage
+node_modules
+dist
