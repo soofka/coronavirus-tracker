@@ -131,7 +131,6 @@ export const perCountryPerDateSection = () => {
 
   utils.subscribe(events.SET_COUNTRY, (countryData) => {
     dateString = new Date().toISOString();
-    console.log('received event', countryData.payload, dateString);
 
     if (
       countryData.payload && utils.isNonEmptyObject(countryData.payload)
@@ -163,16 +162,21 @@ export const perCountryPerDateSection = () => {
     Object.keys(deaths.timeline).forEach(pushDate);
     Object.keys(recovered.timeline).forEach(pushDate);
 
-    dates.sort().forEach((tempDateString) => utils.append(
+    const datesSorted = dates.sort((a, b) => a < b ? 1 : -1);
+    datesSorted.forEach((tempDateString) => utils.append(
       elements.dateSelect,
-      utils.createOption(new Date(tempDateString).toLocaleDateString(), tempDateString),
+      utils.createOption(
+        createOptionName(tempDateString),
+        tempDateString,
+      ),
     ));
 
     select.reset();
+    select.set(datesSorted[0]);
+    utils.setElementValue(elements.dateSelect, datesSorted[0]);
   };
 
   const renderData = () => {
-    console.log('gonna render', dateString, data);
     if (!hasPerCountryPerDateData(dateString)) {
       return;
     }
@@ -190,7 +194,6 @@ export const perCountryPerDateSection = () => {
 
   const renderError = (error) => utils.setElementText(elements.error.message, error || 'Error');
   const validateDateString = (tempDateString) => {
-    console.log('validation', tempDateString);
     return utils.isNonEmptyString(tempDateString);
     // if (utils.isNonEmptyString(tempDateString)) {
     //   try {
@@ -202,7 +205,23 @@ export const perCountryPerDateSection = () => {
     // return false;
   };
   const hasPerCountryPerDateData = () => validatePerCountryPerDateData(data) && validateDateString(dateString) &&
-    !(isNaN(data.confirmed.timeline[dateString]) && isNaN(data.deaths.timeline[dateString]) && isNaN(data.recovered.timeline[dateString]))
+    !(isNaN(data.confirmed.timeline[dateString]) && isNaN(data.deaths.timeline[dateString]) && isNaN(data.recovered.timeline[dateString]));
+
+  const createOptionName = (tempDateString) => {
+    const tempDate = new Date(tempDateString);
+    const daysAgo = new Date(new Date() - tempDate).getDate() - 1;
+    let namePrefix;
+
+    if (daysAgo === 0) {
+      namePrefix = 'Today';
+    } else if (daysAgo === 1) {
+      namePrefix = 'Yesterday';
+    } else {
+      namePrefix = `${daysAgo} days ago`
+    }
+
+    return `${namePrefix} (${tempDate.toLocaleDateString()})`;
+  };
 
   const select = addMemoryToSelect(
     elements.dateSelect,
@@ -211,7 +230,6 @@ export const perCountryPerDateSection = () => {
     undefined,
     validateDateString,
     (tempDateString) => {
-      console.log('clicked', tempDateString);
       dateString = tempDateString;
       renderData();
     },

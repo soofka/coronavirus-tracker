@@ -52,6 +52,7 @@ export const addMemoryToSelect = (
   reset();
   
   return {
+    set,
     reset,
   };
 };
