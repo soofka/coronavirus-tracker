@@ -1,4 +1,1 @@
-# PWA ISS Tracker
-## TODO
-- one render
-- extract plugin
+# COVID-19 Tracker
