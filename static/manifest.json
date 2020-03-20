@@ -1,6 +1,6 @@
 {
-  "name": "PWA ISS Tracker",
-  "short_name": "PWA ISS Tracker",
+  "name": "COVID-19 Tracker",
+  "short_name": "COVID-19 Tracker",
   "icons": [{
       "src": "/images/iss-icon-128x128.png",
       "sizes": "128x128",
