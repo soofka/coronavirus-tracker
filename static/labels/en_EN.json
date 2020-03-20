@@ -23,7 +23,7 @@
       "error": "No data"
     },
     "perCountryPerDay": {
-      "header": "Situation on day",
+      "header": "Situation per day",
       "confirmed": "confirmed",
       "deaths": "deaths",
       "recovered": "recovered",

@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const ClosureWebpackPlugin = require('closure-webpack-plugin');
-// const TerserWebpackPlugin = require('terser-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
@@ -71,32 +71,32 @@ module.exports = {
   optimization: {
     // concatenateModules: false,
     minimizer: [
-      // new ClosureWebpackPlugin({
-      //   platform: 'javascript',
-      //   // mode: 'AGGRESSIVE_BUNDLE',
-      // }, {
-      //   compilation_level: 'ADVANCED',
-      //   rewrite_polyfills: false,
-      // }),
-      // new TerserWebpackPlugin({
-      //   terserOptions: {
-      //     // ecma: 6,
-      //     keep_classnames: false,
-      //     keep_fnames: false,
-      //     module: true,
-      //     toplevel: true,
-      //     mangle: {
-      //       keep_classnames: false,
-      //       keep_fnames: false,
-      //       module: true,
-      //       toplevel: true,
-      //     },
-      //     output: {
-      //       // ecma: 5,
-      //       beautify: false,
-      //     },
-      //   },
-      // }),
+      new ClosureWebpackPlugin({
+        platform: 'javascript',
+        // mode: 'AGGRESSIVE_BUNDLE',
+      }, {
+        // compilation_level: 'ADVANCED',
+        rewrite_polyfills: false,
+      }),
+      new TerserWebpackPlugin({
+        terserOptions: {
+          // ecma: 6,
+          keep_classnames: false,
+          keep_fnames: false,
+          module: true,
+          toplevel: true,
+          mangle: {
+            keep_classnames: false,
+            keep_fnames: false,
+            module: true,
+            toplevel: true,
+          },
+          output: {
+            // ecma: 5,
+            beautify: false,
+          },
+        },
+      }),
       new OptimizeCssAssetsWebpackPlugin({}),
     ],
   },
