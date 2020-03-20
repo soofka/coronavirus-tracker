@@ -42,7 +42,14 @@ export const parsePerCountryData = ({ locations }) => {
 
   locations.forEach((location) => {
     if (!countryDataParsed[location.country_code]) {
-      countryDataParsed[location.country_code] = location;
+      countryDataParsed[location.country_code] = {
+        country: {
+          id: location.id,
+          code: location.country_code,
+          name: location.country,
+        },
+        data: location.latest,
+      };
     }
   });
 
