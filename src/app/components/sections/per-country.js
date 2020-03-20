@@ -136,9 +136,11 @@ export const perCountrySection = () => {
     utils.clearElement(elements.countrySelect.container);
     utils.append(elements.countrySelect.container, elements.countrySelect.label);
 
-    Object.keys(data).forEach((country) => utils.append(
+    Object.keys(data).sort(
+      (a, b) => data[a].country.name > data[b].country.name ? 1 : -1,
+    ).forEach((key) => utils.append(
       elements.countrySelect.container,
-      utils.createOption(data[country].country, country),
+      utils.createOption(data[key].country.name, data[key].country.code),
     ));
 
     select.reset();
@@ -149,7 +151,7 @@ export const perCountrySection = () => {
       return;
     }
 
-    const { latest: { confirmed, deaths, recovered }} = data[country];
+    const { data: { confirmed, deaths, recovered }} = data[country];
 
     utils.setElementText(elements.data.confirmed.value, isNaN(confirmed) ? '?' : confirmed);
     utils.setElementText(elements.data.deaths.value, isNaN(deaths) ? '?' : deaths);
@@ -171,11 +173,7 @@ export const perCountrySection = () => {
       renderData();
       hasPerCountryData(country) && utils.publish(
         events.SET_COUNTRY,
-        {
-          id: data[country].id,
-          name: data[country].country,
-          code: data[country].country_code,
-        },
+        data[country].country,
       );
     },
   );

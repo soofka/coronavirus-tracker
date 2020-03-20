@@ -23,7 +23,7 @@
       "error": "No data"
     },
     "perCountryPerDay": {
-      "header": "Sytuacja dnia",
+      "header": "Sytuacja z dnia",
       "confirmed": "potwierdzonych",
       "deaths": "zgonów",
       "recovered": "wyleczeń",

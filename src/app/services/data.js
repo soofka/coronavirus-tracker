@@ -99,7 +99,6 @@ export const fetchPerCountryPerDateData = (id) => {
 
   const url = `${PER_COUNTRY_PER_DATE_DATA_API_URL}${id}`;
   let result = false;
-  console.log('gonne fetch', url);
 
   Promise.all([
     utils.fetchFromCache(url)
