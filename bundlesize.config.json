@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "./dist/index.html",
+      "maxSize": "12 kB"
+    },
+    {
+      "path": "./dist/service-worker.js",
+      "maxSize": "1 kB"
+    },
+    {
+      "path": "./dist/assets/virus.webp",
+      "maxSize": "20 kB"
+    },
+    {
+      "path": "./dist/assets/*.{json,xml,webapp}",
+      "maxSize": "2 kB"
+    }
+  ]
+}

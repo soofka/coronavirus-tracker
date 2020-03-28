@@ -4,11 +4,10 @@
 - change API to have recovery rate (?)
 - add sections with explanation
 - add readme
-- add bundlesize
 - release with semver to v1
 ### future
 - prerender default html
-- npm audit fix
+- npm packages reinstall and audit fix
 - add tests
 - add country flags
 - add graph
