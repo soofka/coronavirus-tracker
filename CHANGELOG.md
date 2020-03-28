@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/soofka/coronavirus-tracker/compare/v0.0.1...v0.0.2) (2020-03-28)
+
+
+### Features
+
+* reimplemented application in Preact ([7b018e9](https://github.com/soofka/coronavirus-tracker/commit/7b018e91c2d2d2cd60f8cb233c2f43438a204b9d))
+
 ### 0.0.1 (2020-03-20)
 
 
