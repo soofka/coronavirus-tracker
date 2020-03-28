@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/soofka/coronavirus-tracker/compare/v0.0.2...v0.0.3) (2020-03-28)
+
+
+### Features
+
+* added amount of virus tests performed per country ([19b2c1d](https://github.com/soofka/coronavirus-tracker/commit/19b2c1da088c545cddedc608d507564cf3ac64eb))
+
 ### [0.0.2](https://github.com/soofka/coronavirus-tracker/compare/v0.0.1...v0.0.2) (2020-03-28)
 
 
