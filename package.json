@@ -5,12 +5,14 @@
   "author": "Jakub Sowiński <pansoofka@gmail.com> (https://soofka.pl)",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && webpack",
-    "start": "npm run build && node server.js",
+    "clean": "rimraf dist",
+    "build:dev": "webpack --config webpack.config.base.js",
+    "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
+    "start": "npm run clean && npm run build:dev && node server.js",
+    "test": "echo \"Tests missing\"",
+    "release": "standard-version",
     "generate-populations": "node src/data/generate-populations.js",
-    "generate-virus-tests": "node src/data/generate-virus-tests.js",
-    "test": "jest",
-    "release": "standard-version"
+    "generate-virus-tests": "node src/data/generate-virus-tests.js"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -41,7 +43,8 @@
     "terser-webpack-plugin": "^2.3.4",
     "uuid": "^3.4.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "preact": "^10.3.4"

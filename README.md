@@ -1,12 +1,10 @@
 # COVID-19 Tracker
 ## TODO
 ### first release
-- fix icons
-- fix descriptions
+- change API to have recovery rate (?)
 - add sections with explanation
 - add readme
-- change API to have recovery rate (?)
-- create build and prod webpack configs
+- add bundlesize
 - release with semver to v1
 ### future
 - prerender default html
@@ -15,4 +13,5 @@
 - add country flags
 - add graph
 - add map
+- remove main.css and main.js files from bundle
 - add default language (if lack of label -> get default language -> put default labels)
