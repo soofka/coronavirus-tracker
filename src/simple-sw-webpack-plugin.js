@@ -7,7 +7,8 @@ const defaultOptions = {
   source: './src/service-worker.js',
   target: 'service-worker.js',
   filter: undefined,
-}
+  minify: undefined,
+};
 
 class SimpleSwWebpackPlugin {
   constructor(options) {
@@ -25,7 +26,7 @@ class SimpleSwWebpackPlugin {
         const assets = `[${
           Array.from(compilation.getStats().compilation.assetsInfo.keys())
             .filter(this.options.filter
-              ? (asset) => !(new RegExp(this.options.filter).test(asset))
+              ? (asset) => new RegExp(this.options.filter).test(asset)
               : (asset) => asset,
             )
             .map((asset) => `"${asset}"`)

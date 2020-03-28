@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from 'preact/hooks';
 import { useFetch } from '../commons/hooks';
 import { DEFAULT_LOCALE } from '../commons/constants';
 
-const LABELS_BASE_URL = 'labels/';
+const LABELS_BASE_URL = 'assets/';
 const LabelsContext = createContext();
 
 export const LabelsProvider = ({ children }) => {

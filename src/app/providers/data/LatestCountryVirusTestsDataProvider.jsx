@@ -2,7 +2,7 @@ import { h, createContext } from 'preact';
 import { useEffect, useContext } from 'preact/hooks';
 import { useFetch } from '../../commons/hooks';
 
-const LATEST_COUNTRY_VIRUS_TESTS_URL = 'data/virus-tests.json';
+const LATEST_COUNTRY_VIRUS_TESTS_URL = 'assets/virus-tests.json';
 const LatestCountryVirusTestsDataContext = createContext();
 
 export const LatestCountryVirusTestsDataProvider = ({ children }) => {

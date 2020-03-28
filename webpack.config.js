@@ -4,13 +4,16 @@ const NodeJsonMinify = require('node-json-minify');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const ClosureWebpackPlugin = require('closure-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const SimpleSwWebpackPlugin = require('./src/sw-webpack-plugin.js');
+const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin.js');
+
+const title = 'Coronavirus Tracker';
 
 module.exports = {
   entry: './src/app/index.jsx',
@@ -50,7 +53,9 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([{
-      from: './static',
+      from: './static/**/*',
+      to: 'assets',
+      flatten: true,
       transform: (content, path) =>
         new RegExp('.json$').test(path)
           ? NodeJsonMinify(content.toString())
@@ -60,19 +65,33 @@ module.exports = {
     new ImageminWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      title,
       inlineSource: '.(js|css)$',
     }),
     new HtmlWebpackInlineSourcePlugin(),
+    new FaviconsWebpackPlugin({
+      logo: path.join(__dirname, 'static', 'images', 'virus.png'),
+      favicons: {
+        appName: title,
+        appDescription: title,
+        developerName: 'Jakub Sowiński <pansoofka@gmail.com> (https://soofka.pl)',
+        developerURL: 'https://soofka.pl',
+        background: '#111',
+        theme_color: '#98d463',
+        start_url: '/',
+      },
+    }),
     new MiniCssExtractPlugin(),
+    new OptimizeCssAssetsWebpackPlugin(),
     new SimpleSwWebpackPlugin({
-      filter: '.(js|css)$',
+      filter: '.(html|json)$',
     }),
     new CompressionWebpackPlugin(),
   ],
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
+    // splitChunks: {
+    //   chunks: 'all',
+    // },
     // concatenateModules: false,
     minimizer: [
       // new ClosureWebpackPlugin({
@@ -101,7 +120,6 @@ module.exports = {
           },
         },
       }),
-      new OptimizeCssAssetsWebpackPlugin({}),
     ],
   },
   mode: 'production',

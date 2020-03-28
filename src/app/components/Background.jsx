@@ -3,5 +3,5 @@ import './Background.css';
 
 export const Background = () =>
   <div className="background">
-    <img src="images/virus.webp" alt="Virus icon" />
+    <img src="assets/virus.webp" alt="Virus icon" />
   </div>;

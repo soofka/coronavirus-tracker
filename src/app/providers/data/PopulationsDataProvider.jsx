@@ -2,7 +2,7 @@ import { h, createContext } from 'preact';
 import { useEffect, useContext } from 'preact/hooks';
 import { useFetch } from '../../commons/hooks';
 
-const POPULATIONS_URL = 'data/populations.json';
+const POPULATIONS_URL = 'assets/populations.json';
 const PopulationsDataContext = createContext();
 
 export const PopulationsDataProvider = ({ children }) => {

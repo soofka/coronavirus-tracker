@@ -1,15 +1,17 @@
 # COVID-19 Tracker
 ## TODO
-### v.0.3.0
-- minify html
+### first release
 - fix icons
 - fix descriptions
 - add sections with explanation
 - add readme
-- add tests
+- change API to have recovery rate (?)
 - create build and prod webpack configs
+- release with semver to v1
 ### future
 - prerender default html
+- npm audit fix
+- add tests
 - add country flags
 - add graph
 - add map
