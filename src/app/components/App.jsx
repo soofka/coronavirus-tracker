@@ -14,6 +14,7 @@ import { LabelsProvider } from '../providers/LabelsProvider.jsx';
 import { PopulationsDataProvider } from '../providers/data/PopulationsDataProvider.jsx';
 import { LatestGlobalVirusDataProvider } from '../providers/data/LatestGlobalVirusDataProvider.jsx';
 import { LatestCountryVirusDataProvider } from '../providers/data/LatestCountryVirusDataProvider.jsx';
+import { LatestCountryVirusTestsDataProvider } from '../providers/data/LatestCountryVirusTestsDataProvider.jsx';
 import { HistoricalCountryVirusDataProvider } from '../providers/data/HistoricalCountryVirusDataProvider.jsx';
 
 import './App.css';
@@ -29,7 +30,9 @@ export const App = () =>
             <LatestGlobalVirusDataSection/>
           </LatestGlobalVirusDataProvider>
           <LatestCountryVirusDataProvider>
-            <LatestCountryVirusDataSection/>
+            <LatestCountryVirusTestsDataProvider>
+              <LatestCountryVirusDataSection/>
+            </LatestCountryVirusTestsDataProvider>
             <HistoricalCountryVirusDataProvider>
               <HistoricalCountryVirusDataSection/>
             </HistoricalCountryVirusDataProvider>

@@ -26,9 +26,11 @@
       "daysAgo": "{days} dni temu"
     },
     "data": {
+      "tested": "przetestowanych",
       "confirmed": "potwierdzonych",
       "deaths": "zgonów",
       "recovered": "wyleczeń",
+      "test_rate": "odsetek przetestowanych",
       "infection_rate": "odsetek zakażonych",
       "mortality_rate": "odsetek zmarłych",
       "recovery_rate": "odsetek wyleczonych",

@@ -6,6 +6,7 @@ import { VirusData } from './VirusData.jsx';
 import { SmartSelect } from '../../SmartSelect.jsx';
 
 import { usePopulationsData } from '../../../providers/data/PopulationsDataProvider.jsx';
+import { useVirusTestsData } from '../../../providers/data/VirusTestsDataProvider.jsx';
 import { useLatestCountryVirusData } from '../../../providers/data/LatestCountryVirusDataProvider.jsx';
 
 import { DEFAULT_COUNTRY } from '../../../commons/constants';
@@ -16,6 +17,7 @@ const COUNTRY_STORAGE_KEY = 'COUNTRY';
 
 export const LatestCountryVirusDataSection = () => {
   const populations = usePopulationsData();
+  const virusTests = useVirusTestsData();
   const {
     data,
     error,
@@ -50,6 +52,7 @@ export const LatestCountryVirusDataSection = () => {
     </>}
     content={data && country && country !== DEFAULT_COUNTRY && <VirusData
       total={populations && populations[country.code]}
+      tested={virusTests && virusTests[country.code]}
       confirmed={data[country.code].data.confirmed}
       deaths={data[country.code].data.deaths}
       recovered={data[country.code].data.recovered}

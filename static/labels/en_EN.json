@@ -26,9 +26,11 @@
       "daysAgo": "{days} days ago"
     },
     "data": {
+      "tested": "tested",
       "confirmed": "confirmed",
       "deaths": "deaths",
       "recovered": "recovered",
+      "test_rate": "test rate",
       "infection_rate": "infection rate",
       "mortality_rate": "mortality rate",
       "recovery_rate": "recovery rate",
