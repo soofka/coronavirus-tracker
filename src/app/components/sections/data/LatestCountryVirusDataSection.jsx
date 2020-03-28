@@ -6,7 +6,7 @@ import { VirusData } from './VirusData.jsx';
 import { SmartSelect } from '../../SmartSelect.jsx';
 
 import { usePopulationsData } from '../../../providers/data/PopulationsDataProvider.jsx';
-import { useVirusTestsData } from '../../../providers/data/VirusTestsDataProvider.jsx';
+import { useLatestCountryVirusTestsData } from '../../../providers/data/LatestCountryVirusTestsDataProvider.jsx';
 import { useLatestCountryVirusData } from '../../../providers/data/LatestCountryVirusDataProvider.jsx';
 
 import { DEFAULT_COUNTRY } from '../../../commons/constants';
@@ -17,7 +17,7 @@ const COUNTRY_STORAGE_KEY = 'COUNTRY';
 
 export const LatestCountryVirusDataSection = () => {
   const populations = usePopulationsData();
-  const virusTests = useVirusTestsData();
+  const virusTests = useLatestCountryVirusTestsData();
   const {
     data,
     error,
