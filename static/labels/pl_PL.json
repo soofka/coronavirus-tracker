@@ -1,33 +1,39 @@
 {
-  "menu": {
-    "installButton": "Zaintaluj",
-    "refreshButton": "Odśwież"
+  "common": {
+    "loading": "Ładowanie",
+    "error": {
+      "header": "Błąd",
+      "messages": {
+        "default": "Coś poszło nie tak. Spróbuj ponownie."
+      }
+    }
   },
-  "main": {
-    "loading": "Ładowanie"
+  "navigation": {
+    "install": "Zainstaluj"
   },
   "sections": {
-    "global": {
-      "header": "Obecna sytuacja na świecie",
-      "confirmed": "potwierdzonych",
-      "deaths": "zgonów",
-      "recovered": "wyleczeń",
-      "error": "No data"
+    "global_latest": {
+      "header": "Obecna sytuacja na świecie"
     },
-    "perCountry": {
-      "header": "Obecna sytuacja w",
-      "selectCountry": "Wybierz kraj",
-      "confirmed": "potwierdzonych",
-      "deaths": "zgonów",
-      "recovered": "wyleczeń",
-      "error": "No data"
+    "country_latest": {
+      "header": "Obecna sytuacja w kraju",
+      "select": "Wybierz kraj"
     },
-    "perCountryPerDay": {
+    "country_historical": {
       "header": "Sytuacja z dnia",
+      "today": "Dziś",
+      "yesterday": "Wczoraj",
+      "daysAgo": "{days} dni temu"
+    },
+    "data": {
       "confirmed": "potwierdzonych",
       "deaths": "zgonów",
       "recovered": "wyleczeń",
-      "error": "No data"
+      "infection_rate": "odsetek zakażonych",
+      "mortality_rate": "odsetek zmarłych",
+      "recovery_rate": "odsetek wyleczonych",
+      "refresh": "Odśwież"
     }
-  }
+  },
+  "footer": "<a href=\"https://soofka.pl/\" rel=\"noreferrer\" target=\"_blank\">soofka</a> | <a href=\"https://github.com/soofka/coronavirus-tracker/\" rel=\"noreferrer\" target=\"_blank\">github</a>"
 }

@@ -7,16 +7,19 @@
   "scripts": {
     "build": "rimraf dist && webpack",
     "start": "npm run build && node server.js",
+    "generate-populations": "node src/generate-populations.js",
     "test": "jest",
     "release": "standard-version"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.8.7",
     "babel-loader": "^8.0.6",
     "closure-webpack-plugin": "^2.3.0",
     "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "country-json": "^1.1.0",
     "css-loader": "^3.4.2",
     "express": "^4.17.1",
     "google-closure-compiler": "^20200224.0.0",
@@ -35,5 +38,9 @@
     "uuid": "^3.4.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.9.1",
+    "preact": "^10.3.4"
   }
 }

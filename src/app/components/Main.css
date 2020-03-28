@@ -1,0 +1,11 @@
+main {
+  position: relative;
+}
+
+.sections {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+}

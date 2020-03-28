@@ -1,33 +1,39 @@
 {
-  "menu": {
-    "installButton": "Install",
-    "refreshButton": "Refresh"
+  "common": {
+    "loading": "Loading",
+    "error": {
+      "header": "Error",
+      "messages": {
+        "default": "Something went wrong. Please try again."
+      }
+    }
   },
-  "main": {
-    "loading": "Loading"
+  "navigation": {
+    "install": "Install"
   },
   "sections": {
-    "global": {
-      "header": "Current situation globally",
-      "confirmed": "confirmed",
-      "deaths": "deaths",
-      "recovered": "recovered",
-      "error": "No data"
+    "global_latest": {
+      "header": "Current situation globally"
     },
-    "perCountry": {
+    "country_latest": {
       "header": "Current situation in",
-      "selectCountry": "Select country",
-      "confirmed": "confirmed",
-      "deaths": "deaths",
-      "recovered": "recovered",
-      "error": "No data"
+      "select": "Select country"
     },
-    "perCountryPerDay": {
-      "header": "Situation per day",
+    "country_historical": {
+      "header": "Situation on day",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "{days} days ago"
+    },
+    "data": {
       "confirmed": "confirmed",
       "deaths": "deaths",
       "recovered": "recovered",
-      "error": "No data"
+      "infection_rate": "infection rate",
+      "mortality_rate": "mortality rate",
+      "recovery_rate": "recovery rate",
+      "refresh": "Refresh"
     }
-  }
+  },
+  "footer": "<a href=\"https://soofka.pl/\" rel=\"noreferrer\" target=\"_blank\">soofka</a> | <a href=\"https://github.com/soofka/coronavirus-tracker/\" rel=\"noreferrer\" target=\"_blank\">github</a>"
 }

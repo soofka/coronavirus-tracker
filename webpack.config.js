@@ -12,27 +12,29 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const SimpleSwWebpackPlugin = require('./src/sw-webpack-plugin.js');
 
-// @TODO:
-// rewrite components like header
-// fix warnings from closure-compiler
-// MINIFY HTML
-// MINIFY JSON
-
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/app/index.jsx',
   output: {
-    path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].js',
+    path: path.join(__dirname, 'dist'),
   },
   module: {
     rules: [
       {
-        test: /\.js$/i,
+        test: /\.js?x$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
+            plugins: [
+              ["@babel/plugin-transform-react-jsx", {
+                "pragma": "h",
+                "pragmaFrag": "Fragment",
+              }],
+              // "@babel/plugin-syntax-dynamic-import",
+            ],
           },
         },
       },
@@ -59,7 +61,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       inlineSource: '.(js|css)$',
-      minify: true,
     }),
     new HtmlWebpackInlineSourcePlugin(),
     new MiniCssExtractPlugin(),
@@ -69,15 +70,18 @@ module.exports = {
     new CompressionWebpackPlugin(),
   ],
   optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
     // concatenateModules: false,
     minimizer: [
-      new ClosureWebpackPlugin({
-        platform: 'javascript',
-        // mode: 'AGGRESSIVE_BUNDLE',
-      }, {
-        // compilation_level: 'ADVANCED',
-        rewrite_polyfills: false,
-      }),
+      // new ClosureWebpackPlugin({
+      //   platform: 'javascript',
+      //   // mode: 'AGGRESSIVE_BUNDLE',
+      // }, {
+      //   // compilation_level: 'ADVANCED',
+      //   rewrite_polyfills: false,
+      // }),
       new TerserWebpackPlugin({
         terserOptions: {
           // ecma: 6,

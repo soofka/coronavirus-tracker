@@ -1,0 +1,37 @@
+.background {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 5s;
+  background-color: #98d463;
+  background-image: linear-gradient(315deg, #98d463 0%, #233329 74%);
+  overflow: hidden;
+}
+
+.background img {
+  animation-name: float;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  65%  {
+    transform: translateY(7px);
+  }
+
+  100% {
+    transform: translateY(-0px);
+  } 
+}
