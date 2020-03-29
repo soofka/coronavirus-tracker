@@ -10,11 +10,7 @@ Information about country populations is fetched from [country-json](https://git
 If you'd like to report a bug, propose a feature, help with translations, contribute to the code repository, feel free to [open an issue on Github](https://github.com/soofka/coronavirus-tracker/issues/new). If you want to say hi, [contact me on Twitter](https://twitter.com/pansoofka).
 
 ## TODO
-### first release
-- add sections with explanation
-- add readme
-- release with semver to v1
-### future
+### ideas for future
 - add advanced minification (closure compiler, better image minification, better css minification)
 - get data about tests and enable related sections
 - get data about recoveries and enable related sections

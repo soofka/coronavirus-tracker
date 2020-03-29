@@ -9,6 +9,7 @@ import { Footer } from './Footer.jsx';
 import { LatestGlobalVirusDataSection } from './sections/data/LatestGlobalVirusDataSection.jsx';
 import { LatestCountryVirusDataSection } from './sections/data/LatestCountryVirusDataSection.jsx';
 import { HistoricalCountryVirusDataSection } from './sections/data/HistoricalCountryVirusDataSection.jsx';
+import { AboutSection } from './sections/AboutSection.jsx';
 
 import { LabelsProvider } from '../providers/LabelsProvider.jsx';
 import { PopulationsDataProvider } from '../providers/data/PopulationsDataProvider.jsx';
@@ -38,6 +39,7 @@ export const App = () =>
             </HistoricalCountryVirusDataProvider>
           </LatestCountryVirusDataProvider>
         </PopulationsDataProvider>
+        <AboutSection/>
       </Main>
       <Footer/>
     </LabelsProvider>
