@@ -6,9 +6,9 @@ import './VirusData.css';
 
 const DECIMAL_PLACES = 4;
 
-export const VirusData = ({ total, tested, confirmed, deaths/*, recovered*/ }) =>
+export const VirusData = ({ total/*, tested*/, confirmed, deaths/*, recovered*/ }) =>
   <div class="virus-data">
-    {(!!tested || tested === 0) && <>
+    {/* {(!!tested || tested === 0) && <>
       <h2>
         <span class="virus">{tested}</span>
         &nbsp;
@@ -19,7 +19,7 @@ export const VirusData = ({ total, tested, confirmed, deaths/*, recovered*/ }) =
         &nbsp;
         <Text label="sections.data.test_rate"/>
       </p>}
-    </>}
+    </>} */}
     {(!!confirmed || confirmed === 0) && <>
       <h2>
         <span class="virus">{confirmed}</span>
