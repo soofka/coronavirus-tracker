@@ -2,11 +2,11 @@
   "files": [
     {
       "path": "./dist/index.html",
-      "maxSize": "12 kB"
+      "maxSize": "20 kB"
     },
     {
       "path": "./dist/service-worker.js",
-      "maxSize": "1 kB"
+      "maxSize": "2 kB"
     },
     {
       "path": "./dist/assets/virus.webp",

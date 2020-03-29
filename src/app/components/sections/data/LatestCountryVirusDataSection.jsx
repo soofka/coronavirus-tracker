@@ -30,6 +30,8 @@ export const LatestCountryVirusDataSection = () => {
     header={<>
       <Text label="sections.country_latest.header"/>&nbsp;
       {data && <SmartSelect
+        id="select-country"
+        label={<Text label="sections.country_latest.select_country"/>}
         value={(!country || country === DEFAULT_COUNTRY) ? DEFAULT_COUNTRY : country.code}
         defaultValue={DEFAULT_COUNTRY}
         queryStringKey={COUNTRY_QUERY_STRING_KEY}

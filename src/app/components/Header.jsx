@@ -1,5 +1,6 @@
 import { h } from 'preact';
 
+import { Text } from './Text.jsx';
 import { SmartSelect } from './SmartSelect.jsx';
 import { InstallButton } from './InstallButton.jsx';
 
@@ -28,6 +29,8 @@ export const Header = () => {
             <li>👑 <span class="virus"><strong>CORONAVIRUS</strong></span> Tracker</li>
             <li>
               <SmartSelect
+                id="select-language"
+                label={<Text label="navigation.select_language"/>}
                 value={locale}
                 defaultValue={DEFAULT_LOCALE}
                 queryStringKey={LOCALE_QUERY_STRING_KEY}

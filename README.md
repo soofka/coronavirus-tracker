@@ -1,6 +1,9 @@
-# COVID-19 Tracker
+# Coronavirus Tracker
 ## TODO
 ### first release
+- fix lighthouse
+- add appcache html webpack plugins
+- add content policy html webpack plugins
 - change API to have recovery rate (?)
 - add sections with explanation
 - add readme
@@ -8,6 +11,10 @@
 ### future
 - prerender default html
 - npm packages reinstall and audit fix
+- add social tags
+- add global historical section
+- add previous/next day buttons to historical data sections
+- add previous day comparison to all data sections
 - add tests
 - add country flags
 - add graph

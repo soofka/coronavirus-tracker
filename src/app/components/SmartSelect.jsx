@@ -1,13 +1,15 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 
 export const SmartSelect = ({
   children,
+  id,
+  label,
   value,
   defaultValue,
   queryStringKey,
   storageKey,
-  validate,
-  onChange,
+  validate = () => true,
+  onChange = () => {},
   ...rest
 }) => {
   const getDefaultValue = () => {
@@ -33,7 +35,7 @@ export const SmartSelect = ({
       value = tempValue;
       queryStringKey && setInQueryString(queryStringKey, tempValue);
       storageKey && setInStorage(storageKey, tempValue);
-      onChange && onChange(tempValue);
+      onChange(tempValue);
     }
   };
 
@@ -50,7 +52,14 @@ export const SmartSelect = ({
     }
   }
 
-  return <select value={value} onChange={handleChange} {...rest}>{children}</select>;
+  return (
+    <>
+      {label && <label for={id} hidden>{label}</label>}
+      <select id={id} name={id} value={value} onChange={handleChange} {...rest}>
+        {children}
+      </select>
+    </>
+  );
 };
 
 const getQueryString = () => new URLSearchParams(new URL(window.location.href).search);

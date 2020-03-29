@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin.js');
 
 module.exports = {
   entry: './src/app/index.jsx',
@@ -53,9 +54,11 @@ module.exports = {
       ,
     }]),
     new ImageminWebpackPlugin(),
+    new SimpleSwWebpackPlugin({
+      filter: '.(html|json)$',
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      title: 'Coronavirus Tracker',
       inlineSource: '.(js|css)$',
     }),
     new MiniCssExtractPlugin(),

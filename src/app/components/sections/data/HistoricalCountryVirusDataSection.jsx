@@ -3,6 +3,7 @@ import { h, Fragment } from 'preact';
 import { Text } from '../../Text.jsx';
 import { SectionWithData } from '../SectionWithData.jsx';
 import { VirusData } from './VirusData.jsx';
+import { SmartSelect } from '../../SmartSelect.jsx';
 
 import { usePopulationsData } from '../../../providers/data/PopulationsDataProvider.jsx';
 import { useHistoricalCountryVirusData } from '../../../providers/data/HistoricalCountryVirusDataProvider.jsx';
@@ -32,11 +33,17 @@ export const HistoricalCountryVirusDataSection = () => {
 
   return <SectionWithData
     header={<>
-      <Text label="sections.country_historical.header"/>
-      {data && <>&nbsp;
-        <select value={date} onChange={(event) => setDate(event.target.value)}>
+      <Text label="sections.country_historical.header"/>&nbsp;
+      {data && <>
+        <SmartSelect
+          id="select-date"
+          label={<Text label="sections.country_historical.select_date"/>}
+          value={date}
+          defaultValue={DEFAULT_DATE}
+          onChange={(event) => setDate(event.target.value)}
+        >
           {renderOptions(data)}
-        </select>&nbsp;
+        </SmartSelect>&nbsp;
         ({country.name})
       </>}
     </>}
@@ -59,7 +66,7 @@ const renderOptions = (data) =>
       ? <Text label="sections.country_historical.today"/>
       : (daysAgo === 1
         ? <Text label="sections.country_historical.yesterday"/>
-        : <Text label="sections.country_historical.daysAgo" values={{ days: daysAgo }}/>);
+        : <Text label="sections.country_historical.days_ago" values={{ days: daysAgo }}/>);
 
     return <option value={date}>{text}</option>;
   });

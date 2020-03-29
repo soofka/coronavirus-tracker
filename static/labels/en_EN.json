@@ -9,7 +9,8 @@
     }
   },
   "navigation": {
-    "install": "Install"
+    "install": "Install",
+    "select_language": "Select language"
   },
   "sections": {
     "global_latest": {
@@ -17,13 +18,14 @@
     },
     "country_latest": {
       "header": "Current situation in",
-      "select": "Select country"
+      "select_country": "Select country"
     },
     "country_historical": {
       "header": "Situation on day",
       "today": "Today",
       "yesterday": "Yesterday",
-      "daysAgo": "{days} days ago"
+      "days_ago": "{days} days ago",
+      "select_date": "Select date"
     },
     "data": {
       "tested": "tested",

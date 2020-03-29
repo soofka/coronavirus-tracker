@@ -7,7 +7,6 @@ const ClosureWebpackPlugin = require('closure-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin.js');
 
 module.exports = merge(base, {
   output: {
@@ -25,19 +24,16 @@ module.exports = merge(base, {
         developerURL: 'https://soofka.pl',
         background: '#111',
         theme_color: '#98d463',
-        start_url: '/',
+        start_url: '/index.html',
       },
     }),
     new OptimizeCssAssetsWebpackPlugin(),
-    new SimpleSwWebpackPlugin({
-      filter: '.(html|json)$',
-    }),
     new CompressionWebpackPlugin(),
   ],
   optimization: {
-    // splitChunks: {
-    //   chunks: 'all',
-    // },
+    splitChunks: {
+      chunks: 'all',
+    },
     // concatenateModules: false,
     minimizer: [
       // new ClosureWebpackPlugin({
