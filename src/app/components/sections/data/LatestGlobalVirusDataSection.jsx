@@ -21,7 +21,7 @@ export const LatestGlobalVirusDataSection = () => {
       total={populations && populations.total}
       confirmed={data.confirmed}
       deaths={data.deaths}
-      recovered={data.recovered}
+      // recovered={data.recovered}
     />}
     data={data}
     error={error}

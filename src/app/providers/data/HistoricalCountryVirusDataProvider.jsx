@@ -57,10 +57,14 @@ const validateHistoricalCountryVirusData = (data) => isObject(data)
   && objectHasKey(data.location.timelines, 'deaths')
   && isObject(data.location.timelines.deaths)
   && objectHasKey(data.location.timelines.deaths, 'timeline')
-  && isObject(data.location.timelines.deaths.timeline)
-  && objectHasKey(data.location.timelines, 'recovered')
-  && isObject(data.location.timelines.recovered)
-  && objectHasKey(data.location.timelines.recovered, 'timeline')
-  && isObject(data.location.timelines.recovered.timeline);
+  && isObject(data.location.timelines.deaths.timeline);
+  // && objectHasKey(data.location.timelines, 'recovered')
+  // && isObject(data.location.timelines.recovered)
+  // && objectHasKey(data.location.timelines.recovered, 'timeline')
+  // && isObject(data.location.timelines.recovered.timeline)
 
-const normalizeHistoricalCountryVirusData = (data) => ({ ...data.location.timelines });
+const normalizeHistoricalCountryVirusData = (data) => ({
+  confirmed: data.location.timelines.confirmed,
+  deaths: data.location.timelines.deaths,
+  // recovered: data.location.timelines.recovered,
+});

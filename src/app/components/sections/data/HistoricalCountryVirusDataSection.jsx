@@ -52,7 +52,7 @@ export const HistoricalCountryVirusDataSection = () => {
         total={populations[country.code]}
         confirmed={data.confirmed.timeline[date]}
         deaths={data.deaths.timeline[date]}
-        recovered={data.recovered.timeline[date]}
+        // recovered={data.recovered.timeline[date]}
       />}
     </>}
     data={data}
@@ -77,6 +77,6 @@ const renderOptions = (data) =>
 const getDates = (data) => 
   Object.keys(data.confirmed.timeline)
     .concat(Object.keys(data.deaths.timeline))
-    .concat(Object.keys(data.recovered.timeline))
+    // .concat(Object.keys(data.recovered.timeline))
     .filter((item, index, array) => array.indexOf(item) === index)
     .sort((a, b) => a < b ? 1 : -1);

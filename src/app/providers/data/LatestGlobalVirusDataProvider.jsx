@@ -43,8 +43,12 @@ const validateLatestGlobalVirusData = (data) =>
   && objectHasKey(data.latest, 'confirmed')
   && isNumber(data.latest.confirmed)
   && objectHasKey(data.latest, 'deaths')
-  && isNumber(data.latest.deaths)
-  && objectHasKey(data.latest, 'recovered')
-  && isNumber(data.latest.recovered);
+  && isNumber(data.latest.deaths);
+  // && objectHasKey(data.latest, 'recovered')
+  // && isNumber(data.latest.recovered);
 
-const normalizeLatestGlobalVirusData = (data) => ({ ...data.latest, });
+const normalizeLatestGlobalVirusData = (data) => ({ 
+  confirmed: data.latest.confirmed,
+  deaths: data.latest.deaths,
+  // recovered: data.latest.recovered,
+});

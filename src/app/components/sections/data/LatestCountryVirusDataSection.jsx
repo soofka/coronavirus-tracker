@@ -58,7 +58,7 @@ export const LatestCountryVirusDataSection = () => {
         tested={virusTests && virusTests[country.code]}
         confirmed={data[country.code].data.confirmed}
         deaths={data[country.code].data.deaths}
-        recovered={data[country.code].data.recovered}
+        // recovered={data[country.code].data.recovered}
       />}
     </>}
     data={data}
