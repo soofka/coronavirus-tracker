@@ -6,7 +6,9 @@ const terser = require('terser');
 const defaultOptions = {
   source: './src/service-worker.js',
   target: 'service-worker.js',
-  filter: undefined,
+  assets: [],
+  includeEmittedAssets: true,
+  emittedAssetsRegexp: undefined,
   minify: undefined,
 };
 
@@ -23,15 +25,22 @@ class SimpleSwWebpackPlugin {
       'SimpleSwWebpackPlugin',
       (compilation) => {
         const version = uuid();
-        const assets = `[${
-          Array.from(compilation.getStats().compilation.assetsInfo.keys())
-            .filter(this.options.filter
-              ? (asset) => new RegExp(this.options.filter).test(asset)
-              : (asset) => asset,
-            )
-            .map((asset) => `"${asset}"`)
-            .join(',')
-          }]`;
+        let assets = this.options.assets;
+
+        if (this.options.includeEmittedAssets) {
+          assets = assets.concat(
+            Array.from(compilation.getStats().compilation.assetsInfo.keys()));
+        }
+
+        const assetsString = `[${assets
+          .filter((asset, index, array) => array.indexOf(asset) === index)
+          .filter(this.options.emittedAssetsRegexp
+            ? (asset) => new RegExp(this.options.emittedAssetsRegexp).test(asset)
+            : (asset) => asset,
+          )
+          .map((asset) => `"${asset}"`)
+          .join(',')
+        }]`;
 
         fs.readFile(
           path.resolve(this.options.source),
@@ -39,7 +48,9 @@ class SimpleSwWebpackPlugin {
             if (error) {
               console.error('Error:', error);
             } else {
-              let fileContent = data.toString().replace(/%VERSION%/gi, version).replace(/\'%ASSETS%\'/gi, assets);
+              let fileContent = data.toString()
+                .replace(/%VERSION%/gi, version)
+                .replace(/\'%ASSETS%\'/gi, assetsString);
 
               if (
                 this.options.minify === true

@@ -53,7 +53,13 @@ module.exports = {
       ,
     }]),
     new SimpleSwWebpackPlugin({
-      filter: '.(html|json)$',
+      assets: [
+        'index.html',
+        'assets/virus.webp',
+        'assets/populations.json',
+        'assets/virus-tests.json',
+      ],
+      includeEmittedAssets: false,
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

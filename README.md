@@ -1,7 +1,6 @@
 # Coronavirus Tracker
 ## TODO
 ### first release
-- add appcache html webpack plugins
 - add content policy html webpack plugins
 - change API to have recovery rate (?)
 - add sections with explanation
