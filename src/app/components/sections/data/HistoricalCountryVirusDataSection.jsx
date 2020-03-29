@@ -43,7 +43,7 @@ export const HistoricalCountryVirusDataSection = () => {
           label={<Text label="sections.country_historical.select_date"/>}
           value={date}
           defaultValue={DEFAULT_DATE}
-          onChange={(event) => setDate(event.target.value)}
+          onChange={(value) => setDate(value)}
         >
           {renderOptions(data)}
         </SmartSelect>
