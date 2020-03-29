@@ -12,7 +12,7 @@
     "start": "npm run clean && npm run build:dev && node server.js",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "echo \"Unit tests missing\"",
-    "test:e2e": "bundlesize && lhci autorun",
+    "test:e2e": "bundlesize",
     "release": "standard-version",
     "generate-populations": "node src/data/generate-populations.js",
     "generate-virus-tests": "node src/data/generate-virus-tests.js"
