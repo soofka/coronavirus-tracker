@@ -3,7 +3,6 @@ const NodeJsonMinify = require('node-json-minify');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin.js');
 
 module.exports = {
@@ -53,7 +52,6 @@ module.exports = {
           : content
       ,
     }]),
-    new ImageminWebpackPlugin(),
     new SimpleSwWebpackPlugin({
       filter: '.(html|json)$',
     }),

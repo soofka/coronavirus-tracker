@@ -34,7 +34,10 @@ export const HistoricalCountryVirusDataSection = () => {
   return <SectionWithData
     header={<>
       <Text label="sections.country_historical.header"/>&nbsp;
-      {data && <>
+      ({country.name})
+    </>}
+    content={<>
+      {data && <p>
         <SmartSelect
           id="select-date"
           label={<Text label="sections.country_historical.select_date"/>}
@@ -43,16 +46,15 @@ export const HistoricalCountryVirusDataSection = () => {
           onChange={(event) => setDate(event.target.value)}
         >
           {renderOptions(data)}
-        </SmartSelect>&nbsp;
-        ({country.name})
-      </>}
+        </SmartSelect>
+      </p>}
+      {data && date && <VirusData
+        total={populations[country.code]}
+        confirmed={data.confirmed.timeline[date]}
+        deaths={data.deaths.timeline[date]}
+        recovered={data.recovered.timeline[date]}
+      />}
     </>}
-    content={data && date && <VirusData
-      total={populations[country.code]}
-      confirmed={data.confirmed.timeline[date]}
-      deaths={data.deaths.timeline[date]}
-      recovered={data.recovered.timeline[date]}
-    />}
     data={data}
     error={error}
     loading={loading}
@@ -61,14 +63,15 @@ export const HistoricalCountryVirusDataSection = () => {
 
 const renderOptions = (data) =>
   getDates(data).map((date) => {
-    const daysAgo = Math.floor((new Date(new Date().toISOString().substr(0, 10)) - new Date(date)) / (1000 * 60 * 60 * 24));
-    const text = daysAgo === 0
+    const thatDay = new Date(date);
+    const daysAgo = Math.floor((new Date(new Date().toISOString().substr(0, 10)) - thatDay) / (1000 * 60 * 60 * 24));
+    const daysAgoText = daysAgo === 0
       ? <Text label="sections.country_historical.today"/>
       : (daysAgo === 1
         ? <Text label="sections.country_historical.yesterday"/>
         : <Text label="sections.country_historical.days_ago" values={{ days: daysAgo }}/>);
 
-    return <option value={date}>{text}</option>;
+    return <option value={date}>{daysAgoText} ({thatDay.toLocaleDateString()})</option>;
   });
 
 const getDates = (data) => 

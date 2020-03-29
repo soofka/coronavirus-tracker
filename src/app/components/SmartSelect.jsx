@@ -54,7 +54,7 @@ export const SmartSelect = ({
 
   return (
     <>
-      {label && <label for={id} hidden>{label}</label>}
+      {label && <><label for={id}>{label}</label>:&nbsp;</>}
       <select id={id} name={id} value={value} onChange={handleChange} {...rest}>
         {children}
       </select>

@@ -14,14 +14,14 @@
   },
   "sections": {
     "global_latest": {
-      "header": "Current situation globally"
+      "header": "Latest global coronavirus data"
     },
     "country_latest": {
-      "header": "Current situation in",
+      "header": "Latest coronavirus data per country",
       "select_country": "Select country"
     },
     "country_historical": {
-      "header": "Situation on day",
+      "header": "Coronavirus data per country per day",
       "today": "Today",
       "yesterday": "Yesterday",
       "days_ago": "{days} days ago",

@@ -3,10 +3,11 @@ const base = require('./webpack.config.base.js');
 
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const ClosureWebpackPlugin = require('closure-webpack-plugin');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const ClosureWebpackPlugin = require('closure-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(base, {
   output: {
@@ -27,8 +28,16 @@ module.exports = merge(base, {
         start_url: '/index.html',
       },
     }),
+    new ImageminWebpackPlugin(),
     new OptimizeCssAssetsWebpackPlugin(),
-    new CompressionWebpackPlugin(),
+    new CompressionWebpackPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+    }),
+    new CompressionWebpackPlugin({
+      filename: '[path].br[query]',
+      algorithm: 'brotliCompress',
+    }),
   ],
   optimization: {
     splitChunks: {
