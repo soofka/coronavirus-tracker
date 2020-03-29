@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/soofka/coronavirus-tracker/compare/v0.0.4...v0.0.5) (2020-03-29)
+
+
+### Bug Fixes
+
+* temporarily disabled unreliable lighthouse rule ([a40e337](https://github.com/soofka/coronavirus-tracker/commit/a40e33799f6f5af3bffed905e2bb32e063744d18))
+* temporarily removed recovered counts from all sections (lack of data on the API side) ([3baca3d](https://github.com/soofka/coronavirus-tracker/commit/3baca3d141b6a07fac07c43ca3d149a6793fab6c))
+
 ### [0.0.4](https://github.com/soofka/coronavirus-tracker/compare/v0.0.3...v0.0.4) (2020-03-29)
 
 
