@@ -14,14 +14,14 @@
   },
   "sections": {
     "global_latest": {
-      "header": "Obecna sytuacja na świecie"
+      "header": "Najnowsze światowe dane nt. koronawirusa"
     },
     "country_latest": {
-      "header": "Obecna sytuacja w kraju",
+      "header": "Najnowsze krajowe dane nt. koronawirusa",
       "select_country": "Wybierz kraj"
     },
     "country_historical": {
-      "header": "Sytuacja z dnia",
+      "header": "Historyczne krajowe dane nt. koronawirusa",
       "today": "Dziś",
       "yesterday": "Wczoraj",
       "days_ago": "{days} dni temu",

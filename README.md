@@ -1,7 +1,6 @@
 # Coronavirus Tracker
 ## TODO
 ### first release
-- fix installation buton when disabled
 - add appcache html webpack plugins
 - add content policy html webpack plugins
 - change API to have recovery rate (?)

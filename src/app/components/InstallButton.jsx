@@ -25,12 +25,14 @@ export const InstallButton = () => {
     }
   }, [installing])
 
-  return installPrompt === null ? null : (
-    <button
-      disabled={installPrompt === undefined || installing}
-      onClick={() => setInstalling(true)}
-    >
+  if (!installPrompt || installing) {
+    return null;
+  }
+
+  return <button
+    disabled={installPrompt === undefined || installing}
+    onClick={() => setInstalling(true)}
+  >
     💾 <Text label="navigation.install"/>
-    </button>
-  );
+  </button>;
 };
