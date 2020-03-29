@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/soofka/coronavirus-tracker/compare/v0.0.5...v1.0.0) (2020-03-29)
+
+
+### Features
+
+* added about section ([21fe99c](https://github.com/soofka/coronavirus-tracker/commit/21fe99ce89eee4d15159b6a43bad8c94ae26c834))
+
+
+### Bug Fixes
+
+* temporarily removed tests counts from all sections (unreliable/outdated data on the API side) ([4899651](https://github.com/soofka/coronavirus-tracker/commit/48996517388dc412600a96622278766df6959104))
+
 ### [0.0.5](https://github.com/soofka/coronavirus-tracker/compare/v0.0.4...v0.0.5) (2020-03-29)
 
 
