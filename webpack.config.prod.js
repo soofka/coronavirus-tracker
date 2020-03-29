@@ -26,6 +26,9 @@ module.exports = merge(base, {
         background: '#111',
         theme_color: '#98d463',
         start_url: '/index.html',
+        icons: {
+          appleStartup: false,
+        }
       },
     }),
     new ImageminWebpackPlugin(),
