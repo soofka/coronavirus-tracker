@@ -23,7 +23,7 @@ export const HistoricalCountryVirusDataSection = () => {
     country,
   } = useHistoricalCountryVirusData();
 
-  if (!country || country === DEFAULT_COUNTRY) {
+  if (!country || country === DEFAULT_COUNTRY || !country.id) {
     return;
   }
 

@@ -46,20 +46,99 @@ const validateLatestCountryVirusData = (data) =>
   && isNonEmptyArray(data.locations);
 
 const normalizeLatestCountryVirusData = (data) => {
-  const dataNormalized = {};
+  console.log('gonna normalize this shit', data);
+  const dataParsed = {};
 
-  data.locations.forEach((location) => {
-    if (!dataNormalized[location.country_code]) {
-      dataNormalized[location.country_code] = {
-        country: {
-          id: location.id,
-          code: location.country_code,
-          name: location.country,
-        },
-        data: location.latest,
-      };
+  const addCountry = (location) => {
+    if (!dataParsed[location.country_code]) {
+      dataParsed[location.country_code] = {};
+    }
+
+    dataParsed[location.country_code].country = {
+      id: location.id,
+      code: location.country_code,
+      name: location.country,
+      population: location.country_population,
+      geolocation: location.coordinates,
+    };
+
+    dataParsed[location.country_code].data = {
+      lastUpdated: location.last_updated,
+      confirmed: location.latest.confirmed,
+      deaths: location.latest.deaths,
+      // recovered: location.latest.recovered,
+    };
+  };
+
+  const addProvince = (location) => {
+    if (!objectHasKey(dataParsed, location.country_code)) {
+      dataParsed[location.country_code] = {};
+    }
+
+    if (!objectHasKey(dataParsed[location.country_code], 'provinces')) {
+      dataParsed[location.country_code].provinces = [];
+    }
+
+    dataParsed[location.country_code].provinces.push({
+      province: {
+        id: location.id,
+        name: location.province,
+        geolocation: location.coordinates,
+      },
+      country: {
+        code: location.country_code,
+        name: location.country,
+        population: location.country_population,
+      },
+      data: {
+        lastUpdated: location.last_updated,
+        confirmed: location.latest.confirmed,
+        deaths: location.latest.deaths,
+        // recovered: location.latest.recovered,
+      },
+    });
+  };
+
+  data.locations.forEach((location) =>
+    location.province === ''
+      ? addCountry(location)
+      : addProvince(location));
+
+  console.log('got it', dataParsed);
+  const dataNormalized = {};
+  Object.keys(dataParsed).forEach((countryCode) => {
+    if (
+      objectHasKey(dataParsed[countryCode], 'country')
+      && objectHasKey(dataParsed[countryCode], 'data'))
+    {
+      dataNormalized[countryCode] = dataParsed[countryCode];
+    } else if (
+      objectHasKey(dataParsed[countryCode], 'provinces')
+      && isNonEmptyArray(dataParsed[countryCode].provinces))
+    {
+      const provinces = dataParsed[countryCode].provinces;
+      dataNormalized[countryCode] = { provinces };
+
+      if (!objectHasKey(dataParsed[countryCode], 'country')) {
+        dataNormalized[countryCode].country = provinces[0].country;
+      }
+
+      if (!objectHasKey(dataParsed[countryCode], 'data')) {
+        dataNormalized[countryCode].data = {
+          confirmed: 0,
+          deaths: 0,
+          // recovered: 0,
+        };
+
+        provinces.forEach((province) => {
+          dataNormalized[countryCode].data.confirmed += province.data.confirmed;
+          dataNormalized[countryCode].data.deaths += province.data.deaths;
+          // dataParsed[countryCode].data.recovered += province.data.recovered;
+        });
+      }
     }
   });
 
+  console.log('shit is now normal', dataNormalized);
   return dataNormalized;
 };

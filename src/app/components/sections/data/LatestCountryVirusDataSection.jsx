@@ -26,6 +26,7 @@ export const LatestCountryVirusDataSection = () => {
     setCountry,
   } = useLatestCountryVirusData();
 
+  console.log('rendering this shit', data);
   return <SectionWithData
     header={<Text label="sections.country_latest.header"/>}
     content={<>
@@ -47,7 +48,7 @@ export const LatestCountryVirusDataSection = () => {
               : data && setCountry(data[value].country)
           }
         >
-          <option value={DEFAULT_COUNTRY}>{<Text label="sections.country_latest.select"/>}</option>
+          <option value={DEFAULT_COUNTRY}>{<Text label="sections.country_latest.select_country"/>}</option>
           {Object.keys(data)
             .sort((a, b) => data[a].country.name > data[b].country.name ? 1 : -1)
             .map((key) => <option value={key}>{data[key].country.name}</option>)}

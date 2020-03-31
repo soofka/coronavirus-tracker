@@ -26,7 +26,7 @@ export const HistoricalCountryVirusDataProvider = ({ children }) => {
 
   const { country } = useLatestCountryVirusData();
 
-  useEffect(() => country && country !== DEFAULT_COUNTRY && fetch(country.id), [country]);
+  useEffect(() => country && country !== DEFAULT_COUNTRY && country.id && fetch(country.id), [country]);
 
   return (
     <HistoricalCountryVirusDataContext.Provider value={{
