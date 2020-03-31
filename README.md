@@ -10,7 +10,13 @@ Information about country populations is fetched from [country-json](https://git
 If you'd like to report a bug, propose a feature, help with translations, contribute to the code repository, feel free to [open an issue on Github](https://github.com/soofka/coronavirus-tracker/issues/new). If you want to say hi, [contact me on Twitter](https://twitter.com/pansoofka).
 
 ## TODO
-### ideas for future
+### frontlog
+- display link to map
+- display country population
+- display data last updated
+- handle provinces
+- add country flags
+### backlog
 - add advanced minification (closure compiler, better image minification, better css minification)
 - get data about tests and enable related sections
 - get data about recoveries and enable related sections
@@ -25,10 +31,8 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - add previous day comparison to all data sections
 - add tests
 - add coveralls
-- add country flags
 - add graph
 - add map
-- add map link
 - remove main.css and main.js files from bundle
 - add default language (if lack of label -> get default language -> put default labels)
 - add content policy html webpack plugins

@@ -6,20 +6,8 @@ import './VirusData.css';
 
 const DECIMAL_PLACES = 4;
 
-export const VirusData = ({ total/*, tested*/, confirmed, deaths/*, recovered*/ }) =>
+export const VirusData = ({ total, confirmed, deaths/*, recovered*/ }) =>
   <div class="virus-data">
-    {/* {(!!tested || tested === 0) && <>
-      <h2>
-        <span class="virus">{tested}</span>
-        &nbsp;
-        <Text label="sections.data.tested"/>
-      </h2>
-      {(!!total || total === 0) && <p>
-        <span class="virus">{roundToDecimalPlaces(tested * 100 / total, DECIMAL_PLACES)}%</span>
-        &nbsp;
-        <Text label="sections.data.test_rate"/>
-      </p>}
-    </>} */}
     {(!!confirmed || confirmed === 0) && <>
       <h2>
         <span class="virus">{confirmed}</span>

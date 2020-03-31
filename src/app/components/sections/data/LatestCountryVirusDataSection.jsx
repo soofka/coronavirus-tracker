@@ -5,8 +5,6 @@ import { SectionWithData } from '../SectionWithData.jsx';
 import { VirusData } from './VirusData.jsx';
 import { SmartSelect } from '../../SmartSelect.jsx';
 
-import { usePopulationsData } from '../../../providers/data/PopulationsDataProvider.jsx';
-// import { useLatestCountryVirusTestsData } from '../../../providers/data/LatestCountryVirusTestsDataProvider.jsx';
 import { useLatestCountryVirusData } from '../../../providers/data/LatestCountryVirusDataProvider.jsx';
 
 import { DEFAULT_COUNTRY } from '../../../commons/constants';
@@ -16,8 +14,6 @@ const COUNTRY_QUERY_STRING_KEY = 'country';
 const COUNTRY_STORAGE_KEY = 'COUNTRY';
 
 export const LatestCountryVirusDataSection = () => {
-  const populations = usePopulationsData();
-  // const virusTests = useLatestCountryVirusTestsData();
   const {
     data,
     error,
@@ -26,7 +22,6 @@ export const LatestCountryVirusDataSection = () => {
     setCountry,
   } = useLatestCountryVirusData();
 
-  console.log('rendering this shit', data);
   return <SectionWithData
     header={<Text label="sections.country_latest.header"/>}
     content={<>
@@ -55,8 +50,7 @@ export const LatestCountryVirusDataSection = () => {
         </SmartSelect>
       </p>}
       {data && country && country !== DEFAULT_COUNTRY && <VirusData
-        total={populations && populations[country.code]}
-        // tested={virusTests && virusTests[country.code]}
+        total={country.population}
         confirmed={data[country.code].data.confirmed}
         deaths={data[country.code].data.deaths}
         // recovered={data[country.code].data.recovered}

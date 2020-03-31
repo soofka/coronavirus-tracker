@@ -5,7 +5,6 @@ import { SectionWithData } from '../SectionWithData.jsx';
 import { VirusData } from './VirusData.jsx';
 import { SmartSelect } from '../../SmartSelect.jsx';
 
-import { usePopulationsData } from '../../../providers/data/PopulationsDataProvider.jsx';
 import { useHistoricalCountryVirusData } from '../../../providers/data/HistoricalCountryVirusDataProvider.jsx';
 
 import { DEFAULT_DATE, DEFAULT_COUNTRY } from '../../../commons/constants';
@@ -13,7 +12,6 @@ import { DEFAULT_DATE, DEFAULT_COUNTRY } from '../../../commons/constants';
 const DEFAULT_DAYS_AGO_SELECTION = 1;
 
 export const HistoricalCountryVirusDataSection = () => {
-  const populations = usePopulationsData();
   const {
     data,
     error,
@@ -49,7 +47,7 @@ export const HistoricalCountryVirusDataSection = () => {
         </SmartSelect>
       </p>}
       {data && date && <VirusData
-        total={populations[country.code]}
+        total={country.population}
         confirmed={data.confirmed.timeline[date]}
         deaths={data.deaths.timeline[date]}
         // recovered={data.recovered.timeline[date]}

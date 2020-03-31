@@ -46,7 +46,6 @@ const validateLatestCountryVirusData = (data) =>
   && isNonEmptyArray(data.locations);
 
 const normalizeLatestCountryVirusData = (data) => {
-  console.log('gonna normalize this shit', data);
   const dataParsed = {};
 
   const addCountry = (location) => {
@@ -104,7 +103,6 @@ const normalizeLatestCountryVirusData = (data) => {
       ? addCountry(location)
       : addProvince(location));
 
-  console.log('got it', dataParsed);
   const dataNormalized = {};
   Object.keys(dataParsed).forEach((countryCode) => {
     if (
@@ -139,6 +137,5 @@ const normalizeLatestCountryVirusData = (data) => {
     }
   });
 
-  console.log('shit is now normal', dataNormalized);
   return dataNormalized;
 };

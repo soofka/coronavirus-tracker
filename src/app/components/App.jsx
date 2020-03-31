@@ -12,10 +12,8 @@ import { HistoricalCountryVirusDataSection } from './sections/data/HistoricalCou
 import { AboutSection } from './sections/AboutSection.jsx';
 
 import { LabelsProvider } from '../providers/LabelsProvider.jsx';
-import { PopulationsDataProvider } from '../providers/data/PopulationsDataProvider.jsx';
 import { LatestGlobalVirusDataProvider } from '../providers/data/LatestGlobalVirusDataProvider.jsx';
 import { LatestCountryVirusDataProvider } from '../providers/data/LatestCountryVirusDataProvider.jsx';
-// import { LatestCountryVirusTestsDataProvider } from '../providers/data/LatestCountryVirusTestsDataProvider.jsx';
 import { HistoricalCountryVirusDataProvider } from '../providers/data/HistoricalCountryVirusDataProvider.jsx';
 
 import './App.css';
@@ -26,19 +24,15 @@ export const App = () =>
     <LabelsProvider>
       <Header/>
       <Main>
-        <PopulationsDataProvider>
-          <LatestGlobalVirusDataProvider>
-            <LatestGlobalVirusDataSection/>
-          </LatestGlobalVirusDataProvider>
-          <LatestCountryVirusDataProvider>
-            {/* <LatestCountryVirusTestsDataProvider> */}
-              <LatestCountryVirusDataSection/>
-            {/* </LatestCountryVirusTestsDataProvider> */}
-            <HistoricalCountryVirusDataProvider>
-              <HistoricalCountryVirusDataSection/>
-            </HistoricalCountryVirusDataProvider>
-          </LatestCountryVirusDataProvider>
-        </PopulationsDataProvider>
+        <LatestGlobalVirusDataProvider>
+          <LatestGlobalVirusDataSection/>
+        </LatestGlobalVirusDataProvider>
+        <LatestCountryVirusDataProvider>
+          <LatestCountryVirusDataSection/>
+          <HistoricalCountryVirusDataProvider>
+            <HistoricalCountryVirusDataSection/>
+          </HistoricalCountryVirusDataProvider>
+        </LatestCountryVirusDataProvider>
         <AboutSection/>
       </Main>
       <Footer/>

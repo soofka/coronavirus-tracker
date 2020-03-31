@@ -13,9 +13,7 @@
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "echo \"Unit tests missing\"",
     "test:e2e": "bundlesize",
-    "release": "standard-version",
-    "generate-populations": "node src/data/generate-populations.js",
-    "generate-virus-tests": "node src/data/generate-virus-tests.js"
+    "release": "standard-version"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -28,7 +26,6 @@
     "closure-webpack-plugin": "^2.3.0",
     "compression-webpack-plugin": "^3.1.0",
     "copy-webpack-plugin": "^5.1.1",
-    "country-json": "^1.1.0",
     "css-loader": "^3.4.2",
     "express": "^4.17.1",
     "favicons-webpack-plugin": "^2.1.0",
