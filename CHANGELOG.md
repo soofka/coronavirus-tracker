@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/soofka/coronavirus-tracker/compare/v1.0.0...v1.1.0) (2020-03-31)
+
+
+### Features
+
+* added support for countries with multiple provinces ([99ef722](https://github.com/soofka/coronavirus-tracker/commit/99ef722326bfc83085b29e86e510d0f443a174a5))
+* added verbosity to error indicator ([00adf57](https://github.com/soofka/coronavirus-tracker/commit/00adf5710d019ff362b0450a85e3ea3c7f340913))
+
+
+### Bug Fixes
+
+* display proper data in case of country with detailed data per province ([c4cad91](https://github.com/soofka/coronavirus-tracker/commit/c4cad91953f49a479522a84651bc65c498457067))
+
 ## [1.0.0](https://github.com/soofka/coronavirus-tracker/compare/v0.0.5...v1.0.0) (2020-03-29)
 
 
