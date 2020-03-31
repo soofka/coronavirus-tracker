@@ -21,7 +21,7 @@ export const useFetch = (
             throw response.statusText;
           }
         }
-        throw `Response error: ${response}`;
+        throw `Response error: ${JSON.stringify(response)}`;
       })
       .then((data) => {
         if (validateData(data)) {

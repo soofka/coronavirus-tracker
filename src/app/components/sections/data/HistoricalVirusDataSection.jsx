@@ -36,7 +36,7 @@ export const HistoricalVirusDataSection = () => {
 
   return <SectionWithData
     header={<>
-      <Text label="sections.historical.header"/>&nbsp;
+      <Text label="sections.historical.header"/><br/>
       ({country.name}{region && region !== DEFAULT_REGION && ` - ${region.name}`})
     </>}
     content={<>
