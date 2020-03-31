@@ -6,6 +6,6 @@ import './Footer.css';
 export const Footer = () =>
   <footer>
     <div class="wrapper">
-      <p><Text label="footer" html={true}/></p>
+      <p><small><Text label="footer" html={true}/></small></p>
     </div>
   </footer>;

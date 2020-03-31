@@ -3,6 +3,6 @@ import './Section.css';
 
 export const Section = ({ header, content }) =>
   <section>
-    {header}
-    {content}
+    {header && <h4 style={{textDecoration: 'underline'}}>{header}</h4>}
+    {content && content}
   </section>;

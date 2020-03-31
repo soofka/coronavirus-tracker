@@ -3,9 +3,7 @@
     "loading": "Ładowanie",
     "error": {
       "header": "Błąd",
-      "messages": {
-        "default": "Coś poszło nie tak. Spróbuj ponownie."
-      }
+      "message": "Coś poszło nie tak podczas pobierania danych na temat koronawirusa. Spróbuj odświeżyć stronę. Jeśli to nie pomoże, spróbuj ponownie później."
     }
   },
   "navigation": {
@@ -18,14 +16,24 @@
     },
     "country_latest": {
       "header": "Najnowsze krajowe dane nt. koronawirusa",
-      "select_country": "Wybierz kraj"
+      "select_country": {
+        "label": "Wybierz kraj",
+        "default_option": "-"
+      }
     },
-    "country_historical": {
-      "header": "Historyczne krajowe dane nt. koronawirusa",
+    "regional_latest": {
+      "header": "Najnowsze regionalne dane nt. koronawirusa",
+      "select_region": {
+        "label": "Wybierz region",
+        "default_option": "-"
+      }
+    },
+    "historical": {
+      "header": "Historyczne krajowe/regionalne dane nt. koronawirusa",
       "today": "Dziś",
       "yesterday": "Wczoraj",
       "days_ago": "{days} dni temu",
-      "select_date": "Wybierz datę"
+      "select_date_label": "Wybierz datę"
     },
     "data": {
       "tested": "przetestowanych",
@@ -35,18 +43,17 @@
       "test_rate": "odsetek przetestowanych",
       "infection_rate": "odsetek zakażonych",
       "mortality_rate": "odsetek zmarłych",
-      "recovery_rate": "odsetek wyleczonych",
-      "refresh": "Odśwież"
+      "recovery_rate": "odsetek wyleczonych"
     },
     "about": {
       "header": "O aplikacji",
       "data_source": {
         "header": "Skąd pochodzą te dane?",
-        "content": "Informacja na temat potwierdzonych przypadków i śmierci jest pobierana z <a href=\"https://coronavirus-tracker-api.herokuapp.com/\" target=\"_blank\">Coronavirus Tracker API</a> (<a href=\"https://github.com/ExpDev07/coronavirus-tracker-api\" target=\"_blank\">github</a>), które pobiera dane z <a href=\"https://github.com/CSSEGISandData/COVID-19\" target=\"_blank\">2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository</a> udostępnianego przez <a href=\"https://systems.jhu.edu\" target=\"_blank\">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. Dane aktualizowane są codziennie.<br/><br/>Informacja o populacji krajów jest pobierana z repozytorium danych <a href=\"https://github.com/samayo/country-json\" target=\"_blank\">country-json</a>, które agreguje te dane z wielu różnych źródeł. Dane aktualizowane są sporadycznie."
+        "content": "Informacja na temat potwierdzonych przypadków i śmierci jest pobierana z <a href=\"https://coronavirus-tracker-api.herokuapp.com/\" rel=\"noreferrer\" target=\"_blank\">Coronavirus Tracker API</a> (<a href=\"https://github.com/ExpDev07/coronavirus-tracker-api\" rel=\"noreferrer\" target=\"_blank\">github</a>), które pobiera dane z <a href=\"https://github.com/CSSEGISandData/COVID-19\" rel=\"noreferrer\" target=\"_blank\">2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository</a> udostępnianego przez <a href=\"https://systems.jhu.edu\" rel=\"noreferrer\" target=\"_blank\">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. Dane aktualizowane są codziennie."
       },
       "contribution": {
         "header": "Jak mogę pomóc?",
-        "content": "Jeśli chcesz zgłosić problem, zaproponować poprawkę lub pomóc z tłumaczeniami czy z kodem źródłowym aplikacji, zachęcam do <a href=\"https://github.com/soofka/coronavirus-tracker/issues/new\" target=\"_blank\">otworzenia wątku na Githubie</a>. Jeśli sprawa dotyczy czegoś innego, <a href=\"https://twitter.com/pansoofka\" target=\"_blank\">napisz do mnie na Twitterze</a>."
+        "content": "Jeśli chcesz zgłosić problem, zaproponować poprawkę lub pomóc z tłumaczeniami czy z kodem źródłowym aplikacji, zachęcam do <a href=\"https://github.com/soofka/coronavirus-tracker/issues/new\" rel=\"noreferrer\" target=\"_blank\">otworzenia wątku na Githubie</a>. Jeśli sprawa dotyczy czegoś innego, <a href=\"https://twitter.com/pansoofka\" rel=\"noreferrer\" target=\"_blank\">napisz do mnie na Twitterze</a>."
       }
     }
   },

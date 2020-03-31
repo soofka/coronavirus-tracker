@@ -5,13 +5,17 @@ import { SectionWithData } from '../SectionWithData.jsx';
 import { VirusData } from './VirusData.jsx';
 import { SmartSelect } from '../../SmartSelect.jsx';
 
-import { useHistoricalCountryVirusData } from '../../../providers/data/HistoricalCountryVirusDataProvider.jsx';
+import {
+  useHistoricalVirusData,
+  canFetchCountryHistoricalData,
+  canFetchRegionalHistoricalData,
+} from '../../../providers/data/HistoricalVirusDataProvider.jsx';
 
-import { DEFAULT_DATE, DEFAULT_COUNTRY } from '../../../commons/constants';
+import { DEFAULT_DATE, DEFAULT_REGION } from '../../../commons/constants';
 
 const DEFAULT_DAYS_AGO_SELECTION = 1;
 
-export const HistoricalCountryVirusDataSection = () => {
+export const HistoricalVirusDataSection = () => {
   const {
     data,
     error,
@@ -19,26 +23,27 @@ export const HistoricalCountryVirusDataSection = () => {
     date,
     setDate,
     country,
-  } = useHistoricalCountryVirusData();
+    region,
+  } = useHistoricalVirusData();
 
-  if (!country || country === DEFAULT_COUNTRY || !country.id) {
-    return;
+  if (!canFetchCountryHistoricalData(country) && !canFetchRegionalHistoricalData(region)) {
+    return null;
   }
 
-  if (date === DEFAULT_DATE && data) {
+  if (data && date === DEFAULT_DATE) {
     setDate(getDates(data)[DEFAULT_DAYS_AGO_SELECTION]);
   }
 
   return <SectionWithData
     header={<>
-      <Text label="sections.country_historical.header"/>&nbsp;
-      ({country.name})
+      <Text label="sections.historical.header"/>&nbsp;
+      ({country.name}{region && region !== DEFAULT_REGION && ` - ${region.name}`})
     </>}
     content={<>
       {data && <p>
         <SmartSelect
           id="select-date"
-          label={<Text label="sections.country_historical.select_date"/>}
+          label={<Text label="sections.historical.select_date_label"/>}
           value={date}
           defaultValue={DEFAULT_DATE}
           onChange={(value) => setDate(value)}
@@ -64,10 +69,10 @@ const renderOptions = (data) =>
     const thatDay = new Date(date);
     const daysAgo = Math.floor((new Date(new Date().toISOString().substr(0, 10)) - thatDay) / (1000 * 60 * 60 * 24));
     const daysAgoText = daysAgo === 0
-      ? <Text label="sections.country_historical.today"/>
+      ? <Text label="sections.historical.today"/>
       : (daysAgo === 1
-        ? <Text label="sections.country_historical.yesterday"/>
-        : <Text label="sections.country_historical.days_ago" values={{ days: daysAgo }}/>);
+        ? <Text label="sections.historical.yesterday"/>
+        : <Text label="sections.historical.days_ago" values={{ days: daysAgo }}/>);
 
     return <option value={date}>{daysAgoText} ({thatDay.toLocaleDateString()})</option>;
   });

@@ -5,10 +5,10 @@ import { LoadingIndicator } from '../LoadingIndicator.jsx';
 import { ErrorIndicator } from '../ErrorIndicator.jsx';
 
 export const SectionWithData = ({ header, content, data, error, loading }) =>
-  <Section
-    header={<h4 style={{textDecoration: 'underline'}}>{header}</h4>}
-    content={<>
-      {loading ? <LoadingIndicator/> : !data && <ErrorIndicator message={error}/>}
-      {content}
-    </>}
-  />;
+  (data || error || loading) && <Section
+      header={header}
+      content={<>
+        {loading ? <LoadingIndicator/> : !data && <ErrorIndicator message={error}/>}
+        {content}
+      </>}
+    />;

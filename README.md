@@ -14,9 +14,10 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - display link to map
 - display country population
 - display data last updated
-- handle provinces
 - add country flags
 ### backlog
+- fix double labels loading in case of non-default labels
+- fix double historical data call (in case if country and region is set on entry)
 - add advanced minification (closure compiler, better image minification, better css minification)
 - get data about tests and enable related sections
 - get data about recoveries and enable related sections

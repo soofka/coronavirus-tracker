@@ -52,6 +52,10 @@ h4, p {
   margin: 0 0 calc(16px + (22 - 16) * ((100vw - 320px) / (960 - 320))) 0;
 }
 
+small {
+  font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (960 - 320)));
+}
+
 .wrapper {
   max-width: 960px;
   margin: 0 auto;

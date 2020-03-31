@@ -6,4 +6,5 @@ export const LOCALES = {
 };
 export const DEFAULT_LOCALE = LOCALES.en_EN;
 export const DEFAULT_COUNTRY = 'none';
+export const DEFAULT_REGION = 'none';
 export const DEFAULT_DATE = 0;

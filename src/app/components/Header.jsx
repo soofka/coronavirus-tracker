@@ -25,28 +25,30 @@ export const Header = () => {
     <header>
       <div class="wrapper">
         <nav>
-          <ul>
-            <li>👑 <span class="virus"><strong>CORONAVIRUS</strong></span> Tracker</li>
-            <li>
-              <SmartSelect
-                id="select-language"
-                label={<Text label="navigation.select_language"/>}
-                value={locale}
-                defaultValue={DEFAULT_LOCALE}
-                queryStringKey={LOCALE_QUERY_STRING_KEY}
-                storageKey={LOCALE_STORAGE_KEY}
-                validate={(value) => Object.values(LOCALES).includes(value)}
-                onChange={setLocale}
-              >
-                {Object.values(LOCALES).map(
-                  (tempLocale) => <option value={tempLocale}>{LANGUAGES[tempLocale]}</option>
-                )}
-              </SmartSelect>
-            </li>
-            <li><InstallButton/></li>
-          </ul>
+          <small>
+            <ul>
+              <li>👑 <span class="virus"><strong>CORONAVIRUS</strong></span> Tracker</li>
+              <li>
+                <SmartSelect
+                  id="select-language"
+                  label={<Text label="navigation.select_language"/>}
+                  value={locale}
+                  defaultValue={DEFAULT_LOCALE}
+                  queryStringKey={LOCALE_QUERY_STRING_KEY}
+                  storageKey={LOCALE_STORAGE_KEY}
+                  validate={(value) => Object.values(LOCALES).includes(value)}
+                  onChange={setLocale}
+                >
+                  {Object.values(LOCALES).map(
+                    (tempLocale) => <option value={tempLocale}>{LANGUAGES[tempLocale]}</option>
+                  )}
+                </SmartSelect>
+              </li>
+              <li><InstallButton/></li>
+            </ul>
+          </small>
         </nav>
       </div>
     </header>
-  )
+  );
 };

@@ -4,7 +4,6 @@ import { Section } from './Section.jsx';
 import { Text } from '../Text.jsx';
 
 export const AboutSection = () => <Section
-  header={<h2><Text label="sections.about.header"/></h2>}
   content={<>
     <h3><Text label="sections.about.data_source.header"/></h3>
     <p><Text label="sections.about.data_source.content" html={true}/></p>

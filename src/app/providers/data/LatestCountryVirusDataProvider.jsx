@@ -2,7 +2,7 @@ import { h, createContext } from 'preact';
 import { useState, useEffect, useContext } from 'preact/hooks';
 
 import { useFetch } from '../../commons/hooks';
-import { VIRUS_DATA_API_BASE_URL, DEFAULT_COUNTRY } from '../../commons/constants';
+import { VIRUS_DATA_API_BASE_URL, DEFAULT_COUNTRY, DEFAULT_REGION } from '../../commons/constants';
 import { isNonEmptyArray, isObject, objectHasKey } from '../../commons/utils';
 
 const LATEST_COUNTRY_VIRUS_DATA_API_URL = `${VIRUS_DATA_API_BASE_URL}locations`;
@@ -10,6 +10,7 @@ const LatestCountryVirusDataContext = createContext();
 
 export const LatestCountryVirusDataProvider = ({ children }) => {
   const [country, setCountry] = useState(DEFAULT_COUNTRY);
+  const [region, setRegion] = useState(DEFAULT_REGION);
 
   const {
     data,
@@ -32,6 +33,8 @@ export const LatestCountryVirusDataProvider = ({ children }) => {
       fetch,
       country,
       setCountry,
+      region,
+      setRegion,
     }}>
       {children}
     </LatestCountryVirusDataContext.Provider>
@@ -69,17 +72,17 @@ const normalizeLatestCountryVirusData = (data) => {
     };
   };
 
-  const addProvince = (location) => {
+  const addRegion = (location) => {
     if (!objectHasKey(dataParsed, location.country_code)) {
       dataParsed[location.country_code] = {};
     }
 
-    if (!objectHasKey(dataParsed[location.country_code], 'provinces')) {
-      dataParsed[location.country_code].provinces = [];
+    if (!objectHasKey(dataParsed[location.country_code], 'regions')) {
+      dataParsed[location.country_code].regions = [];
     }
 
-    dataParsed[location.country_code].provinces.push({
-      province: {
+    dataParsed[location.country_code].regions.push({
+      region: {
         id: location.id,
         name: location.province,
         geolocation: location.coordinates,
@@ -101,7 +104,7 @@ const normalizeLatestCountryVirusData = (data) => {
   data.locations.forEach((location) =>
     location.province === ''
       ? addCountry(location)
-      : addProvince(location));
+      : addRegion(location));
 
   const dataNormalized = {};
   Object.keys(dataParsed).forEach((countryCode) => {
@@ -111,14 +114,14 @@ const normalizeLatestCountryVirusData = (data) => {
     {
       dataNormalized[countryCode] = dataParsed[countryCode];
     } else if (
-      objectHasKey(dataParsed[countryCode], 'provinces')
-      && isNonEmptyArray(dataParsed[countryCode].provinces))
+      objectHasKey(dataParsed[countryCode], 'regions')
+      && isNonEmptyArray(dataParsed[countryCode].regions))
     {
-      const provinces = dataParsed[countryCode].provinces;
-      dataNormalized[countryCode] = { provinces };
+      const regions = dataParsed[countryCode].regions;
+      dataNormalized[countryCode] = { regions };
 
       if (!objectHasKey(dataParsed[countryCode], 'country')) {
-        dataNormalized[countryCode].country = provinces[0].country;
+        dataNormalized[countryCode].country = regions[0].country;
       }
 
       if (!objectHasKey(dataParsed[countryCode], 'data')) {
@@ -128,10 +131,10 @@ const normalizeLatestCountryVirusData = (data) => {
           // recovered: 0,
         };
 
-        provinces.forEach((province) => {
-          dataNormalized[countryCode].data.confirmed += province.data.confirmed;
-          dataNormalized[countryCode].data.deaths += province.data.deaths;
-          // dataParsed[countryCode].data.recovered += province.data.recovered;
+        regions.forEach((region) => {
+          dataNormalized[countryCode].data.confirmed += region.data.confirmed;
+          dataNormalized[countryCode].data.deaths += region.data.deaths;
+          // dataParsed[countryCode].data.recovered += region.data.recovered;
         });
       }
     }

@@ -4,13 +4,13 @@ import { useState, useEffect, useContext } from 'preact/hooks';
 import { useLatestCountryVirusData } from './LatestCountryVirusDataProvider.jsx';
 
 import { useFetch } from '../../commons/hooks';
-import { VIRUS_DATA_API_BASE_URL, DEFAULT_DATE, DEFAULT_COUNTRY } from '../../commons/constants';
+import { VIRUS_DATA_API_BASE_URL, DEFAULT_DATE } from '../../commons/constants';
 import { isObject, objectHasKey } from '../../commons/utils';
 
-const HISTORICAL_COUNTRY_VIRUS_DATA_API_BASE_URL = `${VIRUS_DATA_API_BASE_URL}locations/`;
-const HistoricalCountryVirusDataContext = createContext();
+const HISTORICAL_VIRUS_DATA_API_BASE_URL = `${VIRUS_DATA_API_BASE_URL}locations/`;
+const HistoricalVirusDataContext = createContext();
 
-export const HistoricalCountryVirusDataProvider = ({ children }) => {
+export const HistoricalVirusDataProvider = ({ children }) => {
   const [date, setDate] = useState(DEFAULT_DATE);
 
   const {
@@ -19,17 +19,36 @@ export const HistoricalCountryVirusDataProvider = ({ children }) => {
     loading,
     fetch,
   } = useFetch(
-    HISTORICAL_COUNTRY_VIRUS_DATA_API_BASE_URL,
-    validateHistoricalCountryVirusData,
-    normalizeHistoricalCountryVirusData,
+    HISTORICAL_VIRUS_DATA_API_BASE_URL,
+    validateHistoricalVirusData,
+    normalizeHistoricalVirusData,
   );
 
-  const { country } = useLatestCountryVirusData();
+  const {
+    country,
+    region,
+  } = useLatestCountryVirusData();
 
-  useEffect(() => country && country !== DEFAULT_COUNTRY && country.id && fetch(country.id), [country]);
+  useEffect(() => {
+    let id = undefined;
+    
+    if (canFetchCountryHistoricalData(country)) {
+      id = country.id;
+    }
+
+    if (canFetchRegionalHistoricalData(region)) {
+      id = region.id;
+    }
+
+    if (id === undefined) {
+      return;
+    }
+
+    return fetch(id);
+  }, [country, region]);
 
   return (
-    <HistoricalCountryVirusDataContext.Provider value={{
+    <HistoricalVirusDataContext.Provider value={{
       data,
       error,
       loading,
@@ -37,15 +56,19 @@ export const HistoricalCountryVirusDataProvider = ({ children }) => {
       date,
       setDate,
       country,
+      region,
     }}>
       {children}
-    </HistoricalCountryVirusDataContext.Provider>
+    </HistoricalVirusDataContext.Provider>
   );
 };
 
-export const useHistoricalCountryVirusData = () => useContext(HistoricalCountryVirusDataContext);
+export const useHistoricalVirusData = () => useContext(HistoricalVirusDataContext);
 
-const validateHistoricalCountryVirusData = (data) => isObject(data)
+export const canFetchCountryHistoricalData = (country) => isObject(country) && objectHasKey(country, 'id') && country.id !== undefined;
+export const canFetchRegionalHistoricalData = (region) => isObject(region) && objectHasKey(region, 'id') && region.id !== undefined;
+
+const validateHistoricalVirusData = (data) => isObject(data)
   && objectHasKey(data, 'location')
   && isObject(data.location)
   && objectHasKey(data.location, 'timelines')
@@ -63,7 +86,7 @@ const validateHistoricalCountryVirusData = (data) => isObject(data)
   // && objectHasKey(data.location.timelines.recovered, 'timeline')
   // && isObject(data.location.timelines.recovered.timeline)
 
-const normalizeHistoricalCountryVirusData = (data) => ({
+const normalizeHistoricalVirusData = (data) => ({
   confirmed: data.location.timelines.confirmed,
   deaths: data.location.timelines.deaths,
   // recovered: data.location.timelines.recovered,

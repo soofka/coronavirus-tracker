@@ -3,9 +3,7 @@
     "loading": "Loading",
     "error": {
       "header": "Error",
-      "messages": {
-        "default": "Something went wrong. Please try again."
-      }
+      "message": "Something went wrong when downloading coronavirus data. Please refresh the page. If the problem persists, try again later."
     }
   },
   "navigation": {
@@ -18,14 +16,24 @@
     },
     "country_latest": {
       "header": "Latest coronavirus data per country",
-      "select_country": "Select country"
+      "select_country": {
+        "label": "Select country",
+        "default_option": "No country"
+      }
     },
-    "country_historical": {
-      "header": "Coronavirus data per country per day",
+    "regional_latest": {
+      "header": "Latest coronavirus data per province",
+      "select_region": {
+        "label": "Select province",
+        "default_option": "Whole country"
+      }
+    },
+    "historical": {
+      "header": "Coronavirus data per country/province per day",
       "today": "Today",
       "yesterday": "Yesterday",
       "days_ago": "{days} days ago",
-      "select_date": "Select date"
+      "select_date_label": "Select date"
     },
     "data": {
       "tested": "tested",
@@ -35,18 +43,17 @@
       "test_rate": "test rate",
       "infection_rate": "infection rate",
       "mortality_rate": "mortality rate",
-      "recovery_rate": "recovery rate",
-      "refresh": "Refresh"
+      "recovery_rate": "recovery rate"
     },
     "about": {
       "header": "About",
       "data_source": {
         "header": "Where does the data come from?",
-        "content": "Information about confirmed cases and deaths is fetched from <a href=\"https://coronavirus-tracker-api.herokuapp.com/\" target=\"_blank\">Coronavirus Tracker API</a> (<a href=\"https://github.com/ExpDev07/coronavirus-tracker-api\" target=\"_blank\">github</a>), which takes the data from <a href=\"https://github.com/CSSEGISandData/COVID-19\" target=\"_blank\">2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository</a> by <a href=\"https://systems.jhu.edu\" target=\"_blank\">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. The data is updated on a daily basis.<br/><br/>Information about country populations is fetched from <a href=\"https://github.com/samayo/country-json\" target=\"_blank\">country-json</a> data repository, which aggregates the data from multiple different sources. The data is updated infrequently."
+        "content": "Information about confirmed cases and deaths is fetched from <a href=\"https://coronavirus-tracker-api.herokuapp.com/\" rel=\"noreferrer\" target=\"_blank\">Coronavirus Tracker API</a> (<a href=\"https://github.com/ExpDev07/coronavirus-tracker-api\" rel=\"noreferrer\" target=\"_blank\">github</a>), which takes the data from <a href=\"https://github.com/CSSEGISandData/COVID-19\" rel=\"noreferrer\" target=\"_blank\">2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository</a> by <a href=\"https://systems.jhu.edu\" rel=\"noreferrer\" target=\"_blank\">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. The data is updated on a daily basis."
       },
       "contribution": {
         "header": "How can I contribute?",
-        "content": "If you'd like to report a bug, propose a feature, help with translations, contribute to the code repository, feel free to <a href=\"https://github.com/soofka/coronavirus-tracker/issues/new\" target=\"_blank\">open an issue on Github</a>. If you want to say hi, <a href=\"https://twitter.com/pansoofka\" target=\"_blank\">contact me on Twitter</a>."
+        "content": "If you'd like to report a bug, propose a feature, help with translations, contribute to the code repository, feel free to <a href=\"https://github.com/soofka/coronavirus-tracker/issues/new\" rel=\"noreferrer\" target=\"_blank\">open an issue on Github</a>. If you want to say hi, <a href=\"https://twitter.com/pansoofka\" rel=\"noreferrer\" target=\"_blank\">contact me on Twitter</a>."
       }
     }
   },
