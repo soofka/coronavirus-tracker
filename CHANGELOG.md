@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/soofka/coronavirus-tracker/compare/v1.1.0...v1.2.0) (2020-04-04)
+
+
+### Features
+
+* simplified UI, enhanced region and date selection, added last updated information, normalized data and numbers display ([6d74cb1](https://github.com/soofka/coronavirus-tracker/commit/6d74cb1be2e30aedb25e46df5a6df6576cad4585))
+
 ## [1.1.0](https://github.com/soofka/coronavirus-tracker/compare/v1.0.0...v1.1.0) (2020-03-31)
 
 
