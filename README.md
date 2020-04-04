@@ -11,11 +11,10 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 
 ## TODO
 ### frontlog
-- display link to map
-- display country population
-- display data last updated
-- add country flags
+- add better percentages description
+- add previous day comparison to all data sections
 ### backlog
+- make date arrows interact with query string and local storage through select
 - fix double labels loading in case of non-default labels
 - fix double historical data call (in case if country and region is set on entry)
 - add advanced minification (closure compiler, better image minification, better css minification)
@@ -28,8 +27,6 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - npm packages reinstall and audit fix
 - add social tags
 - add global historical section
-- add previous/next day buttons to historical data sections
-- add previous day comparison to all data sections
 - add tests
 - add coveralls
 - add graph

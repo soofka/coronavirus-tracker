@@ -1,0 +1,1 @@
+export { RegionalVirusDataSection } from './RegionalVirusDataSection';

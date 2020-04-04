@@ -1,6 +1,6 @@
 import '../normalize.min.css';
 import { h, render } from 'preact';
-import { App } from './components/App.jsx';
+import { App } from 'components/App';
 
 render(<App/>, document.body);
 

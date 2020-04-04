@@ -12,6 +12,13 @@ module.exports = {
     chunkFilename: '[name].js',
     path: path.join(__dirname, 'dist'),
   },
+  resolve: {
+    alias: {
+      commons: path.resolve(__dirname, 'src/app/commons/'),
+      components: path.resolve(__dirname, 'src/app/components/'),
+    },
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {

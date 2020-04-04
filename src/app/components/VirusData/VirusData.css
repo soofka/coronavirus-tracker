@@ -1,0 +1,13 @@
+.virus-data h2 {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.virus-data p {
+  margin-bottom: 4px;
+}
+
+.virus-data + p {
+  font-style: italic;
+  margin-bottom: 0;
+}

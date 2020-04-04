@@ -4,36 +4,34 @@
     "error": {
       "header": "Błąd",
       "message": "Coś poszło nie tak podczas pobierania danych na temat koronawirusa. Spróbuj odświeżyć stronę. Jeśli to nie pomoże, spróbuj ponownie później."
-    }
+    },
+    "virus_icon": "Ikona wirusa"
   },
   "navigation": {
     "install": "Zainstaluj",
-    "select_language": "Wybierz język"
+    "select_language": "Język"
   },
   "sections": {
-    "global_latest": {
+    "global": {
       "header": "Najnowsze światowe dane nt. koronawirusa"
     },
-    "country_latest": {
-      "header": "Najnowsze krajowe dane nt. koronawirusa",
-      "select_country": {
-        "label": "Wybierz kraj",
-        "default_option": "-"
-      }
-    },
-    "regional_latest": {
+    "regional": {
       "header": "Najnowsze regionalne dane nt. koronawirusa",
       "select_region": {
         "label": "Wybierz region",
         "default_option": "-"
-      }
-    },
-    "historical": {
-      "header": "Historyczne krajowe/regionalne dane nt. koronawirusa",
-      "today": "Dziś",
-      "yesterday": "Wczoraj",
+      },
+      "select_date": {
+        "label": "Wybierz datę",
+        "default_option": "-"
+      },
+      "today": "dziś",
+      "yesterday": "wczoraj",
       "days_ago": "{days} dni temu",
-      "select_date_label": "Wybierz datę"
+      "previous_day": "poprzedni dzień",
+      "next_day": "następny dzień",
+      "country_population": "populacja",
+      "see_on_map": "zobacz na mapie"
     },
     "data": {
       "tested": "przetestowanych",
@@ -43,10 +41,10 @@
       "test_rate": "odsetek przetestowanych",
       "infection_rate": "odsetek zakażonych",
       "mortality_rate": "odsetek zmarłych",
-      "recovery_rate": "odsetek wyleczonych"
+      "recovery_rate": "odsetek wyleczonych",
+      "last_updated": "Ostatnia aktualizacja"
     },
     "about": {
-      "header": "O aplikacji",
       "data_source": {
         "header": "Skąd pochodzą te dane?",
         "content": "Informacja na temat potwierdzonych przypadków i śmierci jest pobierana z <a href=\"https://coronavirus-tracker-api.herokuapp.com/\" rel=\"noreferrer\" target=\"_blank\">Coronavirus Tracker API</a> (<a href=\"https://github.com/ExpDev07/coronavirus-tracker-api\" rel=\"noreferrer\" target=\"_blank\">github</a>), które pobiera dane z <a href=\"https://github.com/CSSEGISandData/COVID-19\" rel=\"noreferrer\" target=\"_blank\">2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository</a> udostępnianego przez <a href=\"https://systems.jhu.edu\" rel=\"noreferrer\" target=\"_blank\">Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</a>. Dane aktualizowane są codziennie."

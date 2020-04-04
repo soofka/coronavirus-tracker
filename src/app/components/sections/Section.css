@@ -1,7 +1,0 @@
-section {
-  padding: calc(8px + (16 - 8) * ((100vw - 320px) / (960 - 320)));
-  margin: 8px 0;
-  position: relative;
-  border: 1px solid rgba(253, 253, 253, 0.7);
-  background-color: rgba(7, 7, 7, 0.4);
-}

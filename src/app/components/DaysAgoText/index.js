@@ -1,0 +1,1 @@
+export { DaysAgoText } from './DaysAgoText';
