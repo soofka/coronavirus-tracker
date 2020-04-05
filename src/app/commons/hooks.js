@@ -33,5 +33,5 @@ export const useFetch = (
       .finally(() => setLoading(false));
   };
 
-  return { data, error, loading, fetch };
+  return { data, setData, error, loading, fetch };
 };

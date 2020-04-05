@@ -14,6 +14,7 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
 
   const {
     data,
+    setData,
     error,
     loading,
     fetch,
@@ -30,6 +31,7 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
   return (
     <HistoricalRegionalVirusDataContext.Provider value={{
       data,
+      setData,
       error,
       loading,
       fetch,

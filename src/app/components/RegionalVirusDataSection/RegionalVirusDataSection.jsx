@@ -52,8 +52,7 @@ const RegionalVirusDataSectionComponent = () => {
 
   const {
     data: historicalData,
-    // error: historicalError,
-    // loading: historicalLoading,
+    setData: setHistoricalData,
     date,
     setDate,
   } = useHistoricalRegionalVirusData();
@@ -84,7 +83,10 @@ const RegionalVirusDataSectionComponent = () => {
             queryStringKey={REGION_QUERY_STRING_KEY}
             storageKey={REGION_STORAGE_KEY}
             validate={(value) => validateRegionId(latestData, value)}
-            onChange={(value) => setRegionId(value)}
+            onChange={(value) => {
+              setRegionId(value);
+              setHistoricalData(null);
+            }}
           >
             <option value={DEFAULT_REGION}>
               {<Text label="sections.regional.select_region.default_option"/>}
