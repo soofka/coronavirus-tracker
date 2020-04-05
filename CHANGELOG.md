@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/soofka/coronavirus-tracker/compare/v1.4.0...v1.4.1) (2020-04-05)
+
+
+### Bug Fixes
+
+* clarified trend description in case of no change ([4cde57c](https://github.com/soofka/coronavirus-tracker/commit/4cde57cc8a69aea9304be559cca28d79a6f3db5c))
+* set proper app name/title in all places ([e57de67](https://github.com/soofka/coronavirus-tracker/commit/e57de67909b78bc4b32dceb229d060c852ac34b3))
+
 ## [1.4.0](https://github.com/soofka/coronavirus-tracker/compare/v1.3.0...v1.4.0) (2020-04-05)
 
 
