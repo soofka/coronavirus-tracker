@@ -69,7 +69,7 @@ const getTrendText = (currentValue, previousValue) => {
   const change = Math.abs(1 - trend);
   const changeText = roundToDecimalPlaces(change * 100, 2);
 
-  return <span className="virus-accent">{trendIncreasing ? '+' : (trendDecreasing ? '-' : '')}{changeText}%&nbsp;{trendIncreasing ? <>&uarr;</> : (trendDecreasing ? <>&darr;</> : <>&rarr;</>)}</span>;
+  return <span className="virus-accent">{trendIncreasing ? '+' : (trendDecreasing ? '-' : '')}{changeText}%&nbsp;{trendIncreasing ? <>&uarr;</> : (trendDecreasing ? <>&darr;</> : '')}</span>;
 }
 
 const roundToDecimalPlaces = (number, decimalPlaces = DECIMAL_PLACES) => {
