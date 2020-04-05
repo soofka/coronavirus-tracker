@@ -16,7 +16,7 @@
       "header": "Latest global coronavirus data"
     },
     "regional": {
-      "header": "Latest regional coronavirus",
+      "header": "Latest regional coronavirus data",
       "select_region": {
         "label": "Select region",
         "default_option": "-"
