@@ -36,7 +36,14 @@ a, a:visited {
 
 a:hover, a:active, .virus {
   color: rgba(255, 0, 108, 1);
+  fill: rgba(255, 0, 108, 1);
 }
+
+.virus-accent {
+  color: rgba(255, 160, 200, 1);
+  fill: rgba(255, 160, 200, 1);
+}
+
 
 h2 {
   font-size: calc(24px + (36 - 24) * ((100vw - 320px) / (960 - 320)));

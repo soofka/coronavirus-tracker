@@ -87,7 +87,7 @@ const normalizeHistoricalRegionalVirusData = (data) => {
     .concat(Object.keys(dataNormalized1.deaths))
     // .concat(Object.keys(dataNormalized1.recovered))
     .filter((item, index, array) => array.indexOf(item) === index)
-    .sort((a, b) => a < b ? 1 : -1);
+    .sort((a, b) => new Date(a) < new Date(b) ? 1 : -1);
 
   const dataNormalized2 = {
     dates: [],
@@ -103,9 +103,9 @@ const normalizeHistoricalRegionalVirusData = (data) => {
       // || (dataNormalized1.recovered[date] && parseInt(dataNormalized1.recovered[date], 10) > 0)
     ) {
       dataNormalized2.dates.push(date);
-      dataNormalized2.confirmed[date] = dataNormalized1.confirmed[date];
-      dataNormalized2.deaths[date] = dataNormalized1.deaths[date];
-      // dataNormalized2.recovered[date] = dataNormalized1.recovered[date];
+      dataNormalized2.confirmed[date] = dataNormalized1.confirmed[date] ? dataNormalized1.confirmed[date] : 0;
+      dataNormalized2.deaths[date] = dataNormalized1.deaths[date] ? dataNormalized1.deaths[date] : 0;
+      // dataNormalized2.recovered[date] = dataNormalized1.recovered[date] ? dataNormalized1.recovered[date] : 0;
     }
   });
   

@@ -4,7 +4,7 @@
 }
 
 .virus-data p {
-  margin-bottom: 0px;
+  margin-bottom: 4px;
 }
 
 .virus-data .change {
@@ -12,19 +12,7 @@
   top: -4px;
 }
 
-.virus-data .change-cool {
-  color: rgba(160, 220, 100, 1);
-}
-
-.virus-data .change-not-cool {
-  color: rgba(255, 160, 200, 1);
-}
-
 .virus-data .info {
   margin: -8px 0 8px 0;
   opacity: 0.33;
-}
-
-.virus-data + p {
-  margin-bottom: 0;
 }

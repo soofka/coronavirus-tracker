@@ -2,6 +2,7 @@ import { h, Fragment } from 'preact';
 
 import { SectionWithData } from 'components/SectionWithData';
 import { VirusData } from 'components/VirusData';
+import { Chart } from 'components/Chart';
 import { SmartSelect } from 'components/SmartSelect';
 import { Text } from 'components/Text';
 import { DaysAgoText } from 'components/DaysAgoText';
@@ -11,7 +12,7 @@ import {
   DEFAULT_DATE,
 } from 'commons/constants';
 
-import { normalizeDate } from 'commons/utils';
+import { normalizeDate, normalizeDateTime } from 'commons/utils';
 
 import {
   LatestRegionalVirusDataProvider,
@@ -150,26 +151,39 @@ const RegionalVirusDataSectionComponent = () => {
           </div>
         </p>
       </>}
-      {latestData && !isDefaultRegionId(regionId) && (
-        historicalData && !isDefaultDate(date)
-          ? <VirusData
-              lastUpdated={latestData[regionId].data.lastUpdated}
-              total={latestData[regionId].country.population}
-              confirmed={historicalData.confirmed[date]}
-              confirmedOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.confirmed[historicalData.dates[dateIndex + 1]]}
-              deaths={historicalData.deaths[date]}
-              deathsOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.deaths[historicalData.dates[dateIndex + 1]]}
-              // recovered={historicalData.recovered[date]}
-              // recoveredOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.recovered[historicalData.dates[dateIndex + 1]]}
-            />
+      {latestData && !isDefaultRegionId(regionId) && <>
+        {historicalData && !isDefaultDate(date)
+          ? <>
+              <VirusData
+                total={latestData[regionId].country.population}
+                confirmed={historicalData.confirmed[date]}
+                confirmedOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.confirmed[historicalData.dates[dateIndex + 1]]}
+                deaths={historicalData.deaths[date]}
+                deathsOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.deaths[historicalData.dates[dateIndex + 1]]}
+                // recovered={historicalData.recovered[date]}
+                // recoveredOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.recovered[historicalData.dates[dateIndex + 1]]}
+              />
+              <Chart
+                dates={historicalData.dates}
+                currentDate={date}
+                confirmed={historicalData.confirmed}
+                deaths={historicalData.deaths}
+                // recovered={historicalData.recovered}
+              />
+            </>
           : <VirusData
-              lastUpdated={latestData[regionId].data.lastUpdated}
               total={latestData[regionId].country.population}
               confirmed={latestData[regionId].data.confirmed}
               deaths={latestData[regionId].data.deaths}
               // recovered={latestData[regionId].data.recovered}
             />
-      )}
+        }    
+        <small>
+          <Text label="sections.data.last_updated"/>:&nbsp;
+          <DaysAgoText date={latestData[regionId].data.lastUpdated}/>&nbsp;
+          ({normalizeDateTime(latestData[regionId].data.lastUpdated)})
+        </small>
+      </>}
     </>}
     data={latestData}
     error={latestError}
