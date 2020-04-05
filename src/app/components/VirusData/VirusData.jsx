@@ -8,19 +8,27 @@ import './VirusData.css';
 
 const DECIMAL_PLACES = 4;
 
-export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/ }) =>
+export const VirusData = ({
+  lastUpdated,
+  total,
+  confirmed,
+  confirmedOnPreviousDate,
+  deaths,
+  deathsOnPreviousDate,
+  // recovered,
+  // recoveredOnPreviousDate,
+}) =>
   <>
     <div class="virus-data">
       {(!!confirmed || confirmed === 0) && <div>
         <h2>
-          <span class="virus">{normalizeNumber(confirmed)}</span>
-          &nbsp;
-          <Text label="sections.data.confirmed"/>
+          <span class="virus">{normalizeNumber(confirmed)}</span>&nbsp;
+          <Text label="sections.data.confirmed"/>&nbsp;
+          {confirmedOnPreviousDate && <small className="change">{getTrendText(confirmed, confirmedOnPreviousDate)}</small>}
         </h2>
         {(!!total || total === 0) && <>
           <p>
-            <span class="virus">{roundToDecimalPlaces(confirmed * 100 / total)}%</span>
-            &nbsp;
+            <span class="virus">{roundToDecimalPlaces(confirmed * 100 / total)}%</span>&nbsp;
             <Text label="sections.data.infection_rate"/>
           </p>
           <p className="info"><small><Text label="sections.data.infection_rate_explained" html={true}/></small></p>
@@ -28,14 +36,13 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
       </div>}
       {(!!deaths || deaths === 0) && <div>
         <h2>
-          <span class="virus">{normalizeNumber(deaths)}</span>
-          &nbsp;
-          <Text label="sections.data.deaths"/>
+          <span class="virus">{normalizeNumber(deaths)}</span>&nbsp;
+          <Text label="sections.data.deaths"/>&nbsp;
+          {deathsOnPreviousDate && <small className="change">{getTrendText(deaths, deathsOnPreviousDate)}</small>}
         </h2>
         {(!!confirmed || confirmed === 0) && <>
           <p>
-            <span class="virus">{roundToDecimalPlaces(deaths * 100 / confirmed)}%</span>
-            &nbsp;
+            <span class="virus">{roundToDecimalPlaces(deaths * 100 / confirmed)}%</span>&nbsp;
             <Text label="sections.data.mortality_rate"/>
           </p>
           <p className="info"><small><Text label="sections.data.mortality_rate_explained" html={true}/></small></p>
@@ -43,14 +50,13 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
       </div>}
       {/* {(!!recovered || recovered === 0) && <div>
         <h2>
-          <span class="virus">{normalizeNumber(recovered)}</span>
-          &nbsp;
-          <Text label="sections.data.recovered"/>
+          <span class="virus">{normalizeNumber(recovered)}</span>&nbsp;
+          <Text label="sections.data.recovered"/>&nbsp;
+          {recoveredOnPreviousDate && <small className="change">{getTrendText(recovered, recoveredOnPreviousDate)}</small>}
         </h2>
         {(!!confirmed || confirmed === 0) && <>
           <p>
-            <span class="virus">{roundToDecimalPlaces(recovered * 100 / confirmed)}%</span>
-            &nbsp;
+            <span class="virus">{roundToDecimalPlaces(recovered * 100 / confirmed)}%</span>&nbsp;
             <Text label="sections.data.recovery_rate"/>
           </p>
           <p className="info"><small><Text label="sections.data.recovery_rate_explained" html={true}/></small></p>
@@ -63,6 +69,14 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
       ({normalizeDateTime(lastUpdated)})
     </small></p>}
   </>;
+
+const getTrendText = (currentValue, previousValue) => {
+  const trend = currentValue * 100 / previousValue;
+  const change = roundToDecimalPlaces(Math.abs(trend - 100), 2);
+  const positive = trend > 0;
+
+  return <span>{positive ? '+' : '-'}{change}&nbsp;{positive ? <>&#8593;</> : <>&#8595;</>}</span>;
+}
 
 const roundToDecimalPlaces = (number, decimalPlaces = DECIMAL_PLACES) => {
   let parsedNumber = parseFloat(number, 10);

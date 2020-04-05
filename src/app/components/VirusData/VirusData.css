@@ -7,7 +7,13 @@
   margin-bottom: 0px;
 }
 
-.virus-data p.info {
+.virus-data .change {
+  position: relative;
+  top: -4px;
+  color: rgba(255, 160, 188, 1);
+}
+
+.virus-data .info {
   margin: -8px 0 8px 0;
   opacity: 0.33;
 }

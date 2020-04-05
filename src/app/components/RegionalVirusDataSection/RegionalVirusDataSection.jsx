@@ -68,6 +68,9 @@ const RegionalVirusDataSectionComponent = () => {
     }
   }
 
+  const hasHistoricalDataForPreviousDate = historicalData && dateIndex >= 0 && dateIndex < historicalData.dates.length - 1;
+  const hasHistoricalDataForNextDate = historicalData && dateIndex > 0;
+
   return <SectionWithData
     header={<Text label="sections.regional.header"/>}
     content={<>
@@ -112,8 +115,8 @@ const RegionalVirusDataSectionComponent = () => {
                 event.preventDefault();
                 setDate(historicalData.dates[dateIndex + 1]);
               }}
-              style={{ opacity: dateIndex < historicalData.dates.length - 1 ? 1 : 0 }}
-              disabled={!(dateIndex < historicalData.dates.length - 1)}
+              style={{ opacity: hasHistoricalDataForPreviousDate ? 1 : 0 }}
+              disabled={!hasHistoricalDataForPreviousDate}
             >
               &laquo;
             </button>
@@ -137,8 +140,8 @@ const RegionalVirusDataSectionComponent = () => {
                 event.preventDefault();
                 setDate(historicalData.dates[dateIndex - 1]);
               }}
-              style={{ opacity: dateIndex > 0 ? 1 : 0 }}
-              disabled={!(dateIndex > 0)}
+              style={{ opacity: hasHistoricalDataForNextDate ? 1 : 0 }}
+              disabled={!hasHistoricalDataForNextDate}
             >
               &raquo;
             </button>
@@ -151,8 +154,11 @@ const RegionalVirusDataSectionComponent = () => {
               lastUpdated={latestData[regionId].data.lastUpdated}
               total={latestData[regionId].country.population}
               confirmed={historicalData.confirmed[date]}
+              confirmedOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.confirmed[historicalData.dates[dateIndex + 1]]}
               deaths={historicalData.deaths[date]}
+              deathsOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.deaths[historicalData.dates[dateIndex + 1]]}
               // recovered={historicalData.recovered[date]}
+              // recoveredOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.recovered[historicalData.dates[dateIndex + 1]]}
             />
           : <VirusData
               lastUpdated={latestData[regionId].data.lastUpdated}
