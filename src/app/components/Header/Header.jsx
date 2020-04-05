@@ -27,7 +27,7 @@ export const Header = () => {
         <nav>
           <small>
             <ul>
-              <li>👑 <span class="virus"><strong>CORONAVIRUS</strong></span> Tracker</li>
+              <li><a href="https://trackcorona.today/">👑 Track<strong><span class="virus">CORONA</span></strong>.today</a></li>
               <li>
                 <SmartSelect
                   id="select-language"

@@ -20,3 +20,8 @@ header li:first-of-type {
 header li:last-of-type {
   margin-right: 0;
 }
+
+header li a, header li a:visited, header li a:hover, header li a:active {
+  color: rgba(253, 253, 253, 1);
+  text-decoration: none;
+}

@@ -1,5 +1,5 @@
 # Coronavirus Tracker
-Simple Preact PWA displaying latest information about coronavirus encounters around the world. Deployed to **https://amazing-morse-5b1303.netlify.com/**.
+Simple Preact PWA displaying latest information about coronavirus encounters around the world. Deployed to **https://trackcorona.today**.
 
 ## Where does the data come from?
 Information about confirmed cases and deaths is fetched from [Coronavirus Tracker API](https://coronavirus-tracker-api.herokuapp.com/) ([github](https://github.com/ExpDev07/coronavirus-tracker-api)), which takes the data from [2019 Novel Coronavirus COVID-19 (2019-nCoV) Data Repository](https://github.com/CSSEGISandData/COVID-19) by [Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)](https://systems.jhu.edu/). The data is updated on a daily basis.
@@ -24,7 +24,8 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - add global historical section
 - add tests
 - add coveralls
-- add graph
+- add descriptions to chart
+- add filters to chart
 - add map
 - remove main.css and main.js files from bundle
 - add default language (if lack of label -> get default language -> put default labels)

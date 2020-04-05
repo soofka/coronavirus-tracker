@@ -19,7 +19,7 @@ module.exports = merge(base, {
     new FaviconsWebpackPlugin({
       logo: './static/images/virus.png',
       favicons: {
-        appName: 'Coronavirus Tracker',
+        appName: 'TrackCORONA.today',
         appDescription: 'Coronavirus Tracker',
         developerName: 'soofka',
         developerURL: 'https://soofka.pl',
