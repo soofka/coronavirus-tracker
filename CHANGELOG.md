@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/soofka/coronavirus-tracker/compare/v1.2.0...v1.3.0) (2020-04-05)
+
+
+### Features
+
+* added color coding to trends ([4c7ed68](https://github.com/soofka/coronavirus-tracker/commit/4c7ed68013ac358249cffcf8f570585c8bf1a112))
+* added comparison to previous data to virus data sections ([7317cbd](https://github.com/soofka/coronavirus-tracker/commit/7317cbd9fc6e829b0a868ff01f6b1ba247f53bc1))
+* added explanation to percentage values in coronavirus data sections ([48b37f1](https://github.com/soofka/coronavirus-tracker/commit/48b37f1efa6ea27ced8670b35ef0d15a120a9b5f))
+
+
+### Bug Fixes
+
+* added '%' sign to change comapred to previous day ([88114ca](https://github.com/soofka/coronavirus-tracker/commit/88114ca4d2ca24d6ebe304e1ef90be9bb3c34036))
+* added loading indication when historical data for previously selected country is available but historical data for currently selected country is being loaded ([ba058e3](https://github.com/soofka/coronavirus-tracker/commit/ba058e37f63938df93bd5ae8c11381e37bbba853))
+* fixed days ago calculation in certain cases ([7e85c4d](https://github.com/soofka/coronavirus-tracker/commit/7e85c4d58c9f15fa9729d8b9d5f0adc4dbda750e))
+* removed confusing elements of section headers ([8ea8352](https://github.com/soofka/coronavirus-tracker/commit/8ea835231a9132ac8e7ec320f2c54bb2d0a26830))
+* set proper theme color ([31b3f72](https://github.com/soofka/coronavirus-tracker/commit/31b3f723097474e9767ff683ed584b3a36693ced))
+
 ## [1.2.0](https://github.com/soofka/coronavirus-tracker/compare/v1.1.0...v1.2.0) (2020-04-04)
 
 
