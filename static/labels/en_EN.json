@@ -39,9 +39,13 @@
       "deaths": "deaths",
       "recovered": "recovered",
       "test_rate": "test rate",
+      "test_rate_explained": "tests done &ratio; population",
       "infection_rate": "infection rate",
+      "infection_rate_explained": "confirmed cases &ratio; population",
       "mortality_rate": "mortality rate",
+      "mortality_rate_explained": "deaths &ratio; confirmed cases",
       "recovery_rate": "recovery rate",
+      "recovery_rate_explained": "recoveries &ratio; confirmed cases",
       "last_updated": "Last updated"
     },
     "about": {

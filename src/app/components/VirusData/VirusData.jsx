@@ -17,11 +17,14 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
           &nbsp;
           <Text label="sections.data.confirmed"/>
         </h2>
-        {(!!total || total === 0) && <p>
-          <span class="virus">{roundToDecimalPlaces(confirmed * 100 / total)}%</span>
-          &nbsp;
-          <Text label="sections.data.infection_rate"/>
-        </p>}
+        {(!!total || total === 0) && <>
+          <p>
+            <span class="virus">{roundToDecimalPlaces(confirmed * 100 / total)}%</span>
+            &nbsp;
+            <Text label="sections.data.infection_rate"/>
+          </p>
+          <p className="info"><small><Text label="sections.data.infection_rate_explained" html={true}/></small></p>
+        </>}
       </div>}
       {(!!deaths || deaths === 0) && <div>
         <h2>
@@ -29,11 +32,14 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
           &nbsp;
           <Text label="sections.data.deaths"/>
         </h2>
-        {(!!confirmed || confirmed === 0) && <p>
-          <span class="virus">{roundToDecimalPlaces(deaths * 100 / confirmed)}%</span>
-          &nbsp;
-          <Text label="sections.data.mortality_rate"/>
-        </p>}
+        {(!!confirmed || confirmed === 0) && <>
+          <p>
+            <span class="virus">{roundToDecimalPlaces(deaths * 100 / confirmed)}%</span>
+            &nbsp;
+            <Text label="sections.data.mortality_rate"/>
+          </p>
+          <p className="info"><small><Text label="sections.data.mortality_rate_explained" html={true}/></small></p>
+        </>}
       </div>}
       {/* {(!!recovered || recovered === 0) && <div>
         <h2>
@@ -41,11 +47,14 @@ export const VirusData = ({ lastUpdated, total, confirmed, deaths/*, recovered*/
           &nbsp;
           <Text label="sections.data.recovered"/>
         </h2>
-        {(!!confirmed || confirmed === 0) && <p>
-          <span class="virus">{roundToDecimalPlaces(recovered * 100 / confirmed)}%</span>
-          &nbsp;
-          <Text label="sections.data.recovery_rate"/>
-        </p>}
+        {(!!confirmed || confirmed === 0) && <>
+          <p>
+            <span class="virus">{roundToDecimalPlaces(recovered * 100 / confirmed)}%</span>
+            &nbsp;
+            <Text label="sections.data.recovery_rate"/>
+          </p>
+          <p className="info"><small><Text label="sections.data.recovery_rate_explained" html={true}/></small></p>
+        </>}
       </div>} */}
     </div>
     {lastUpdated && <p><small>

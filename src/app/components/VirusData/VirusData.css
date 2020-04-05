@@ -4,10 +4,14 @@
 }
 
 .virus-data p {
-  margin-bottom: 4px;
+  margin-bottom: 0px;
+}
+
+.virus-data p.info {
+  margin: -8px 0 8px 0;
+  opacity: 0.33;
 }
 
 .virus-data + p {
-  font-style: italic;
   margin-bottom: 0;
 }

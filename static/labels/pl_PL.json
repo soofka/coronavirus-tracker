@@ -38,10 +38,14 @@
       "confirmed": "potwierdzonych",
       "deaths": "zgonów",
       "recovered": "wyleczeń",
-      "test_rate": "odsetek przetestowanych",
-      "infection_rate": "odsetek zakażonych",
-      "mortality_rate": "odsetek zmarłych",
-      "recovery_rate": "odsetek wyleczonych",
+      "test_rate": "przetestowanych",
+      "test_rate_explained": "przeprowadzone testy &ratio; populacja",
+      "infection_rate": "zarażonych",
+      "infection_rate_explained": "potwierdzone przypadki &ratio; populacja",
+      "mortality_rate": "zmarłych",
+      "mortality_rate_explained": "zgony &ratio; potwierdzone przypadki",
+      "recovery_rate": "wyleczonych",
+      "recovery_rate_explained": "wyzdrowienia &ratio; potwierdzone przypadki",
       "last_updated": "Ostatnia aktualizacja"
     },
     "about": {
