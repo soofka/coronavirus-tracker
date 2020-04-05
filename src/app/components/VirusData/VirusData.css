@@ -10,7 +10,14 @@
 .virus-data .change {
   position: relative;
   top: -4px;
-  color: rgba(255, 160, 188, 1);
+}
+
+.virus-data .change-cool {
+  color: rgba(160, 220, 100, 1);
+}
+
+.virus-data .change-not-cool {
+  color: rgba(255, 160, 200, 1);
 }
 
 .virus-data .info {

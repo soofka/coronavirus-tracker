@@ -72,10 +72,12 @@ export const VirusData = ({
 
 const getTrendText = (currentValue, previousValue) => {
   const trend = currentValue * 100 / previousValue;
-  const change = roundToDecimalPlaces(Math.abs(trend - 100), 2);
   const positive = trend > 0;
+  
+  const change = roundToDecimalPlaces(Math.abs(trend - 100), 2);
+  const cool = change < 10;
 
-  return <span>{positive ? '+' : '-'}{change}%&nbsp;{positive ? <>&#8593;</> : <>&#8595;</>}</span>;
+  return <span className={cool ? 'change-cool' : 'change-not-cool'}>{positive ? '+' : '-'}{change}%&nbsp;{positive ? <>&#8593;</> : <>&#8595;</>}</span>;
 }
 
 const roundToDecimalPlaces = (number, decimalPlaces = DECIMAL_PLACES) => {
