@@ -75,7 +75,7 @@ const getTrendText = (currentValue, previousValue) => {
   const change = roundToDecimalPlaces(Math.abs(trend - 100), 2);
   const positive = trend > 0;
 
-  return <span>{positive ? '+' : '-'}{change}&nbsp;{positive ? <>&#8593;</> : <>&#8595;</>}</span>;
+  return <span>{positive ? '+' : '-'}{change}%&nbsp;{positive ? <>&#8593;</> : <>&#8595;</>}</span>;
 }
 
 const roundToDecimalPlaces = (number, decimalPlaces = DECIMAL_PLACES) => {
