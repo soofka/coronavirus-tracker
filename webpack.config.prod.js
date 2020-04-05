@@ -24,7 +24,7 @@ module.exports = merge(base, {
         developerName: 'soofka',
         developerURL: 'https://soofka.pl',
         background: '#111',
-        theme_color: '#98d463',
+        theme_color: '#233329',
         start_url: '/index.html',
         icons: {
           appleStartup: false,
