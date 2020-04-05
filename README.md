@@ -10,9 +10,6 @@ Information about country populations is fetched from [country-json](https://git
 If you'd like to report a bug, propose a feature, help with translations, contribute to the code repository, feel free to [open an issue on Github](https://github.com/soofka/coronavirus-tracker/issues/new). If you want to say hi, [contact me on Twitter](https://twitter.com/pansoofka).
 
 ## TODO
-### frontlog
-- add better percentages description
-- add previous day comparison to all data sections
 ### backlog
 - make date arrows interact with query string and local storage through select
 - fix double labels loading in case of non-default labels
