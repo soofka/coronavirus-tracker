@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/soofka/coronavirus-tracker/compare/v1.4.1...v1.5.0) (2020-04-06)
+
+
+### Features
+
+* added absolute change value compared to previous day to data display and graph ([b400cee](https://github.com/soofka/coronavirus-tracker/commit/b400ceeb03b50ca7c7512be564e3b55e9c3aefa5))
+* added basic date range filters to chart ([09c6d6a](https://github.com/soofka/coronavirus-tracker/commit/09c6d6a92517e5b95f08877bee1f81231609485f))
+
 ### [1.4.1](https://github.com/soofka/coronavirus-tracker/compare/v1.4.0...v1.4.1) (2020-04-05)
 
 
