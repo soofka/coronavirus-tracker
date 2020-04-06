@@ -22,11 +22,16 @@ button, select {
   border: none;
   background: rgba(7, 7, 7, 0.4);
   color: rgba(253, 253, 253, 1);
+  cursor: pointer;
 }
 
-button:hover:enabled, button:active:enabled, select:hover:enabled, select:active:enabled {
-  cursor: pointer;
+button:hover, button:active, select:hover, select:active, button.active, select.active {
   background: rgba(7, 7, 7, 0.7);
+}
+
+button:disabled, select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 a, a:visited {

@@ -48,6 +48,15 @@
       "recovery_rate_explained": "wyzdrowienia &ratio; potwierdzone przypadki",
       "last_updated": "Ostatnia aktualizacja"
     },
+    "chart": {
+      "controls": {
+        "date_ranges": {
+          "last_7_days": "Ostatnie 7 dni",
+          "last_30_days": "Ostatnie 30 dni",
+          "since_first_case": "Od pierwszego przypadku"
+        }
+      }
+    },
     "about": {
       "data_source": {
         "header": "Skąd pochodzą te dane?",

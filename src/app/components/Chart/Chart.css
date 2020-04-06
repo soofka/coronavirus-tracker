@@ -1,8 +1,24 @@
+.chart {
+  width: 100%;
+  height: calc(200px + (320 - 200) * ((100vw - 320px) / (960 - 320)))
+}
+
 .chart rect {  
-  transition: all 0.6s ease;
   opacity: 0.6;
 }
 
 .chart rect.current {
   opacity: 1;
+}
+
+.chart-controls button {
+  margin: 4px;
+}
+
+.chart-controls button:first-of-type {
+  margin-left: 0;
+}
+
+.chart-controls button:last-of-type {
+  margin-right: 0;
 }

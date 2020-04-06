@@ -48,6 +48,15 @@
       "recovery_rate_explained": "recoveries &ratio; confirmed cases",
       "last_updated": "Last updated"
     },
+    "chart": {
+      "controls": {
+        "date_ranges": {
+          "last_7_days": "Last 7 days",
+          "last_30_days": "Last 30 days",
+          "since_first_case": "Since first case"
+        }
+      }
+    },
     "about": {
       "data_source": {
         "header": "Where does the data come from?",
