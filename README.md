@@ -9,7 +9,12 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 
 ## TODO
 ### backlog
+- make chart controls interact with query string and local storage
 - make date arrows interact with query string and local storage through select
+- animate chart properly
+- make chart bars display values on hover
+- add axises and values to the cart
+- add legend to the chart
 - fix double labels loading in case of non-default labels
 - fix double historical data call (in case if country and region is set on entry)
 - add advanced minification (closure compiler, better image minification, better css minification)
@@ -21,8 +26,6 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - prerender default html
 - npm packages reinstall and audit fix
 - add social tags
-- add global historical section
-- add tests
 - add coveralls
 - add descriptions to chart
 - add filters to chart
@@ -33,3 +36,5 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - change select with countries to input with autosuggest
 - change select with dates to calendar-like date picker
 - add css variables
+- add prettier
+- add full unit tests coverage

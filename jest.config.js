@@ -5,18 +5,15 @@ module.exports = {
   ],
   moduleFileExtensions: [
     'js',
+    'jsx',
   ],
   collectCoverageFrom: [
-    'src/**/*.js',
+    'src/**/*.{js,jsx}',
   ],
   coveragePathIgnorePatterns: [
     'node_modules',
-    'tests',
-    'src/app.js',
-    'src/commons.js',
-    'src/index.js',
+    '__tests__',
     'src/service-worker.js',
-    'src/sw-webpack-plugin.js',
   ],
   coverageReporters: [
     'html',
@@ -32,8 +29,11 @@ module.exports = {
     },
   },
   setupFilesAfterEnv: [
-    'jest-extended',
+    '<rootDir>/setupTests.js',
   ],
-  testRegex: 'tests/(unit|snapshot)/.*\\.test\\.js$',
+  transform: {
+    '.*\\.jsx?$': 'babel-jest',
+  },
+  testRegex: '__tests__/.*\\.test\\.jsx?$',
   testURL: 'http://localhost',
 };

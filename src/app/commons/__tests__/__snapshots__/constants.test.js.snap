@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`constants.js did not change 1`] = `
+Object {
+  "ASSETS_BASE_URL": "assets/",
+  "DEFAULT_DATE": 0,
+  "DEFAULT_LOCALE": "en_EN",
+  "DEFAULT_REGION": "none",
+  "GLOBAL_VIRUS_DATA_API_URL": "https://coronavirus-tracker-api.herokuapp.com/v2/latest",
+  "HISTORICAL_REGIONAL_VIRUS_DATA_API_BASE_URL": "https://coronavirus-tracker-api.herokuapp.com/v2/locations/",
+  "LATEST_REGIONAL_VIRUS_DATA_API_URL": "https://coronavirus-tracker-api.herokuapp.com/v2/locations",
+  "LOCALES": Object {
+    "en_EN": "en_EN",
+    "pl_PL": "pl_PL",
+  },
+}
+`;

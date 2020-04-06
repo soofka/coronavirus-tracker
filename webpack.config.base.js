@@ -24,19 +24,7 @@ module.exports = {
       {
         test: /\.js?x$/i,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              ["@babel/plugin-transform-react-jsx", {
-                "pragma": "h",
-                "pragmaFrag": "Fragment",
-              }],
-              // "@babel/plugin-syntax-dynamic-import",
-            ],
-          },
-        },
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/i,
