@@ -50,7 +50,13 @@
     },
     "chart": {
       "controls": {
+        "display_modes": {
+          "label": "Tryb wyświetlania",
+          "all_cases": "Wszystkie przypadki",
+          "new_cases": "Nowe przypadki"
+        },
         "date_ranges": {
+          "label": "Zakres dat",
           "last_7_days": "Ostatnie 7 dni",
           "last_30_days": "Ostatnie 30 dni",
           "since_first_case": "Od pierwszego przypadku"

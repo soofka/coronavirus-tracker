@@ -10,18 +10,18 @@ const DECIMAL_PLACES = 4;
 export const VirusData = ({
   total,
   confirmed,
-  confirmedOnPreviousDate,
+  confirmedChange,
   deaths,
-  deathsOnPreviousDate,
+  deathsChange,
   // recovered,
-  // recoveredOnPreviousDate,
+  // recoveredChange,
 }) =>
   <div class="virus-data">
     {(!!confirmed || confirmed === 0) && <div>
       <h2>
         <span class="virus">{normalizeNumber(confirmed)}</span>&nbsp;
         <Text label="sections.data.confirmed"/>&nbsp;
-        {(!!confirmedOnPreviousDate || confirmedOnPreviousDate === 0) && <small className="change">{getTrendText(confirmed, confirmedOnPreviousDate)}</small>}
+        {(!!confirmedChange || confirmedChange === 0) && <small className="change">{getChangeText(confirmed, confirmedChange)}</small>}
       </h2>
       {(!!total || total === 0) && <>
         <p>
@@ -35,7 +35,7 @@ export const VirusData = ({
       <h2>
         <span class="virus">{normalizeNumber(deaths)}</span>&nbsp;
         <Text label="sections.data.deaths"/>&nbsp;
-        {(!!deathsOnPreviousDate || deathsOnPreviousDate === 0) && <small className="change">{getTrendText(deaths, deathsOnPreviousDate)}</small>}
+        {(!!deathsChange || deathsChange === 0) && <small className="change">{getChangeText(deaths, deathsChange)}</small>}
       </h2>
       {(!!confirmed || confirmed === 0) && <>
         <p>
@@ -49,7 +49,7 @@ export const VirusData = ({
       <h2>
         <span class="virus">{normalizeNumber(recovered)}</span>&nbsp;
         <Text label="sections.data.recovered"/>&nbsp;
-        {recoveredOnPreviousDate && <small className="change">{getTrendText(recovered, recoveredOnPreviousDate)}</small>}
+        {(!!recoveredChange || recoveredChange === 0) && <small className="change">{getChangeText(recovered, recoveredChange)}</small>}
       </h2>
       {(!!confirmed || confirmed === 0) && <>
         <p>
@@ -61,16 +61,17 @@ export const VirusData = ({
     </div>} */}
   </div>;
 
-const getTrendText = (currentValue, previousValue) => {
-  const trend = currentValue / previousValue;
-  const trendIncreasing = trend > 1;
-  const trendDecreasing = trend < 1;
+const getChangeText = (value, valueChange) => {
+  const changeIncreasing = valueChange > 0;
+  const changeDecreasing = valueChange < 0;
+  const relativeValueChange = roundToDecimalPlaces((valueChange * 100) / value, 2);
 
-  const change = Math.abs(1 - trend);
-  const changeText = roundToDecimalPlaces(change * 100, 2);
+  const changeSign = changeIncreasing ? '+' : (changeDecreasing ? '-' : '');
+  const changeArrow = changeIncreasing ? '&uarr;' : (changeDecreasing ? '&darr;' : '');
+  const changeText = `${changeSign}${valueChange} (${changeSign}${relativeValueChange}%) ${changeArrow}`;
 
-  return <span className="virus-accent">{trendIncreasing ? '+' : (trendDecreasing ? '-' : '')}{changeText}%&nbsp;{trendIncreasing ? <>&uarr;</> : (trendDecreasing ? <>&darr;</> : '')}</span>;
-}
+  return <span className="virus-accent" dangerouslySetInnerHTML={{ __html: changeText }}/>;
+};
 
 const roundToDecimalPlaces = (number, decimalPlaces = DECIMAL_PLACES) => {
   let parsedNumber = parseFloat(number, 10);

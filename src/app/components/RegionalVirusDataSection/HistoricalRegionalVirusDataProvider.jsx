@@ -27,7 +27,7 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
   const { regionId } = useLatestRegionalVirusData();
 
   useEffect(() => !isDefaultRegionId(regionId) && fetch(regionId), [regionId]);
-
+  
   return (
     <HistoricalRegionalVirusDataContext.Provider value={{
       data,
@@ -96,18 +96,32 @@ const normalizeHistoricalRegionalVirusData = (data) => {
     // recovered: {},
   };
 
-  allDates.forEach((date) => {
+  allDates.forEach((date, index) => {
     if (
       (dataNormalized1.confirmed[date] && parseInt(dataNormalized1.confirmed[date], 10) > 0)
       || (dataNormalized1.deaths[date] && parseInt(dataNormalized1.deaths[date], 10) > 0)
       // || (dataNormalized1.recovered[date] && parseInt(dataNormalized1.recovered[date], 10) > 0)
     ) {
+      const previousDate = index < allDates.length - 1 && allDates[index + 1];
+
       dataNormalized2.dates.push(date);
-      dataNormalized2.confirmed[date] = dataNormalized1.confirmed[date] ? dataNormalized1.confirmed[date] : 0;
-      dataNormalized2.deaths[date] = dataNormalized1.deaths[date] ? dataNormalized1.deaths[date] : 0;
-      // dataNormalized2.recovered[date] = dataNormalized1.recovered[date] ? dataNormalized1.recovered[date] : 0;
+      dataNormalized2.confirmed[date] = getHistoricalValue(dataNormalized1.confirmed, date, previousDate);
+      dataNormalized2.deaths[date] = getHistoricalValue(dataNormalized1.deaths, date, previousDate);
+      // dataNormalized2.recovered[date] = getHistoricalValue(dataNormalized1.recovered, date, previousDate);
     }
   });
   
   return dataNormalized2;
 };
+
+const getHistoricalValue = (data, currentDate, previousDate) => data[currentDate]
+  ? ({
+    total: data[currentDate],
+    change: previousDate
+      ? data[currentDate] - data[previousDate]
+      : 0
+  })
+  : ({
+    total: 0,
+    change: 0,
+  });

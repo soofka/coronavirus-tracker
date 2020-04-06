@@ -50,7 +50,13 @@
     },
     "chart": {
       "controls": {
+        "display_modes": {
+          "label": "Display mode",
+          "all_cases": "All cases",
+          "new_cases": "New cases"
+        },
         "date_ranges": {
+          "label": "Date range",
           "last_7_days": "Last 7 days",
           "last_30_days": "Last 30 days",
           "since_first_case": "Since first case"

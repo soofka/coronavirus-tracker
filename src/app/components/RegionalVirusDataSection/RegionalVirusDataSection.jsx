@@ -61,6 +61,7 @@ const RegionalVirusDataSectionComponent = () => {
   let dateIndex = -1;
 
   if (historicalData) {
+    console.log('render historyczny', historicalData);
     if (isDefaultDate(date) || !validateDate(historicalData, date)) {
       setDate(historicalData.dates[0]);
     } else {
@@ -156,12 +157,12 @@ const RegionalVirusDataSectionComponent = () => {
           ? <>
               <VirusData
                 total={latestData[regionId].country.population}
-                confirmed={historicalData.confirmed[date]}
-                confirmedOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.confirmed[historicalData.dates[dateIndex + 1]]}
-                deaths={historicalData.deaths[date]}
-                deathsOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.deaths[historicalData.dates[dateIndex + 1]]}
-                // recovered={historicalData.recovered[date]}
-                // recoveredOnPreviousDate={hasHistoricalDataForPreviousDate && historicalData.recovered[historicalData.dates[dateIndex + 1]]}
+                confirmed={historicalData.confirmed[date].total}
+                confirmedChange={historicalData.confirmed[date].change}
+                deaths={historicalData.deaths[date].total}
+                deathsChange={historicalData.deaths[date].change}
+                // recovered={historicalData.recovered[date].total}
+                // recoveredChange={historicalData.recovered[date].change}
               />
               <Chart
                 dates={historicalData.dates}
