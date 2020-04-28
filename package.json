@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run build:prod",
-    "build2": "cross-env CHROME_PATH=/opt/build/repo/node_modules/chromium/lib/chromium/chrome-win/chrome.exe lhci autorun",
+    "build2": "cross-env CHROME_PATH=/opt/build/repo/node_modules/chromium/lib/chromium/chrome-win/chrome.exe npm run dupa && lhci autorun",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
@@ -15,7 +15,8 @@
     "test:unit": "jest --config jest.config.js",
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "bundlesize && lhci autorun",
-    "release": "standard-version"
+    "release": "standard-version",
+    "dupa": "node dupa.js"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
