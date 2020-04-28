@@ -6,8 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run build:prod",
-    "build2": "node dupson.js",
+    "build": "npm run test:unit:coverage && npm run build:prod && npm run test:e2e",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
@@ -15,7 +14,6 @@
     "test:unit": "jest --config jest.config.js",
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "bundlesize && lhci autorun",
-    "test:lhci": "lhci autorun",
     "release": "standard-version"
   },
   "devDependencies": {
