@@ -8,14 +8,14 @@ const ENV_VARS = {
 const NetlifyChromiumPlugin = {
   name: 'netlify-chromium-plugin',
   onInstall: () => {
-    Object.keys(ENV_VARS).forEach((key) => {
-      if (!process.env[key]) {
-        console.log(`Setting environmental variable ${key} = ${ENV_VARS[key]}`);
-        process.env[key] = ENV_VARS[key];
-      }
-    });
+    // Object.keys(ENV_VARS).forEach((key) => {
+    //   if (!process.env[key]) {
+    //     console.log(`Setting environmental variable ${key} = ${ENV_VARS[key]}`);
+    //     process.env[key] = ENV_VARS[key];
+    //   }
+    // });
 
-    if (!fs.existsSync(process.env.CHROME_PATH)) {
+    if (!fs.existsSync(ENV_VARS.CHROME_PATH)) {
       console.log('Installing chromium and chrome-launcher');
       require('child_process').execSync(
         'npm install chromium chrome-launcher',
@@ -26,9 +26,13 @@ const NetlifyChromiumPlugin = {
       );
 
       console.log('Testing started');
-      const { Launcher, launch, killAll } = require('chrome-launcher');
 
-      console.log('Installations:', Launcher.getInstallations());
+      const { path } = require('chromium');
+      console.log(`Setting CHROME_PATH (${process.env.CHROME_PATH}) to ${path}`);
+      process.env.CHROME_PATH = path;
+
+      const { Launcher, launch, killAll } = require('chrome-launcher');
+      console.log('Chrome installations:', Launcher.getInstallations());
 
       return launch({ startingUrl: 'https://google.com' })
         .then(({ port, pid, process }) => {
