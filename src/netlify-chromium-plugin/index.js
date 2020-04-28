@@ -1,6 +1,6 @@
 const NetlifyChromiumPlugin = {
   onInstall: ({ inputs, utils }) => {
-    console.log('[NetlifyChromiumPlugin]: Installing Chromium');
+    console.log('[NetlifyChromiumPlugin]: Installing Chromium with settings', inputs);
 
     try {
       require('child_process').execSync(

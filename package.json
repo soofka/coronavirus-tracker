@@ -10,7 +10,7 @@
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
-    "test": "npm run test:unit:coverage && npm run test:e2e",
+    "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "jest --config jest.config.js",
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "bundlesize && lhci autorun",
