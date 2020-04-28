@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/soofka/coronavirus-tracker/compare/v1.5.0...v1.6.0) (2020-04-28)
+
+
+### Features
+
+* added basic Travis CI integration ([739fc8c](https://github.com/soofka/coronavirus-tracker/commit/739fc8c5bea57ad1cfd4160b1f8ff58923a5c41e))
+* added Lighthouse tests to Netlify CI/CD with custom netlify-chromium-plugin ([6c9fe31](https://github.com/soofka/coronavirus-tracker/commit/6c9fe31730c377454983e55ab32bc61173503d7b))
+* added Netlify and Coveralls status badges to README ([453c364](https://github.com/soofka/coronavirus-tracker/commit/453c364697f4b963c6474af33121109d80f9c92e))
+* added unit tests coverage calculation to CI/CD ([fd21417](https://github.com/soofka/coronavirus-tracker/commit/fd21417941b70de9662ece3604c884b9cb65c8f9))
+
 ## [1.5.0](https://github.com/soofka/coronavirus-tracker/compare/v1.4.1...v1.5.0) (2020-04-06)
 
 
