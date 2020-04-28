@@ -7,7 +7,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run test:unit:coverage && npm run build:prod && npm run test:e2e",
-    "build2": "npm run build:prod && lhci autorun",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
