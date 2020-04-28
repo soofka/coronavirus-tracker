@@ -1,4 +1,6 @@
 # Coronavirus Tracker
+[![Netlify Status](https://api.netlify.com/api/v1/badges/98c27b94-6dce-4af4-90a4-312a64ef540e/deploy-status)](https://app.netlify.com/sites/amazing-morse-5b1303/deploys) [![Coverage Status](https://coveralls.io/repos/github/soofka/coronavirus-tracker/badge.svg)](https://coveralls.io/github/soofka/coronavirus-tracker)
+
 Simple Preact PWA displaying latest information about coronavirus encounters around the world. Deployed to **https://trackcorona.today**.
 
 ## Where does the data come from?
