@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run build:prod",
-    "build2": "cross-env CHROME_PATH=node_modules/chromium/lib/chromium/chrome-win/chrome.exe npm run dupa && lhci autorun",
+    "build2": "cross-env CHROME_PATH=node_modules/chromium/lib/chromium/chrome-win/chrome.exe lhci autorun",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
@@ -16,7 +16,8 @@
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "bundlesize && lhci autorun",
     "release": "standard-version",
-    "dupa": "node dupa.js"
+    "dupa": "node dupa.js",
+    "dupa2": "node dupa2.js"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
