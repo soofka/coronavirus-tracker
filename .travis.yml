@@ -6,6 +6,7 @@ addons:
 script:
   - npm run test:unit:coverage
   - npm run build:prod
+  - npm install chromium
   - npm run test:e2e
 deploy:
   provider: netlify
