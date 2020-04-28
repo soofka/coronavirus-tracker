@@ -53,6 +53,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "chromium": "^2.1.2",
     "preact": "^10.3.4"
   }
 }

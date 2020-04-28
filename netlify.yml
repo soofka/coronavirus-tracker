@@ -1,2 +1,2 @@
 plugins:
-  - type: ./src/netlify-chrome-plugin
+  - package: ./src/netlify-chrome-plugin
