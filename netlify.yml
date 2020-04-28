@@ -1,5 +1,5 @@
 build:
   environment:
-    CHROME_PATH: ./node_modules/chromium/lib/chromium/chrome-win/chrome.exe
+    CHROME_PATH: ./node_modules/chromium/lib/chromium
 plugins:
   - package: ./src/netlify-chrome-plugin
