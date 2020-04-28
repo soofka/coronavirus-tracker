@@ -1,5 +1,2 @@
-build:
-  environment:
-    CHROME_PATH: /opt/build/repo/node_modules/chromium/lib/chromium
 plugins:
-  - package: ./src/netlify-chrome-plugin
+  - package: ./src/netlify-chromium-plugin.js
