@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run build:prod",
-    "build2": "cross-env CHROME_PATH=/opt/build/repo/node_modules/chromium/lib/chromium node dupson.js",
+    "build2": "node dupson.js",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
