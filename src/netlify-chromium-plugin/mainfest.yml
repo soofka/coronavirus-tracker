@@ -1,0 +1,8 @@
+name: netlify-chromium-plugin
+inputs:
+  - name: setChromiumPathInEnv
+    description: if true, sets process.env.CHROME_PATH to location of Chromium installation (required for many packages relying on Chromium to run)
+    default: true
+  - name: failBuildOnError
+    description: if true and Chromium installation did not succeed, whole build will fail
+    default: false
