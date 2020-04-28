@@ -1,9 +1,9 @@
 const fs = require('fs');
 
-const ENV_VARS = {
-  CHROME_PATH: '/opt/build/repo/node_modules/chromium/lib/chromium',
-  DISPLAY: ':99.0',
-};
+// const ENV_VARS = {
+//   CHROME_PATH: '/opt/build/repo/node_modules/chromium/lib/chromium',
+//   DISPLAY: ':99.0',
+// };
 
 const NetlifyChromiumPlugin = {
   name: 'netlify-chromium-plugin',
@@ -15,7 +15,7 @@ const NetlifyChromiumPlugin = {
     //   }
     // });
 
-    if (!fs.existsSync(ENV_VARS.CHROME_PATH)) {
+    if (!process.env.CHROME_PATH || !fs.existsSync(process.env.CHROME_PATH)) {
       console.log('Installing chromium and chrome-launcher');
       require('child_process').execSync(
         'npm install chromium chrome-launcher',
