@@ -3,7 +3,9 @@ const NodeJsonMinify = require('node-json-minify');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin.js');
+const SimpleSwWebpackPlugin = require('./src/simple-sw-webpack-plugin');
+
+const { getAbsoluteImportMappings } = require('./src/webpack-absolute-imports');
 
 module.exports = {
   entry: './src/app/index.jsx',
@@ -13,10 +15,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
   },
   resolve: {
-    alias: {
-      commons: path.resolve(__dirname, 'src/app/commons/'),
-      components: path.resolve(__dirname, 'src/app/components/'),
-    },
+    alias: getAbsoluteImportMappings('src/app'),
     extensions: ['.js', '.jsx'],
   },
   module: {
