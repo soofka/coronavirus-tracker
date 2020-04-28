@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run build:prod",
-    "build2": "npm run test:unit && npm run build:prod && npm run dupa && npm run test:e2e",
+    "build2": "npm run dupa && npm run test:e2e",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
