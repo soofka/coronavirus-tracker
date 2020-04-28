@@ -1,16 +1,20 @@
 const fs = require('fs');
 
-const DEFAULT_CHROMIUM_PATH = '/opt/build/repo/node_modules/chromium/lib/chromium';
-const CHROME_PATH_ENV_VAR_NAME = 'CHROME_PATH';
+const ENV_VARS = {
+  CHROME_PATH: '/opt/build/repo/node_modules/chromium/lib/chromium',
+  DISPLAY: ':99.0',
+};
 
 const NetlifyChromiumPlugin = {
   name: 'netlify-chromium-plugin',
   onInstall: () => {
-    if (!process.env[CHROME_PATH_ENV_VAR_NAME]) {
-      process.env[CHROME_PATH_ENV_VAR_NAME] = DEFAULT_CHROMIUM_PATH;
-    }
+    Object.keys(ENV_VARS).forEach((key) => {
+      if (!process.env[key]) {
+        process.env[key] = ENV_VARS[key];
+      }
+    });
 
-    if (!fs.existsSync(DEFAULT_CHROMIUM_PATH)) {
+    if (!fs.existsSync(process.env.CHROME_PATH)) {
       require('child_process').execSync(
         'npm install chromium',
         {
