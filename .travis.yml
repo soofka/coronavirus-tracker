@@ -6,9 +6,8 @@ addons:
 script:
   - npm run test:unit:coverage
   - npm run build:prod
-  - npm install chromium
   - npm run test:e2e
 deploy:
   provider: netlify
-  site: amazing-morse-5b1303
+  site: 98c27b94-6dce-4af4-90a4-312a64ef540e
   edge: true
