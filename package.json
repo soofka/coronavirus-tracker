@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run build:prod",
-    "build2": "npm run test:unit && npm run build:prod && npm install -g chromium && npm run test:e2e",
+    "build2": "npm run test:unit && npm run build:prod && npm run dupa && npm run test:e2e",
     "build:dev": "webpack --config webpack.config.base.js",
     "build:prod": "npm run clean && webpack --config webpack.config.prod.js",
     "start": "npm run clean && npm run build:dev && node server.js",
@@ -15,7 +15,8 @@
     "test:unit": "jest --config jest.config.js",
     "test:unit:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "bundlesize && lhci autorun",
-    "release": "standard-version"
+    "release": "standard-version",
+    "dupa": "node dupa.js"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -43,6 +44,7 @@
     "node-json-minify": "^1.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.1",
+    "shelljs": "^0.8.4",
     "standard-version": "^7.1.0",
     "terser": "^4.6.3",
     "terser-webpack-plugin": "^2.3.4",
