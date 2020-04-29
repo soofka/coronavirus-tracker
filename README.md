@@ -23,13 +23,11 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - get data about tests and enable related sections
 - get data about recoveries and enable related sections
 - preact-loadable?
-- enable lighhouse tests in travis ci
-- add travis to readme
 - prerender default html
 - npm packages reinstall and audit fix
 - add social tags
-- add coveralls
 - add descriptions to chart
+- add snyk
 - add filters to chart
 - add map
 - remove main.css and main.js files from bundle
