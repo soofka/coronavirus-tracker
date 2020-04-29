@@ -41,7 +41,7 @@
     "imagemin-webpack-plugin": "^2.4.2",
     "jest": "^25.2.7",
     "mini-css-extract-plugin": "^0.9.0",
-    "netlify-chromium-plugin": "^1.0.0",
+    "netlify-plugin-chromium": "0.0.2",
     "node-json-minify": "^1.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.1",

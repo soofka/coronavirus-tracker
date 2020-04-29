@@ -1,2 +1,2 @@
 plugins:
-  - package: ./src/test/lib
+  - package: netlify-plugin-chromium
