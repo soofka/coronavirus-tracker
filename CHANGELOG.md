@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/soofka/coronavirus-tracker/compare/v1.6.0...v1.6.1) (2020-04-29)
+
+
+### Bug Fixes
+
+* successfully removed local copy of netlify chromium plugin, added one from npm ([fd94683](https://github.com/soofka/coronavirus-tracker/commit/fd94683269e61d16889d25d75d96c0dd34266ae1))
+
 ## [1.6.0](https://github.com/soofka/coronavirus-tracker/compare/v1.5.0...v1.6.0) (2020-04-28)
 
 
