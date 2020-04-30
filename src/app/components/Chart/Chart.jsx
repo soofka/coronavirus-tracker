@@ -58,7 +58,6 @@ export const Chart = ({
   const rectWidth = Math.floor(chartWidth / datesInDateRange.length);
   const rectFillWidth = rectWidth > BAR_MARGIN ? rectWidth - BAR_MARGIN : BAR_MIN_WIDTH;
   
-  console.log('robie graf', displayMode, chartWidth, chartHeight, valuesInRange, maxValue);
   return (<>
     <svg ref={chart} className="chart">
       {datesInDateRange.map((date, index) => {
