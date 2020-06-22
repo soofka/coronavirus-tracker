@@ -207,6 +207,7 @@ const RegionalVirusDataSectionComponent = () => {
                 // recoveredChange={historicalData[granularity].recovered[date].change}
               />
               <Chart
+                granularity={granularity}
                 dates={historicalData[granularity].dates}
                 currentDate={date}
                 confirmed={historicalData[granularity].confirmed}

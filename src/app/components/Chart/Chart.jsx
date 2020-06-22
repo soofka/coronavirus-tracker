@@ -1,6 +1,7 @@
 import { h, Fragment } from 'preact';
-import { useState, useRef } from 'preact/hooks';
+import { useState, useRef, useEffect } from 'preact/hooks';
 
+import { DATA_GRANULARITIES } from 'commons/constants';
 import { useResize } from 'commons/hooks';
 
 import { Text } from 'components/Text';
@@ -11,6 +12,12 @@ const BAR_MARGIN = 4;
 const BAR_MIN_WIDTH = 4;
 const BAR_MIN_HEIGHT = 1;
 
+const DEFAULT_DISPLAY = {
+  confirmed: true,
+  deaths: true,
+  // recovered: true,
+};
+
 const DISPLAY_MODES = {
   NEW_CASES: 'NEW_CASES',
   ALL_CASES: 'ALL_CASES',
@@ -19,14 +26,16 @@ const DISPLAY_MODES = {
 const DEFAULT_DISPLAY_MODE = DISPLAY_MODES.ALL_CASES;
 
 const DATE_RANGES = {
-  LAST_7_DAYS: 7,
+  LAST_14_DAYS: 14,
   LAST_30_DAYS: 30,
+  LAST_90_DAYS: 90,
   SINCE_FIRST_CASE: -1,
 };
 
 const DEFAULT_DATE_RANGE = DATE_RANGES.LAST_30_DAYS;
 
 export const Chart = ({
+  granularity,
   dates,
   currentDate,
   confirmed,
@@ -39,21 +48,35 @@ export const Chart = ({
     height: chartHeight,
   } = useResize(chart);
 
-  const [controlsOn, setControlsOn] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [display, setDisplay] = useState(DEFAULT_DISPLAY);
   const [displayMode, setDisplayMode] = useState(DEFAULT_DISPLAY_MODE);
-
   const [dateRange, setDateRange] = useState(DEFAULT_DATE_RANGE);
+  
+  useEffect(() => {
+    if (granularity !== DATA_GRANULARITIES.DAILY) {
+      setDateRange(DATE_RANGES.SINCE_FIRST_CASE);
+    }
+  }, [granularity]);
+
   const datesInDateRange = dateRange === DATE_RANGES.SINCE_FIRST_CASE
     ? [...dates].reverse()
-    : [...dates].splice(0, dateRange).reverse();    
+    : [...dates].splice(0, dateRange).reverse();
 
+  const valuesInRange = [];
   const confirmedParsed = parseData(confirmed, datesInDateRange, displayMode);
   const deathsParsed = parseData(deaths, datesInDateRange, displayMode);
   // const recoveredParsed = parseData(recovered, datesInDateRange, displayMode);
 
-  const valuesInRange = Object.values(confirmedParsed)
-    .concat(Object.values(deathsParsed));
-    // .concat(Object.values(recoveredParsed));
+  if (display.confirmed) {
+    valuesInRange.push(...Object.values(confirmedParsed));
+  }
+  if (display.deaths) {
+    valuesInRange.push(...Object.values(deathsParsed));
+  }
+  // if (display.recovered) {
+  //   valuesInRange.push(...Object.values(recoveredParsed));
+  // }
   
   const maxValue = Math.max(...valuesInRange);
   const rectWidth = Math.floor(chartWidth / datesInDateRange.length);
@@ -80,33 +103,55 @@ export const Chart = ({
         // }
 
         return (<>
-          <rect
+          {display.confirmed && <rect
             className={`virus-accent ${isCurrentDate ? 'current' : ''}`}
             x={index * rectWidth}
             y={chartHeight - confirmedBarHeight}
             width={rectFillWidth}
             height={confirmedBarHeight}
-          />
-          <rect
+          />}
+          {display.deaths && <rect
             className={`virus ${isCurrentDate ? 'current' : ''}`}
             x={index * rectWidth}
             y={chartHeight - deathsBarHeight}
             width={rectFillWidth}
             height={deathsBarHeight}
-          />
+          />}
+          {/* {display.recovered && <rect
+            className={`virus ${isCurrentDate ? 'current' : ''}`}
+            x={index * rectWidth}
+            y={chartHeight - recoveredBarHeight}
+            width={rectFillWidth}
+            height={recoveredBarHeight}
+          />} */}
         </>);
       })}
     </svg>
     <div className="chart-controls">
       <p>
         <button
-          className={controlsOn ? 'active' : ''}
-          onClick={() => setControlsOn(!controlsOn)}
+          className={showOptions ? 'active' : ''}
+          onClick={() => setShowOptions(!showOptions)}
         >
           <Text label="sections.chart.controls.header"/>
         </button>
       </p>
-      {controlsOn && <>
+      {showOptions && <>
+        <p>
+          <Text label="sections.chart.controls.display.label"/>:&nbsp;
+          <button
+            className={display.confirmed ? 'active' : ''}
+            onClick={() => setDisplay({ ...display, confirmed: !display.confirmed })}
+          >
+            <Text label="sections.data.confirmed"/>
+          </button>
+          <button
+            className={display.deaths ? 'active' : ''}
+            onClick={() => setDisplay({ ...display, deaths: !display.deaths })}
+          >
+            <Text label="sections.data.deaths"/>
+          </button>
+        </p>
         <p>
           <Text label="sections.chart.controls.display_modes.label"/>:&nbsp;
           <button
@@ -122,13 +167,13 @@ export const Chart = ({
             <Text label="sections.chart.controls.display_modes.new_cases"/>
           </button>
         </p>
-        <p>
+        {granularity === DATA_GRANULARITIES.DAILY && <p>
           <Text label="sections.chart.controls.date_ranges.label"/>:&nbsp;
           <button
-            className={dateRange === DATE_RANGES.LAST_7_DAYS ? 'active' : ''}
-            onClick={() => setDateRange(DATE_RANGES.LAST_7_DAYS)}
+            className={dateRange === DATE_RANGES.LAST_14_DAYS ? 'active' : ''}
+            onClick={() => setDateRange(DATE_RANGES.LAST_14_DAYS)}
           >
-            <Text label="sections.chart.controls.date_ranges.last_7_days"/>
+            <Text label="sections.chart.controls.date_ranges.last_14_days"/>
           </button>
           <button
             className={dateRange === DATE_RANGES.LAST_30_DAYS ? 'active' : ''}
@@ -137,12 +182,18 @@ export const Chart = ({
             <Text label="sections.chart.controls.date_ranges.last_30_days"/>
           </button>
           <button
+            className={dateRange === DATE_RANGES.LAST_90_DAYS ? 'active' : ''}
+            onClick={() => setDateRange(DATE_RANGES.LAST_90_DAYS)}
+          >
+            <Text label="sections.chart.controls.date_ranges.last_90_days"/>
+          </button>
+          <button
             className={dateRange === DATE_RANGES.SINCE_FIRST_CASE ? 'active' : ''}
             onClick={() => setDateRange(DATE_RANGES.SINCE_FIRST_CASE)}
           >
             <Text label="sections.chart.controls.date_ranges.since_first_case"/>
           </button>
-        </p>
+        </p>}
       </>}
     </div>
   </>);

@@ -72,7 +72,10 @@
     },
     "chart": {
       "controls": {
-        "header": "Filtry",
+        "header": "Ustawienia wykresu",
+        "display": {
+          "label": "Dane"
+        },
         "display_modes": {
           "label": "Tryb wyświetlania",
           "all_cases": "Wszystkie przypadki",
@@ -80,8 +83,9 @@
         },
         "date_ranges": {
           "label": "Zakres dat",
-          "last_7_days": "Ostatnie 7 dni",
+          "last_14_days": "Ostatnie 14 dni",
           "last_30_days": "Ostatnie 30 dni",
+          "last_90_days": "Ostatnie 90 dni",
           "since_first_case": "Od pierwszego przypadku"
         }
       }
