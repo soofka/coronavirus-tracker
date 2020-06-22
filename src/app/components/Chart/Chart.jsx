@@ -8,9 +8,13 @@ import { Text } from 'components/Text';
 
 import './Chart.css';
 
-const BAR_MARGIN = 4;
-const BAR_MIN_WIDTH = 4;
+const BAR_MIN_WIDTH = 6;
 const BAR_MIN_HEIGHT = 1;
+const BAR_MIN_MARGIN = 3;
+const BAR_WIDTH_TO_MARGIN_RATIO = 0.7;
+
+const CHART_CONTAINER_PADDING = 4;
+const CHART_MARGIN_TOP = 20;
 
 const DEFAULT_DISPLAY = {
   confirmed: true,
@@ -42,11 +46,11 @@ export const Chart = ({
   deaths,
   // recovered,
 }) => {
-  const chart = useRef(null);
+  const chartContainer = useRef(null);
   const {
-    width: chartWidth,
-    height: chartHeight,
-  } = useResize(chart);
+    width: chartContainerWidth,
+    height: chartContainerHeight,
+  } = useResize(chartContainer);
 
   const [showOptions, setShowOptions] = useState(false);
   const [display, setDisplay] = useState(DEFAULT_DISPLAY);
@@ -79,54 +83,83 @@ export const Chart = ({
   // }
   
   const maxValue = Math.max(...valuesInRange);
-  const rectWidth = Math.floor(chartWidth / datesInDateRange.length);
-  const rectFillWidth = rectWidth > BAR_MARGIN ? rectWidth - BAR_MARGIN : BAR_MIN_WIDTH;
+  const rectCount = datesInDateRange.length;
+  const minChartWidth = (rectCount * (BAR_MIN_WIDTH + BAR_MIN_MARGIN)) - BAR_MIN_MARGIN;
+
+  let chartWidth = minChartWidth;
+  const chartHeight = chartContainerHeight - (2 * CHART_CONTAINER_PADDING) - CHART_MARGIN_TOP;
+
+  let rectWidth = BAR_MIN_WIDTH + BAR_MIN_MARGIN;
+  let rectFillWidth = BAR_MIN_WIDTH;
+
+  if (chartContainerWidth >= minChartWidth) {
+    chartWidth = chartContainerWidth - (2 * CHART_CONTAINER_PADDING);
+    rectWidth = Math.floor(chartWidth / rectCount);
+    rectFillWidth = BAR_WIDTH_TO_MARGIN_RATIO * rectWidth;
+  }
   
   return (<>
-    <svg ref={chart} className="chart">
-      {datesInDateRange.map((date, index) => {
-        const isCurrentDate = currentDate === date;
+    <div className="chart-wrapper">
+      <small className="max-value">{maxValue}</small>
+      <div ref={chartContainer} style={{ padding: CHART_CONTAINER_PADDING }} className="chart-container">
+        <svg width={chartWidth} className="chart">
+          {datesInDateRange.map((date, index) => {
+            const isCurrentDate = currentDate === date;
 
-        let confirmedBarHeight = Math.ceil(confirmedParsed[date] * chartHeight) / maxValue;
-        if (confirmedBarHeight < BAR_MIN_HEIGHT) {
-          confirmedBarHeight = BAR_MIN_HEIGHT;
-        }
+            let confirmedBarHeight = Math.ceil(confirmedParsed[date] * chartHeight) / maxValue;
+            if (confirmedBarHeight < BAR_MIN_HEIGHT) {
+              confirmedBarHeight = BAR_MIN_HEIGHT;
+            }
 
-        let deathsBarHeight = Math.ceil(deathsParsed[date] * chartHeight) / maxValue;
-        if (deathsBarHeight < BAR_MIN_HEIGHT) {
-          deathsBarHeight = BAR_MIN_HEIGHT;
-        }
+            let deathsBarHeight = Math.ceil(deathsParsed[date] * chartHeight) / maxValue;
+            if (deathsBarHeight < BAR_MIN_HEIGHT) {
+              deathsBarHeight = BAR_MIN_HEIGHT;
+            }
 
-        // let recoveredBarHeight = Math.ceil(recoveredParsed[date] * chartHeight) / maxValue;
-        // if (recoveredBarHeight < BAR_MIN_HEIGHT) {
-        //   recoveredBarHeight = BAR_MIN_HEIGHT;
-        // }
+            // let recoveredBarHeight = Math.ceil(recoveredParsed[date] * chartHeight) / maxValue;
+            // if (recoveredBarHeight < BAR_MIN_HEIGHT) {
+            //   recoveredBarHeight = BAR_MIN_HEIGHT;
+            // }
 
-        return (<>
-          {display.confirmed && <rect
-            className={`virus-accent ${isCurrentDate ? 'current' : ''}`}
-            x={index * rectWidth}
-            y={chartHeight - confirmedBarHeight}
-            width={rectFillWidth}
-            height={confirmedBarHeight}
-          />}
-          {display.deaths && <rect
-            className={`virus ${isCurrentDate ? 'current' : ''}`}
-            x={index * rectWidth}
-            y={chartHeight - deathsBarHeight}
-            width={rectFillWidth}
-            height={deathsBarHeight}
-          />}
-          {/* {display.recovered && <rect
-            className={`virus ${isCurrentDate ? 'current' : ''}`}
-            x={index * rectWidth}
-            y={chartHeight - recoveredBarHeight}
-            width={rectFillWidth}
-            height={recoveredBarHeight}
-          />} */}
-        </>);
-      })}
-    </svg>
+            return (<>
+              {display.confirmed && <>
+                <rect
+                  className={`virus-accent ${isCurrentDate ? 'current' : ''}`}
+                  x={index * rectWidth}
+                  y={chartHeight - confirmedBarHeight + CHART_MARGIN_TOP}
+                  width={rectFillWidth}
+                  height={confirmedBarHeight}
+                />
+                <text
+                  x={index * rectWidth}
+                  y={chartHeight - confirmedBarHeight + CHART_MARGIN_TOP - 5}
+                >{confirmedParsed[date]}</text>
+              </>}
+              {display.deaths && <>
+                <rect
+                  className={`virus ${isCurrentDate ? 'current' : ''}`}
+                  x={index * rectWidth}
+                  y={chartHeight - deathsBarHeight + CHART_MARGIN_TOP}
+                  width={rectFillWidth}
+                  height={deathsBarHeight}
+                />
+                <text
+                  x={index * rectWidth}
+                  y={chartHeight - deathsBarHeight + CHART_MARGIN_TOP - 5}
+                >{deathsParsed[date]}</text>
+              </>}
+            </>);
+          })}
+          <rect
+            className="max-value-line"
+            x="0"
+            y={CHART_MARGIN_TOP}
+            width={chartWidth}
+            height="1"
+          />
+        </svg>
+      </div>
+    </div>
     <div className="chart-controls">
       <p>
         <button
@@ -141,14 +174,26 @@ export const Chart = ({
           <Text label="sections.chart.controls.display.label"/>:&nbsp;
           <button
             className={display.confirmed ? 'active' : ''}
-            onClick={() => setDisplay({ ...display, confirmed: !display.confirmed })}
+            onClick={() => (display.confirmed && !display.deaths)
+              ? setDisplay({ confirmed: true, deaths: true })
+              : setDisplay({ ...display, confirmed: !display.confirmed })
+            }
           >
+            <svg height="16" width="16" style={{ marginRight: '8px' }}>
+              <circle cx="8" cy="8" r="8" class="virus-accent" />
+            </svg>
             <Text label="sections.data.confirmed"/>
           </button>
           <button
             className={display.deaths ? 'active' : ''}
-            onClick={() => setDisplay({ ...display, deaths: !display.deaths })}
+            onClick={() => (!display.confirmed && display.deaths)
+              ? setDisplay({ confirmed: true, deaths: true })
+              : setDisplay({ ...display, deaths: !display.deaths })
+            }
           >
+            <svg height="16" width="16" style={{ marginRight: '8px' }}>
+              <circle cx="8" cy="8" r="8" class="virus" />
+            </svg>
             <Text label="sections.data.deaths"/>
           </button>
         </p>

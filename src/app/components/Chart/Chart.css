@@ -1,14 +1,64 @@
-.chart {
+.chart-wrapper {
+  position: relative;
+}
+
+.chart-wrapper .max-value {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.chart-container {
   width: 100%;
-  height: calc(200px + (320 - 200) * ((100vw - 320px) / (960 - 320)))
+  height: calc(200px + (320 - 200) * ((100vw - 320px) / (960 - 320)));
+  background: rgba(7, 7, 7, 0.87);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.chart-container::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.chart-container::-webkit-scrollbar-track {
+	background-color: rgba(253, 253, 253, 0.7);
+}
+
+.chart-container::-webkit-scrollbar-thumb {
+	background-color: rgba(7, 7, 7, 0.9);
+}
+
+.chart {
+  width: auto;
+  height: 100%;
+}
+
+.chart .max-value-line {
+  fill: rgba(253, 253, 253, 1);
 }
 
 .chart rect {  
   opacity: 0.6;
 }
 
+.chart rect:hover {
+  opacity: 0.75;
+}
+
 .chart rect.current {
   opacity: 1;
+}
+
+.chart text {
+  display: none;
+  fill: rgba(253, 253, 253, 1);
+  text-shadow: 1px 1px 1px rgba(7, 7, 7, 1);
+  font-size: calc(12px + (16 - 12) * ((100vw - 320px) / (960 - 320)));
+}
+
+.chart rect:hover + text {
+  display: block;
 }
 
 .chart-controls p:not(:last-of-type) {
