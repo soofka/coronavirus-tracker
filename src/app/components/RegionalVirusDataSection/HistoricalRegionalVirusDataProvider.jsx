@@ -115,9 +115,9 @@ const normalizeHistoricalRegionalVirusData = (data) => {
 
   allDates.forEach((date, index) => {
     if (
-      dataNormalized1.confirmed[date] !== undefined
-      || dataNormalized1.deaths[date] !== undefined
-      // || dataNormalized1.recovered[date] !== undefined
+      (!isNaN(dataNormalized1.confirmed[date]) && dataNormalized1.confirmed[date] > 0)
+      || (!isNaN(dataNormalized1.deaths[date]) && dataNormalized1.deaths[date] > 0)
+      // || (!isNaN(dataNormalized1.recovered[date]) && dataNormalized1.recovered[date] > 0)
     ) {
       const confirmed = !isNaN(dataNormalized1.confirmed[date]) ? dataNormalized1.confirmed[date] : 0;
       const deaths = !isNaN(dataNormalized1.deaths[date]) ? dataNormalized1.deaths[date] : 0;
