@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useLabels } from 'components/App/LabelsProvider.jsx';
-import { isObject } from 'commons/utils';
+import { isArray, isObject } from 'commons/utils';
 
 const DEFAULT_LABEL = 'derp';
 
@@ -31,7 +31,7 @@ const getText = (labels, label, values) => {
 const findInObject = (object, keyArray) => {
   const [currentKey, ...restOfKeyArray] = keyArray;
   const value = object[currentKey];
-  return restOfKeyArray.length > 0 && isObject(value)
+  return restOfKeyArray.length > 0 && (isArray(value) || isObject(value))
     ? findInObject(value, restOfKeyArray)
     : value;
 };

@@ -64,7 +64,7 @@ export const VirusData = ({
 const getChangeText = (value, valueChange) => {
   const changeIncreasing = valueChange > 0;
   const changeDecreasing = valueChange < 0;
-  const relativeValueChange = roundToDecimalPlaces((valueChange * 100) / value, 2);
+  const relativeValueChange = roundToDecimalPlaces((valueChange * 100) / (value - valueChange), 2);
 
   const changeSign = changeIncreasing ? '+' : (changeDecreasing ? '-' : '');
   const changeArrow = changeIncreasing ? '&uarr;' : (changeDecreasing ? '&darr;' : '');

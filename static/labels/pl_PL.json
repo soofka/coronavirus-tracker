@@ -5,7 +5,21 @@
       "header": "Błąd",
       "message": "Coś poszło nie tak podczas pobierania danych na temat koronawirusa. Spróbuj odświeżyć stronę. Jeśli to nie pomoże, spróbuj ponownie później."
     },
-    "virus_icon": "Ikona wirusa"
+    "virus_icon": "Ikona wirusa",
+    "months": [
+      "Styczeń",
+      "Luty",
+      "Marzec",
+      "Kwiecień",
+      "Maj",
+      "Czerwiec",
+      "Lipiec",
+      "Sierpień",
+      "Wrzesień",
+      "Październik",
+      "Listopad",
+      "Grudzień"
+    ]
   },
   "navigation": {
     "install": "Zainstaluj",
@@ -24,6 +38,14 @@
       "select_date": {
         "label": "Wybierz datę",
         "default_option": "-"
+      },
+      "select_granularity": {
+        "label": "Granularność",
+        "options": {
+          "daily": "Dzienna",
+          "weekly": "Tygodniowa",
+          "monthly": "Miesięczna"
+        }
       },
       "today": "dziś",
       "yesterday": "wczoraj",
@@ -50,6 +72,7 @@
     },
     "chart": {
       "controls": {
+        "header": "Filtry",
         "display_modes": {
           "label": "Tryb wyświetlania",
           "all_cases": "Wszystkie przypadki",

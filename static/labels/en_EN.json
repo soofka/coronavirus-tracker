@@ -5,7 +5,21 @@
       "header": "Error",
       "message": "Something went wrong when downloading coronavirus data. Please refresh the page. If the problem persists, try again later."
     },
-    "virus_icon": "Virus icon"
+    "virus_icon": "Virus icon",
+    "months": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "October",
+      "September",
+      "November",
+      "December"
+    ]
   },
   "navigation": {
     "install": "Install",
@@ -24,6 +38,14 @@
       "select_date": {
         "label": "Select date",
         "default_option": "-"
+      },
+      "select_granularity": {
+        "label": "Granularity",
+        "options": {
+          "daily": "Daily",
+          "weekly": "Weekly",
+          "monthly": "Monthly"
+        }
       },
       "today": "today",
       "yesterday": "yesterday",
@@ -50,6 +72,7 @@
     },
     "chart": {
       "controls": {
+        "header": "Filters",
         "display_modes": {
           "label": "Display mode",
           "all_cases": "All cases",

@@ -39,6 +39,7 @@ export const Chart = ({
     height: chartHeight,
   } = useResize(chart);
 
+  const [controlsOn, setControlsOn] = useState(false);
   const [displayMode, setDisplayMode] = useState(DEFAULT_DISPLAY_MODE);
 
   const [dateRange, setDateRange] = useState(DEFAULT_DATE_RANGE);
@@ -98,41 +99,51 @@ export const Chart = ({
     </svg>
     <div className="chart-controls">
       <p>
-        <Text label="sections.chart.controls.display_modes.label"/>:&nbsp;
         <button
-          className={displayMode === DISPLAY_MODES.ALL_CASES ? 'active' : ''}
-          onClick={() => setDisplayMode(DISPLAY_MODES.ALL_CASES)}
+          className={controlsOn ? 'active' : ''}
+          onClick={() => setControlsOn(!controlsOn)}
         >
-          <Text label="sections.chart.controls.display_modes.all_cases"/>
-        </button>
-        <button
-          className={displayMode === DISPLAY_MODES.NEW_CASES ? 'active' : ''}
-          onClick={() => setDisplayMode(DISPLAY_MODES.NEW_CASES)}
-        >
-          <Text label="sections.chart.controls.display_modes.new_cases"/>
+          <Text label="sections.chart.controls.header"/>
         </button>
       </p>
-      <p>
-        <Text label="sections.chart.controls.date_ranges.label"/>:&nbsp;
-        <button
-          className={dateRange === DATE_RANGES.LAST_7_DAYS ? 'active' : ''}
-          onClick={() => setDateRange(DATE_RANGES.LAST_7_DAYS)}
-        >
-          <Text label="sections.chart.controls.date_ranges.last_7_days"/>
-        </button>
-        <button
-          className={dateRange === DATE_RANGES.LAST_30_DAYS ? 'active' : ''}
-          onClick={() => setDateRange(DATE_RANGES.LAST_30_DAYS)}
-        >
-          <Text label="sections.chart.controls.date_ranges.last_30_days"/>
-        </button>
-        <button
-          className={dateRange === DATE_RANGES.SINCE_FIRST_CASE ? 'active' : ''}
-          onClick={() => setDateRange(DATE_RANGES.SINCE_FIRST_CASE)}
-        >
-          <Text label="sections.chart.controls.date_ranges.since_first_case"/>
-        </button>
-      </p>
+      {controlsOn && <>
+        <p>
+          <Text label="sections.chart.controls.display_modes.label"/>:&nbsp;
+          <button
+            className={displayMode === DISPLAY_MODES.ALL_CASES ? 'active' : ''}
+            onClick={() => setDisplayMode(DISPLAY_MODES.ALL_CASES)}
+          >
+            <Text label="sections.chart.controls.display_modes.all_cases"/>
+          </button>
+          <button
+            className={displayMode === DISPLAY_MODES.NEW_CASES ? 'active' : ''}
+            onClick={() => setDisplayMode(DISPLAY_MODES.NEW_CASES)}
+          >
+            <Text label="sections.chart.controls.display_modes.new_cases"/>
+          </button>
+        </p>
+        <p>
+          <Text label="sections.chart.controls.date_ranges.label"/>:&nbsp;
+          <button
+            className={dateRange === DATE_RANGES.LAST_7_DAYS ? 'active' : ''}
+            onClick={() => setDateRange(DATE_RANGES.LAST_7_DAYS)}
+          >
+            <Text label="sections.chart.controls.date_ranges.last_7_days"/>
+          </button>
+          <button
+            className={dateRange === DATE_RANGES.LAST_30_DAYS ? 'active' : ''}
+            onClick={() => setDateRange(DATE_RANGES.LAST_30_DAYS)}
+          >
+            <Text label="sections.chart.controls.date_ranges.last_30_days"/>
+          </button>
+          <button
+            className={dateRange === DATE_RANGES.SINCE_FIRST_CASE ? 'active' : ''}
+            onClick={() => setDateRange(DATE_RANGES.SINCE_FIRST_CASE)}
+          >
+            <Text label="sections.chart.controls.date_ranges.since_first_case"/>
+          </button>
+        </p>
+      </>}
     </div>
   </>);
 };

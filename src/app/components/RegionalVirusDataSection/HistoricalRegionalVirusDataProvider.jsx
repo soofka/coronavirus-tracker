@@ -87,41 +87,137 @@ const normalizeHistoricalRegionalVirusData = (data) => {
     .concat(Object.keys(dataNormalized1.deaths))
     // .concat(Object.keys(dataNormalized1.recovered))
     .filter((item, index, array) => array.indexOf(item) === index)
-    .sort((a, b) => new Date(a) < new Date(b) ? 1 : -1);
+    .sort((a, b) => new Date(a) < new Date(b) ? -1 : 1);
 
   const dataNormalized2 = {
-    dates: [],
-    confirmed: {},
-    deaths: {},
-    // recovered: {},
+    daily: {
+      dates: [],
+      confirmed: {},
+      deaths: {},
+      // recovered: {},
+    },
+    weekly: {
+      dates: [],
+      confirmed: {},
+      deaths: {},
+      // recovered: {},
+    },
+    monthly: {
+      dates: [],
+      confirmed: {},
+      deaths: {},
+      // recovered: {},
+    },
   };
+
+  let week;
+  let yearMonth;
 
   allDates.forEach((date, index) => {
     if (
-      (dataNormalized1.confirmed[date] && parseInt(dataNormalized1.confirmed[date], 10) > 0)
-      || (dataNormalized1.deaths[date] && parseInt(dataNormalized1.deaths[date], 10) > 0)
-      // || (dataNormalized1.recovered[date] && parseInt(dataNormalized1.recovered[date], 10) > 0)
+      dataNormalized1.confirmed[date] !== undefined
+      || dataNormalized1.deaths[date] !== undefined
+      // || dataNormalized1.recovered[date] !== undefined
     ) {
-      const previousDate = index < allDates.length - 1 && allDates[index + 1];
+      const confirmed = !isNaN(dataNormalized1.confirmed[date]) ? dataNormalized1.confirmed[date] : 0;
+      const deaths = !isNaN(dataNormalized1.deaths[date]) ? dataNormalized1.deaths[date] : 0;
+      // const recovered = !isNaN(dataNormalized1.recovered[date]) ? dataNormalized1.recovered[date] : 0;
 
-      dataNormalized2.dates.push(date);
-      dataNormalized2.confirmed[date] = getHistoricalValue(dataNormalized1.confirmed, date, previousDate);
-      dataNormalized2.deaths[date] = getHistoricalValue(dataNormalized1.deaths, date, previousDate);
-      // dataNormalized2.recovered[date] = getHistoricalValue(dataNormalized1.recovered, date, previousDate);
+      const previousDay = dataNormalized2.daily.dates.length > 0
+        ? dataNormalized2.daily.dates[dataNormalized2.daily.dates.length - 1]
+        : undefined;
+      const previousWeek = dataNormalized2.weekly.dates.length > 0
+        ? dataNormalized2.weekly.dates[dataNormalized2.weekly.dates.length - 1]
+        : undefined;
+      const previousMonth = dataNormalized2.monthly.dates.length > 0
+        ? dataNormalized2.monthly.dates[dataNormalized2.monthly.dates.length - 1]
+        : undefined;
+
+      dataNormalized2.daily.dates.push(date);
+      dataNormalized2.daily.confirmed[date] = getHistoricalValue(
+        confirmed,
+        previousDay ? dataNormalized2.daily.confirmed[previousDay].total : undefined,
+      );
+      dataNormalized2.daily.deaths[date] = getHistoricalValue(
+        deaths,
+        previousDay ? dataNormalized2.daily.deaths[previousDay].total : undefined,
+      );
+      // dataNormalized2.recovered[date] = getHistoricalValue(
+      //   dataNormalized1.recovered[date],
+      //   previousDay ? dataNormalized2.daily.recovered[previousDay].total : undefined,
+      // );
+
+      const dateObject = new Date(date);
+      const dateTime = dateObject.getTime();
+      const dateDayOfWeek = dateObject.getDay();
+
+      if (!week) {
+        const weekStartDate = new Date(dateTime - (1000 * 60 * 60 * 24 * dateDayOfWeek));
+        const weekEndDate = new Date(dateTime + (1000 * 60 * 60 * 24 * (6 - dateDayOfWeek)));
+        week = `${weekStartDate.toISOString().substr(0, 10)}--${weekEndDate.toISOString().substr(0, 10)}`;
+      };
+
+      if (dateDayOfWeek === 6 || index === allDates.length - 1) {
+        dataNormalized2.weekly.dates.push(week);
+        dataNormalized2.weekly.confirmed[week] = getHistoricalValue(
+          confirmed,
+          previousWeek ? dataNormalized2.weekly.confirmed[previousWeek].total : undefined,
+        );
+        dataNormalized2.weekly.deaths[week] = getHistoricalValue(
+          deaths,
+          previousWeek ? dataNormalized2.weekly.deaths[previousWeek].total : undefined,
+        );
+        // dataNormalized2.weekly[week].recovered = getHistoricalValue(
+        //   recovered,
+        //   previousWeek ? dataNormalized2.weekly.recovered[previousWeek].total : undefined,
+        // );
+
+        week = undefined;
+      }
+
+      if (!yearMonth) {
+        yearMonth = dateObject.toISOString().substr(0, 7);
+      }
+
+      if (
+        new Date(dateTime + (1000 * 60 * 60 * 24)).getMonth() !== dateObject.getMonth()
+        || index === allDates.length - 1
+      ) {
+        dataNormalized2.monthly.dates.push(yearMonth);
+        dataNormalized2.monthly.confirmed[yearMonth] = getHistoricalValue(
+          confirmed,
+          previousMonth ? dataNormalized2.monthly.confirmed[previousMonth].total : undefined,
+        );
+        dataNormalized2.monthly.deaths[yearMonth] = getHistoricalValue(
+          deaths,
+          previousMonth ? dataNormalized2.monthly.deaths[previousMonth].total : undefined,
+        );
+        // dataNormalized2.monthly.recovered[yearMonth] = getHistoricalValue(
+        //   recovered,
+        //   previousMonth ? dataNormalized2.monthly.recovered[previousMonth].total : undefined,
+        // );
+
+        yearMonth = undefined;
+      }
     }
   });
+
+  dataNormalized2.daily.dates.reverse();
+  dataNormalized2.weekly.dates.reverse();
+  dataNormalized2.monthly.dates.reverse();
   
   return dataNormalized2;
 };
 
-const getHistoricalValue = (data, currentDate, previousDate) => data[currentDate]
-  ? ({
-    total: data[currentDate],
-    change: previousDate
-      ? data[currentDate] - data[previousDate]
-      : 0
-  })
-  : ({
-    total: 0,
-    change: 0,
-  });
+const getHistoricalValue = (currentValue, previousValue) =>
+  currentValue !== undefined
+    ? ({
+      total: parseInt(currentValue, 10),
+      change: previousValue !== undefined
+        ? (parseInt(currentValue, 10) - parseInt(previousValue, 10))
+        : 0,
+    })
+    : ({
+      total: 0,
+      change: 0,
+    });

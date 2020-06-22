@@ -11,5 +11,12 @@ export const LOCALES = {
 };
 export const DEFAULT_LOCALE = LOCALES.en_EN;
 
+export const DATA_GRANULARITIES = {
+  DAILY: 'daily',
+  WEEKLY: 'weekly',
+  MONTHLY: 'monthly',
+};
+
+export const DEFAULT_DATA_GRANULARITY = DATA_GRANULARITIES.DAILY;
 export const DEFAULT_REGION = 'none';
 export const DEFAULT_DATE = 0;
