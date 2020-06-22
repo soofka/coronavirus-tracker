@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/soofka/coronavirus-tracker/compare/v1.6.1...v1.7.0) (2020-06-22)
+
+
+### Features
+
+* added details to graph (number on hover and max value), fixed graph rendering ([071c760](https://github.com/soofka/coronavirus-tracker/commit/071c760ad13ac6924193d0883f64f9e133409d94))
+* added new filters (data to display, new date ranges) ([2d95fdb](https://github.com/soofka/coronavirus-tracker/commit/2d95fdbf20ee2c3b7895e7d3edef821836ce6bf4))
+* added weekly and monthly data granularity ([cf587c6](https://github.com/soofka/coronavirus-tracker/commit/cf587c697a495b4ff72abca08c3721f063f0e421))
+
+
+### Bug Fixes
+
+* added travis ci badge to readme ([1f4a1ca](https://github.com/soofka/coronavirus-tracker/commit/1f4a1caa7c1188c409e299524798b607e7a8ef66))
+* brought back travis ci ([82b783a](https://github.com/soofka/coronavirus-tracker/commit/82b783a926d00dc8ce2f172ffbc15b9dcb135a8d))
+* filtered out 0 values ([af1d1c4](https://github.com/soofka/coronavirus-tracker/commit/af1d1c429609a8ed2afd734b1d3ab2fcb32f0933))
+* removed e2e tests from travis ([1183202](https://github.com/soofka/coronavirus-tracker/commit/11832028bb1581d9e18dde60b3ca827ef9498b23))
+
 ### [1.6.1](https://github.com/soofka/coronavirus-tracker/compare/v1.6.0...v1.6.1) (2020-04-29)
 
 
