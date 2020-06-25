@@ -3,6 +3,12 @@
 exports[`constants.js did not change 1`] = `
 Object {
   "ASSETS_BASE_URL": "assets/",
+  "DATA_GRANULARITIES": Object {
+    "DAILY": "daily",
+    "MONTHLY": "monthly",
+    "WEEKLY": "weekly",
+  },
+  "DEFAULT_DATA_GRANULARITY": "daily",
   "DEFAULT_DATE": 0,
   "DEFAULT_LOCALE": "en_EN",
   "DEFAULT_REGION": "none",
