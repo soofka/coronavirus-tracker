@@ -1,8 +1,11 @@
 import { h, Fragment } from 'preact';
-import { useState, useRef, useEffect } from 'preact/hooks';
+import { useRef, useEffect, useState } from 'preact/hooks';
 
 import { DATA_GRANULARITIES } from 'commons/constants';
-import { useResize } from 'commons/hooks';
+import { useResize, useStoredState } from 'commons/hooks';
+import { isObject } from 'commons/utils';
+
+import { SmartButtons } from 'components/SmartButtons';
 
 import { Text } from 'components/Text';
 
@@ -27,7 +30,7 @@ const DISPLAY_MODES = {
   ALL_CASES: 'ALL_CASES',
 };
 
-const DEFAULT_DISPLAY_MODE = DISPLAY_MODES.ALL_CASES;
+const DEFAULT_DISPLAY_MODE = DISPLAY_MODES.NEW_CASES;
 
 const DATE_RANGES = {
   LAST_14_DAYS: 14,
@@ -52,10 +55,31 @@ export const Chart = ({
     height: chartContainerHeight,
   } = useResize(chartContainer);
 
-  const [showOptions, setShowOptions] = useState(false);
-  const [display, setDisplay] = useState(DEFAULT_DISPLAY);
-  const [displayMode, setDisplayMode] = useState(DEFAULT_DISPLAY_MODE);
-  const [dateRange, setDateRange] = useState(DEFAULT_DATE_RANGE);
+  const [showOptions, setShowOptions] = useState(true);
+
+  const [display, setDisplay, setDefaultDisplay] = useStoredState(
+    DEFAULT_DISPLAY,
+    'display',
+    (value) => isObject(value)
+      && Object.keys(value) === Object.keys(DEFAULT_DISPLAY)
+      && Object.values(value).every((displayValue) => displayValue === !!displayValue),
+    true,
+  );
+  useEffect(() => setDefaultDisplay(), []);
+
+  const [displayMode, setDisplayMode, setDefaultDisplayMode] = useStoredState(
+    DEFAULT_DISPLAY_MODE,
+    'display_mode',
+    (value) => Object.values(DISPLAY_MODES).includes(value),
+  );
+  useEffect(() => setDefaultDisplayMode(), []);
+
+  const [dateRange, setDateRange, setDefaultDateRange] = useStoredState(
+    DEFAULT_DATE_RANGE,
+    'date_range',
+    (value) => Object.values(DATE_RANGES).includes(value),
+  );
+  useEffect(() => setDefaultDateRange(), []);
   
   useEffect(() => {
     if (granularity !== DATA_GRANULARITIES.DAILY) {
@@ -98,6 +122,7 @@ export const Chart = ({
     rectFillWidth = BAR_WIDTH_TO_MARGIN_RATIO * rectWidth;
   }
   
+  console.log('render', dateRange);
   return (<>
     <div className="chart-wrapper">
       <small className="max-value">{maxValue}</small>
@@ -170,75 +195,52 @@ export const Chart = ({
         </button>
       </p>
       {showOptions && <>
-        <p>
-          <Text label="sections.chart.controls.display.label"/>:&nbsp;
-          <button
-            className={display.confirmed ? 'active' : ''}
-            onClick={() => (display.confirmed && !display.deaths)
-              ? setDisplay({ confirmed: true, deaths: true })
-              : setDisplay({ ...display, confirmed: !display.confirmed })
-            }
-          >
-            <svg height="16" width="16" style={{ marginRight: '8px' }}>
-              <circle cx="8" cy="8" r="8" class="virus-accent" />
-            </svg>
-            <Text label="sections.data.confirmed"/>
-          </button>
-          <button
-            className={display.deaths ? 'active' : ''}
-            onClick={() => (!display.confirmed && display.deaths)
-              ? setDisplay({ confirmed: true, deaths: true })
-              : setDisplay({ ...display, deaths: !display.deaths })
-            }
-          >
-            <svg height="16" width="16" style={{ marginRight: '8px' }}>
-              <circle cx="8" cy="8" r="8" class="virus" />
-            </svg>
-            <Text label="sections.data.deaths"/>
-          </button>
-        </p>
-        <p>
-          <Text label="sections.chart.controls.display_modes.label"/>:&nbsp;
-          <button
-            className={displayMode === DISPLAY_MODES.ALL_CASES ? 'active' : ''}
-            onClick={() => setDisplayMode(DISPLAY_MODES.ALL_CASES)}
-          >
-            <Text label="sections.chart.controls.display_modes.all_cases"/>
-          </button>
-          <button
-            className={displayMode === DISPLAY_MODES.NEW_CASES ? 'active' : ''}
-            onClick={() => setDisplayMode(DISPLAY_MODES.NEW_CASES)}
-          >
-            <Text label="sections.chart.controls.display_modes.new_cases"/>
-          </button>
-        </p>
-        {granularity === DATA_GRANULARITIES.DAILY && <p>
-          <Text label="sections.chart.controls.date_ranges.label"/>:&nbsp;
-          <button
-            className={dateRange === DATE_RANGES.LAST_14_DAYS ? 'active' : ''}
-            onClick={() => setDateRange(DATE_RANGES.LAST_14_DAYS)}
-          >
-            <Text label="sections.chart.controls.date_ranges.last_14_days"/>
-          </button>
-          <button
-            className={dateRange === DATE_RANGES.LAST_30_DAYS ? 'active' : ''}
-            onClick={() => setDateRange(DATE_RANGES.LAST_30_DAYS)}
-          >
-            <Text label="sections.chart.controls.date_ranges.last_30_days"/>
-          </button>
-          <button
-            className={dateRange === DATE_RANGES.LAST_90_DAYS ? 'active' : ''}
-            onClick={() => setDateRange(DATE_RANGES.LAST_90_DAYS)}
-          >
-            <Text label="sections.chart.controls.date_ranges.last_90_days"/>
-          </button>
-          <button
-            className={dateRange === DATE_RANGES.SINCE_FIRST_CASE ? 'active' : ''}
-            onClick={() => setDateRange(DATE_RANGES.SINCE_FIRST_CASE)}
-          >
-            <Text label="sections.chart.controls.date_ranges.since_first_case"/>
-          </button>
-        </p>}
+        <SmartButtons
+          label={<Text label="sections.chart.controls.display.label"/>}
+          multichoice={true}
+          options={[
+            {
+              value: 'confirmed',
+              text: <>
+                  <svg height="16" width="16" style={{ marginRight: '8px' }}>
+                    <circle cx="8" cy="8" r="8" class="virus-accent" />
+                  </svg>
+                  <Text label="sections.data.confirmed"/>
+                </>,
+            },
+            {
+              value: 'deaths',
+              text: <>
+                  <svg height="16" width="16" style={{ marginRight: '8px' }}>
+                    <circle cx="8" cy="8" r="8" class="virus" />
+                  </svg>
+                  <Text label="sections.data.deaths"/>
+                </>,
+            },
+          ]}
+          value={display}
+          setValue={setDisplay}
+        />
+        <SmartButtons
+          label={<Text label="sections.chart.controls.display_modes.label"/>}
+          options={[
+            { value: DISPLAY_MODES.ALL_CASES, text: <Text label="sections.chart.controls.display_modes.all_cases"/> },
+            { value: DISPLAY_MODES.NEW_CASES, text: <Text label="sections.chart.controls.display_modes.new_cases"/> },
+          ]}
+          value={displayMode}
+          setValue={setDisplayMode}
+        />
+        {granularity === DATA_GRANULARITIES.DAILY && <SmartButtons
+          label={<Text label="sections.chart.controls.date_ranges.label"/>}
+          options={[
+            { value: DATE_RANGES.LAST_14_DAYS, text: <Text label="sections.chart.controls.date_ranges.last_14_days"/> },
+            { value: DATE_RANGES.LAST_30_DAYS, text: <Text label="sections.chart.controls.date_ranges.last_30_days"/> },
+            { value: DATE_RANGES.LAST_90_DAYS, text: <Text label="sections.chart.controls.date_ranges.last_90_days"/> },
+            { value: DATE_RANGES.SINCE_FIRST_CASE, text: <Text label="sections.chart.controls.date_ranges.since_first_case"/> },
+          ]}
+          value={dateRange}
+          setValue={setDateRange}
+        />}
       </>}
     </div>
   </>);

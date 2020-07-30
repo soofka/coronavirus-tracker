@@ -20,6 +20,9 @@ const LANGUAGES = {
 
 export const Header = () => {
   const { locale, setLocale } = useLabels();
+
+  const localeOptions = [];
+  Object.values(LOCALES).forEach((tempLocale) => localeOptions.push({ value: tempLocale, text: LANGUAGES[tempLocale] }));
   
   return (
     <header>
@@ -32,17 +35,10 @@ export const Header = () => {
                 <SmartSelect
                   id="select-language"
                   label={<Text label="navigation.select_language"/>}
+                  options={localeOptions}
                   value={locale}
-                  defaultValue={DEFAULT_LOCALE}
-                  queryStringKey={LOCALE_QUERY_STRING_KEY}
-                  storageKey={LOCALE_STORAGE_KEY}
-                  validate={(value) => Object.values(LOCALES).includes(value)}
-                  onChange={setLocale}
-                >
-                  {Object.values(LOCALES).map(
-                    (tempLocale) => <option value={tempLocale}>{LANGUAGES[tempLocale]}</option>
-                  )}
-                </SmartSelect>
+                  setValue={setLocale}
+                />
               </li>
               <li><InstallButton/></li>
             </ul>

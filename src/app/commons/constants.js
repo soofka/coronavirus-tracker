@@ -1,4 +1,4 @@
-const VIRUS_DATA_API_BASE_URL = 'https://coronavirus-tracker-api.herokuapp.com/v2/';
+const VIRUS_DATA_API_BASE_URL = 'https://covid-tracker-us.herokuapp.com/v2/';
 
 export const GLOBAL_VIRUS_DATA_API_URL = `${VIRUS_DATA_API_BASE_URL}latest`;
 export const LATEST_REGIONAL_VIRUS_DATA_API_URL = `${VIRUS_DATA_API_BASE_URL}locations`;

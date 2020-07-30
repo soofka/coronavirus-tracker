@@ -1,15 +1,13 @@
 import { h, createContext } from 'preact';
-import { useState, useEffect, useContext } from 'preact/hooks';
+import { useEffect, useContext } from 'preact/hooks';
 
-import { useFetch } from 'commons/hooks';
+import { useFetch, useStoredState } from 'commons/hooks';
 import { LATEST_REGIONAL_VIRUS_DATA_API_URL, DEFAULT_REGION } from 'commons/constants';
 import { isNonEmptyString, isNonEmptyArray, isObject, objectHasKey } from 'commons/utils';
 
 const LatestRegionalVirusDataContext = createContext();
 
 export const LatestRegionalVirusDataProvider = ({ children }) => {
-  const [regionId, setRegionId] = useState(DEFAULT_REGION);
-
   const {
     data,
     loading,
@@ -20,8 +18,17 @@ export const LatestRegionalVirusDataProvider = ({ children }) => {
     validateLatestRegionalVirusData,
     normalizeLatestRegionalVirusData,
   );
-
   useEffect(() => fetch(), []);
+
+  const [latestOptions, setLatestOptions, setDefaultLatestOptions] = useStoredState(
+    { regionId: DEFAULT_REGION },
+    'latest_options',
+    (value) => isObject(value)
+      && objectHasKey(value, 'regionId')
+      && validateRegionId(data, value.regionId),
+    true,
+  );
+  useEffect(() => setDefaultLatestOptions(), [data]);
 
   return (
     <LatestRegionalVirusDataContext.Provider value={{
@@ -29,8 +36,8 @@ export const LatestRegionalVirusDataProvider = ({ children }) => {
       loading,
       error,
       fetch,
-      regionId,
-      setRegionId,
+      latestOptions,
+      setLatestOptions,
     }}>
       {children}
     </LatestRegionalVirusDataContext.Provider>
@@ -38,9 +45,9 @@ export const LatestRegionalVirusDataProvider = ({ children }) => {
 };
 
 export const useLatestRegionalVirusData = () => useContext(LatestRegionalVirusDataContext);
-
 export const isDefaultRegionId = (regionId) => regionId === DEFAULT_REGION;
-export const validateRegionId = (data, regionId) => isDefaultRegionId(regionId) ||
+
+const validateRegionId = (data, regionId) => isDefaultRegionId(regionId) ||
   (isObject(data) && objectHasKey(data, regionId));
 
 const validateLatestRegionalVirusData = (data) =>

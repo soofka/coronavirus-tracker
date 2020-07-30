@@ -11,30 +11,19 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 
 ## TODO
 ### backlog
-- make chart controls interact with query string and local storage
-- make date arrows interact with query string and local storage through select
 - animate chart properly
-- make chart bars display values on hover
-- add axises and values to the cart
-- add legend to the chart
-- fix double labels loading in case of non-default labels
-- fix double historical data call (in case if country and region is set on entry)
-- add advanced minification (closure compiler, better image minification, better css minification)
-- get data about tests and enable related sections
-- get data about recoveries and enable related sections
-- preact-loadable?
+- fix unneeded calls for labels and historical data
+- add chunk-splitting
 - prerender default html
 - npm packages reinstall and audit fix
 - add social tags
 - add descriptions to chart
 - add snyk
-- add filters to chart
-- add map
+- add proper virus map
 - remove main.css and main.js files from bundle
 - add default language (if lack of label -> get default language -> put default labels)
 - add content policy html webpack plugins
-- change select with countries to input with autosuggest
-- change select with dates to calendar-like date picker
+- add country comparison
 - add css variables
 - add prettier
 - add full unit tests coverage

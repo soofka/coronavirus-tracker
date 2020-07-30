@@ -1,17 +1,20 @@
 import { h, createContext } from 'preact';
-import { useState, useEffect, useContext } from 'preact/hooks';
+import { useEffect, useContext } from 'preact/hooks';
 
 import { useLatestRegionalVirusData, isDefaultRegionId } from './LatestRegionalVirusDataProvider';
 
-import { useFetch } from 'commons/hooks';
-import { HISTORICAL_REGIONAL_VIRUS_DATA_API_BASE_URL, DEFAULT_DATE } from 'commons/constants';
-import { isObject, objectHasKey } from 'commons/utils';
+import { useFetch, useStoredState } from 'commons/hooks';
+import {
+  HISTORICAL_REGIONAL_VIRUS_DATA_API_BASE_URL,
+  DATA_GRANULARITIES,
+  DEFAULT_DATA_GRANULARITY,
+  DEFAULT_DATE,
+} from 'commons/constants';
+import { isArray, isObject, objectHasKey } from 'commons/utils';
 
 const HistoricalRegionalVirusDataContext = createContext();
 
 export const HistoricalRegionalVirusDataProvider = ({ children }) => {
-  const [date, setDate] = useState(DEFAULT_DATE);
-
   const {
     data,
     setData,
@@ -24,9 +27,21 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
     normalizeHistoricalRegionalVirusData,
   );
 
-  const { regionId } = useLatestRegionalVirusData();
+  const { latestOptions: { regionId } } = useLatestRegionalVirusData();
 
   useEffect(() => !isDefaultRegionId(regionId) && fetch(regionId), [regionId]);
+
+  const [historicalOptions, setHistoricalOptions, setDefaultHistoricalOptions] = useStoredState(
+    { date: DEFAULT_DATE, granularity: DEFAULT_DATA_GRANULARITY },
+    'historical_options',
+    (value) => isObject(value)
+      && objectHasKey(value, 'date')
+      && objectHasKey(value, 'granularity')
+      && validateDate(data, value.granularity, value.date)
+      && Object.values(DATA_GRANULARITIES).includes(value.granularity),
+    true,
+  );
+  useEffect(() => setDefaultHistoricalOptions(), [data]);
   
   return (
     <HistoricalRegionalVirusDataContext.Provider value={{
@@ -35,8 +50,8 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
       error,
       loading,
       fetch,
-      date,
-      setDate,
+      historicalOptions,
+      setHistoricalOptions,
     }}>
       {children}
     </HistoricalRegionalVirusDataContext.Provider>
@@ -44,10 +59,15 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
 };
 
 export const useHistoricalRegionalVirusData = () => useContext(HistoricalRegionalVirusDataContext);
-
 export const isDefaultDate = (date) => date === DEFAULT_DATE;
-export const validateDate = (data, date) => isDefaultDate(date)
-  || (isObject(data) && data.dates.includes(date));
+
+export const validateDate = (data, granularity, date) => isDefaultDate(date)
+  || (isObject(data)
+    && objectHasKey(data, granularity)
+    && isObject(data[granularity])
+    && objectHasKey(data[granularity], 'dates')
+    && isArray(data[granularity].dates)
+    && data[granularity].dates.includes(date));
 
 const validateHistoricalRegionalVirusData = (data) => isObject(data)
   && objectHasKey(data, 'location')

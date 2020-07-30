@@ -50,8 +50,6 @@ module.exports = {
       assets: [
         'index.html',
         'assets/virus.webp',
-        'assets/populations.json',
-        'assets/virus-tests.json',
       ],
       includeEmittedAssets: false,
     }),
