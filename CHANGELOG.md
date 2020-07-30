@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/soofka/coronavirus-tracker/compare/v1.7.0...v1.8.0) (2020-07-30)
+
+
+### Features
+
+* added fall back to cache in case of api failure ([c72962f](https://github.com/soofka/coronavirus-tracker/commit/c72962f1fe0fc3b0b11935f3c806e7e9a2694773))
+* added proper query string and local storage handling ([3058544](https://github.com/soofka/coronavirus-tracker/commit/3058544dcf0f3d9baa7b7dbb7b2996865bc8127b))
+
+
+### Bug Fixes
+
+* updated unit test snapshot ([bb09688](https://github.com/soofka/coronavirus-tracker/commit/bb096882d154fa04acf1b2dfb04839c404644865))
+
 ## [1.7.0](https://github.com/soofka/coronavirus-tracker/compare/v1.6.1...v1.7.0) (2020-06-22)
 
 
