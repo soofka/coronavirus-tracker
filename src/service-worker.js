@@ -52,7 +52,7 @@ self.addEventListener('fetch', (evt) => {
     evt.respondWith(fromCacheOrInternet(STATIC_CACHE_NAME, evt.request));
   } else {
     evt.respondWith(fromCache(DATA_CACHE_NAME, evt.request));
-    evt.waitUntil(update(evt.request).then(refresh));
+    evt.waitUntil(update(evt.request, DATA_CACHE_NAME).then(refresh));
   }
 });
 
@@ -63,20 +63,20 @@ const fromCache = (cacheName, request) => caches
 const fromCacheOrInternet = (cacheName, request) => fromCache(cacheName, request)
   .then((response) => response || fetch(request));
 
-const update = (request) => caches.open(cache).then((cache) =>
+const update = (request, cacheName) => caches.open(cacheName).then((cache) =>
   fetch(request).then((response) =>
     cache.put(request, response.clone()).then(() => response)
   ));
 
-  const refresh = (response) => self.clients.matchAll().then((clients) => {
-      clients.forEach(function (client) {
-        const message = {
-          type: 'refresh',
-          url: response.url,
-          eTag: response.headers.get('ETag')
-        };
-        
-        client.postMessage(JSON.stringify(message));
-      });
+const refresh = (response) => self.clients.matchAll().then((clients) => {
+    clients.forEach(function (client) {
+      const message = {
+        type: 'refresh',
+        url: response.url,
+        eTag: response.headers.get('ETag')
+      };
+      
+      client.postMessage(JSON.stringify(message));
     });
+  });
   
