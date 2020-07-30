@@ -63,7 +63,7 @@ const fromCache = (cacheName, request) => caches
 const fromCacheOrInternet = (cacheName, request) => fromCache(cacheName, request)
   .then((response) => response || fetch(request));
 
-const update = (request) => caches.open(CACHE).then((cache) =>
+const update = (request) => caches.open(cache).then((cache) =>
   fetch(request).then((response) =>
     cache.put(request, response.clone()).then(() => response)
   ));
