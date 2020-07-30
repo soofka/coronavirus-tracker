@@ -49,24 +49,34 @@ self.addEventListener('fetch', (evt) => {
   }
 
   if (resourceInStaticCache) {
-    evt.respondWith(
-      caches.open(STATIC_CACHE_NAME)
-        .then((cache) => cache.match(evt.request)
-          .then((response) => response || fetch(evt.request)
-        )
-      )
-    );
+    evt.respondWith(fromCacheOrInternet(STATIC_CACHE_NAME, evt.request));
   } else {
-    evt.respondWith(
-      caches.open(DATA_CACHE_NAME)
-        .then((cache) => fetch(evt.request)
-          .then((response) => {
-            if (response.status === 200) {
-              cache.put(evt.request.url, response.clone());
-            }
-            return response;
-          })
-          .catch((err) => cache.match(evt.request))
-      ));
+    evt.respondWith(fromCache(DATA_CACHE_NAME, evt.request));
+    evt.waitUntil(update(evt.request).then(refresh));
   }
 });
+
+const fromCache = (cacheName, request) => caches
+  .open(cacheName)
+  .then((cache) => cache.match(request));
+
+const fromCacheOrInternet = (cacheName, request) => fromCache(cacheName, request)
+  .then((response) => response || fetch(request));
+
+const update = (request) => caches.open(CACHE).then((cache) =>
+  fetch(request).then((response) =>
+    cache.put(request, response.clone()).then(() => response)
+  ));
+
+  const refresh = (response) => self.clients.matchAll().then((clients) => {
+      clients.forEach(function (client) {
+        const message = {
+          type: 'refresh',
+          url: response.url,
+          eTag: response.headers.get('ETag')
+        };
+        
+        client.postMessage(JSON.stringify(message));
+      });
+    });
+  
