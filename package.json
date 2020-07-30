@@ -13,7 +13,7 @@
     "test": "npm run test:unit",
     "test:unit": "jest --config jest.config.js",
     "test:unit:coverage": "npm run test:unit -- --coverage | coveralls",
-    "test:e2e": "bundlesize && lhci autorun",
+    "test:e2e": "bundlesize",
     "release": "standard-version"
   },
   "devDependencies": {
