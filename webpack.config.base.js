@@ -47,9 +47,13 @@ module.exports = {
       ,
     }]),
     new SimpleSwWebpackPlugin({
-      assets: [
+      defaultAssets: [
         'index.html',
         'assets/virus.webp',
+        'assets/en_EN.json',
+      ],
+      staticAssets: [
+        'assets/pl_PL.json',
       ],
       includeEmittedAssets: false,
     }),

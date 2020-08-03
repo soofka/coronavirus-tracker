@@ -25,22 +25,16 @@ class SimpleSwWebpackPlugin {
       'SimpleSwWebpackPlugin',
       (compilation) => {
         const version = uuid();
-        let assets = this.options.assets;
+        let defaultAssets = this.options.defaultAssets;
+        let staticAssets = this.options.staticAssets;
 
         if (this.options.includeEmittedAssets) {
-          assets = assets.concat(
+          defaultAssets = assets.concat(
             Array.from(compilation.getStats().compilation.assetsInfo.keys()));
         }
 
-        const assetsString = `[${assets
-          .filter((asset, index, array) => array.indexOf(asset) === index)
-          .filter(this.options.emittedAssetsRegexp
-            ? (asset) => new RegExp(this.options.emittedAssetsRegexp).test(asset)
-            : (asset) => asset,
-          )
-          .map((asset) => `"${asset}"`)
-          .join(',')
-        }]`;
+        const defaultAssetsString = this.parseAssetsToString(defaultAssets);
+        const staticAssetsString = this.parseAssetsToString(staticAssets);
 
         fs.readFile(
           path.resolve(this.options.source),
@@ -50,7 +44,8 @@ class SimpleSwWebpackPlugin {
             } else {
               let fileContent = data.toString()
                 .replace(/%VERSION%/gi, version)
-                .replace(/\'%ASSETS%\'/gi, assetsString);
+                .replace(/\'%DEFAULT_ASSETS%\'/gi, defaultAssetsString)
+                .replace(/\'%STATIC_ASSETS%\'/gi, staticAssetsString);
 
               if (
                 this.options.minify === true
@@ -75,6 +70,18 @@ class SimpleSwWebpackPlugin {
         );
       },
     );
+  }
+
+  parseAssetsToString(assets) {
+    return `[${assets
+      .filter((asset, index, array) => array.indexOf(asset) === index)
+      .filter(this.options.emittedAssetsRegexp
+        ? (asset) => new RegExp(this.options.emittedAssetsRegexp).test(asset)
+        : (asset) => asset,
+      )
+      .map((asset) => `"${asset}"`)
+      .join(',')
+    }]`;
   }
 }
 
