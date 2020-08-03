@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/soofka/coronavirus-tracker/compare/v1.8.0...v1.8.1) (2020-08-03)
+
+
+### Bug Fixes
+
+* fixed typo in service worker ([d35e8ef](https://github.com/soofka/coronavirus-tracker/commit/d35e8efa7e632db19dcd610ad6b08eabcf582eaa))
+* fixed update procedure for cached resources in service worker ([2227221](https://github.com/soofka/coronavirus-tracker/commit/2227221e634fb60cdb999097330caadbcbf76918))
+* optimized service worker caching ([17405e1](https://github.com/soofka/coronavirus-tracker/commit/17405e1ee87e34d8675a2e29d863c47dcc0df845))
+* temporarily disabled Lighthouse check in Netlify ([682d810](https://github.com/soofka/coronavirus-tracker/commit/682d81035ec8f4bf13c7347c89b9ea383518c4c2))
+* updated preconnect URLs ([fd1b955](https://github.com/soofka/coronavirus-tracker/commit/fd1b9559eda3222e5fe0ca48b5a780ee23e18b67))
+* updated snapshot of config ([6febb96](https://github.com/soofka/coronavirus-tracker/commit/6febb96aa9d8364e0f0ccdceeefc23d8a38dc5d6))
+
 ## [1.8.0](https://github.com/soofka/coronavirus-tracker/compare/v1.7.0...v1.8.0) (2020-07-30)
 
 
