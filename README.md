@@ -17,7 +17,6 @@ If you'd like to report a bug, propose a feature, help with translations, contri
 - prerender default html
 - npm packages reinstall and audit fix
 - add social tags
-- add descriptions to chart
 - add snyk
 - add proper virus map
 - remove main.css and main.js files from bundle

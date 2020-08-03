@@ -1,6 +1,7 @@
 import { h, createContext } from 'preact';
 import { useEffect, useContext } from 'preact/hooks';
 
+import { useSWPostMessage } from 'components/App/SWPostMessageProvider';
 import { useLatestRegionalVirusData, isDefaultRegionId } from './LatestRegionalVirusDataProvider';
 
 import { useFetch, useStoredState } from 'commons/hooks';
@@ -15,6 +16,7 @@ import { isArray, isObject, objectHasKey } from 'commons/utils';
 const HistoricalRegionalVirusDataContext = createContext();
 
 export const HistoricalRegionalVirusDataProvider = ({ children }) => {
+  const { addSWPostMessageListener } = useSWPostMessage();
   const {
     data,
     setData,
@@ -25,6 +27,7 @@ export const HistoricalRegionalVirusDataProvider = ({ children }) => {
     HISTORICAL_REGIONAL_VIRUS_DATA_API_BASE_URL,
     validateHistoricalRegionalVirusData,
     normalizeHistoricalRegionalVirusData,
+    addSWPostMessageListener,
   );
 
   const { latestOptions: { regionId } } = useLatestRegionalVirusData();

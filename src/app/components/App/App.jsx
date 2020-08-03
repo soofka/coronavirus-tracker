@@ -10,6 +10,7 @@ import { GlobalVirusDataSection } from 'components/GlobalVirusDataSection';
 import { RegionalVirusDataSection } from 'components/RegionalVirusDataSection';
 import { AboutSection } from 'components/AboutSection';
 
+import { SWPostMessageProvider } from './SWPostMessageProvider';
 import { LabelsProvider } from './LabelsProvider';
 
 import './App.css';
@@ -20,15 +21,12 @@ export const App = () =>
     <LabelsProvider>
       <Header/>
       <Main>
-        <GlobalVirusDataSection/>
-        <RegionalVirusDataSection/>
+        <SWPostMessageProvider>
+          <GlobalVirusDataSection/>
+          <RegionalVirusDataSection/>
+        </SWPostMessageProvider>
         <AboutSection/>
       </Main>
       <Footer/>
     </LabelsProvider>
   </>;
-
-// const renderDetailedCountryVirusData = (labels, population, country) =>
-//   import('./sections/virusData/DetailedCountryVirusData.jsx')
-//     .then(({ default: DetailedCountryVirusData }) =>
-//       <DetailedCountryVirusData labels={labels} population={population} country={country}/>);

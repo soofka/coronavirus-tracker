@@ -21,7 +21,6 @@ import {
   HistoricalRegionalVirusDataProvider,
   useHistoricalRegionalVirusData,
   isDefaultDate,
-  validateDate,
 } from './HistoricalRegionalVirusDataProvider';
 
 export const RegionalVirusDataSection = () =>
@@ -92,6 +91,10 @@ const RegionalVirusDataSectionComponent = () => {
 
       dateOptions.push({ value: date, text: label });
     });
+
+    if (!date || isDefaultDate(date)) {
+      setDate(historicalData[granularity].dates[0]);
+    }
   }
 
   return <SectionWithData

@@ -4,6 +4,7 @@ export const useFetch = (
   baseUrl = '',
   validateData = () => true,
   normalizeData = (data) => data,
+  addSWMessageListener,
 ) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -11,8 +12,10 @@ export const useFetch = (
 
   const fetch = (url = '') => {
     setLoading(true);
-    return window.fetch(`${baseUrl}${url}`)
-      .then((response) => {
+
+    const assetUrl = `${baseUrl}${url}`;
+    const fetchAsset = () => 
+      window.fetch(assetUrl).then((response) => {
         if (response) {
           if (response.ok) {
             return response.json();
@@ -31,6 +34,12 @@ export const useFetch = (
       })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
+
+    if (addSWMessageListener) {
+      addSWMessageListener(assetUrl, fetchAsset);
+    }
+
+    return fetchAsset();
   };
 
   return { data, setData, error, loading, fetch };

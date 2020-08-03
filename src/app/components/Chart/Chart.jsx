@@ -122,7 +122,6 @@ export const Chart = ({
     rectFillWidth = BAR_WIDTH_TO_MARGIN_RATIO * rectWidth;
   }
   
-  console.log('render', dateRange);
   return (<>
     <div className="chart-wrapper">
       <small className="max-value">{maxValue}</small>

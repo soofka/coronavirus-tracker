@@ -15,6 +15,8 @@ export const useResize = (ref) => {
       setHeight(ref.current.clientHeight);
     }
 
+    handleResize();
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [ref])

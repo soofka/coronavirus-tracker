@@ -68,15 +68,7 @@ const update = (request, cacheName) => caches.open(cacheName).then((cache) =>
     cache.put(request, response.clone()).then(() => response)
   ));
 
-const refresh = (response) => self.clients.matchAll().then((clients) => {
-    clients.forEach(function (client) {
-      const message = {
-        type: 'refresh',
-        url: response.url,
-        eTag: response.headers.get('ETag')
-      };
-      
-      client.postMessage(JSON.stringify(message));
-    });
-  });
-  
+const refresh = (response) => self.clients.matchAll().then((clients) =>
+  clients.forEach((client) =>
+    client.postMessage(JSON.stringify({ type: 'refresh', url: response.url }))
+  ));

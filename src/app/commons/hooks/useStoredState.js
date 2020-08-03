@@ -15,10 +15,7 @@ export const useStoredState = (
   const setValue = (value) => {
     const newValue = merged ? Object.assign({}, stateValue, value) : value;
 
-    const valid = validate(newValue);
-    console.log('setuje', storageKey, value, newValue, valid);
-
-    if (valid) {
+    if (validate(newValue)) {
       setStateValue(newValue);
 
       if (hasStorageKey) {
@@ -41,8 +38,6 @@ export const useStoredState = (
       if (validate(valueFromQueryString)) {
         value = valueFromQueryString;
       }
-
-      console.log('setuje default', storageKey, valueFromLocalStorage, valueFromQueryString, value);
 
       if (value) {
         setValue(value);

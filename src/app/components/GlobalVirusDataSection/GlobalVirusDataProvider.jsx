@@ -1,6 +1,7 @@
 import { h, createContext } from 'preact';
 import { useEffect, useContext } from 'preact/hooks';
 
+import { useSWPostMessage } from 'components/App/SWPostMessageProvider';
 import { useFetch } from 'commons/hooks';
 import { GLOBAL_VIRUS_DATA_API_URL } from 'commons/constants';
 import { isNumber, isObject, objectHasKey } from 'commons/utils';
@@ -8,6 +9,7 @@ import { isNumber, isObject, objectHasKey } from 'commons/utils';
 const GlobalVirusDataContext = createContext();
 
 export const GlobalVirusDataProvider = ({ children }) => {
+  const { addSWPostMessageListener } = useSWPostMessage();
   const {
     data,
     error,
@@ -17,6 +19,7 @@ export const GlobalVirusDataProvider = ({ children }) => {
     GLOBAL_VIRUS_DATA_API_URL,
     validateGlobalVirusData,
     normalizeGlobalVirusData,
+    addSWPostMessageListener,
   );
 
   useEffect(() => fetch(), []);
