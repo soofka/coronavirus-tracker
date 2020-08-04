@@ -45,7 +45,7 @@
     "node-json-minify": "^1.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "rimraf": "^3.0.1",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.1",
     "terser": "^4.6.3",
     "terser-webpack-plugin": "^2.3.4",
     "uuid": "^3.4.0",
