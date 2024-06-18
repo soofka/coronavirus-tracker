@@ -2,7 +2,7 @@
   "name": "coronavirus-tracker",
   "version": "1.8.1",
   "description": "Coronavirus Tracker",
-  "author": "Jakub Sowiński <pansoofka@gmail.com> (https://soofka.pl)",
+  "author": "Jakub Sowiński <mail@jakubsowinski.com> (https://jakubsowinski.com)",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
