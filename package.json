@@ -33,7 +33,7 @@
     "css-loader": "^3.4.2",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^2.2.0",
-    "express": "^4.17.1",
+    "express": "^4.19.2",
     "favicons-webpack-plugin": "^2.1.0",
     "google-closure-compiler": "^20200224.0.0",
     "html-webpack-inline-source-plugin": "0.0.10",
